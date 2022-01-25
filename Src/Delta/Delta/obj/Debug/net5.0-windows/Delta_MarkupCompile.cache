@@ -1,5 +1,5 @@
 ﻿Delta
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 Y:\C#\Delta\Src\Delta\Delta\App.xaml
 11407045341
 
-5-1063932750
-197-1665169757
+3-1233169557
+194-752144638
 MainWindow.xaml;
 
-True
+False
 
