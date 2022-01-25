@@ -23,3 +23,6 @@ Y:\C#\Delta\Src\Delta\Delta\obj\Debug\net5.0-windows\Delta.dll
 Y:\C#\Delta\Src\Delta\Delta\obj\Debug\net5.0-windows\ref\Delta.dll
 Y:\C#\Delta\Src\Delta\Delta\obj\Debug\net5.0-windows\Delta.pdb
 Y:\C#\Delta\Src\Delta\Delta\obj\Debug\net5.0-windows\Delta.genruntimeconfig.cache
+Y:\C#\Delta\Src\Delta\Delta\bin\Debug\net5.0-windows\Microsoft.Kinect.Toolkit.Controls.dll
+Y:\C#\Delta\Src\Delta\Delta\bin\Debug\net5.0-windows\Microsoft.Kinect.Toolkit.dll
+Y:\C#\Delta\Src\Delta\Delta\bin\Debug\net5.0-windows\Microsoft.Kinect.Toolkit.Interaction.dll

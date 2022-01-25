@@ -8,7 +8,10 @@
     ".NETCoreApp,Version=v5.0": {
       "Delta/1.0.0": {
         "dependencies": {
-          "Microsoft.Kinect": "1.8.0.0"
+          "Microsoft.Kinect": "1.8.0.0",
+          "Microsoft.Kinect.Toolkit.Controls": "1.8.0.0",
+          "Microsoft.Kinect.Toolkit": "1.8.0.0",
+          "Microsoft.Kinect.Toolkit.Interaction": "1.8.0.0"
         },
         "runtime": {
           "Delta.dll": {}
@@ -21,6 +24,30 @@
             "fileVersion": "1.8.0.595"
           }
         }
+      },
+      "Microsoft.Kinect.Toolkit.Controls/1.8.0.0": {
+        "runtime": {
+          "Microsoft.Kinect.Toolkit.Controls.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.572"
+          }
+        }
+      },
+      "Microsoft.Kinect.Toolkit/1.8.0.0": {
+        "runtime": {
+          "Microsoft.Kinect.Toolkit.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.572"
+          }
+        }
+      },
+      "Microsoft.Kinect.Toolkit.Interaction/1.8.0.0": {
+        "runtime": {
+          "Microsoft.Kinect.Toolkit.Interaction.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.572"
+          }
+        }
       }
     }
   },
@@ -31,6 +58,21 @@
       "sha512": ""
     },
     "Microsoft.Kinect/1.8.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Kinect.Toolkit.Controls/1.8.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Kinect.Toolkit/1.8.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Kinect.Toolkit.Interaction/1.8.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
