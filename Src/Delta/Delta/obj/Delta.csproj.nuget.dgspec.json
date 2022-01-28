@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "Y:\\C#\\Delta\\Src\\Delta\\Delta\\Delta.csproj": {}
+    "C:\\Users\\ASUS\\Documents\\2A\\projetKinect\\Delta\\Src\\Delta\\Delta\\Delta.csproj": {}
   },
   "projects": {
-    "Y:\\C#\\Delta\\Src\\Delta\\Delta\\Delta.csproj": {
+    "C:\\Users\\ASUS\\Documents\\2A\\projetKinect\\Delta\\Src\\Delta\\Delta\\Delta.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Y:\\C#\\Delta\\Src\\Delta\\Delta\\Delta.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Documents\\2A\\projetKinect\\Delta\\Src\\Delta\\Delta\\Delta.csproj",
         "projectName": "Delta",
-        "projectPath": "Y:\\C#\\Delta\\Src\\Delta\\Delta\\Delta.csproj",
-        "packagesPath": "C:\\Users\\Yorick\\.nuget\\packages\\",
-        "outputPath": "Y:\\C#\\Delta\\Src\\Delta\\Delta\\obj\\",
+        "projectPath": "C:\\Users\\ASUS\\Documents\\2A\\projetKinect\\Delta\\Src\\Delta\\Delta\\Delta.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Documents\\2A\\projetKinect\\Delta\\Src\\Delta\\Delta\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Yorick\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,7 +57,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.210\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

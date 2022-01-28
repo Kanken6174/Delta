@@ -1,0 +1,5 @@
+C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Delta\Delta\obj\x64\Debug\Delta.csproj.AssemblyReference.cache
+C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Delta\Delta\obj\x64\Debug\MainWindow.g.cs
+C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Delta\Delta\obj\x64\Debug\App.g.cs
+C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Delta\Delta\obj\x64\Debug\Delta_MarkupCompile.cache
+C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Delta\Delta\obj\x64\Debug\Delta_MarkupCompile.lref
