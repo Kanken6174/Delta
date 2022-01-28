@@ -1,14 +1,10 @@
 
 using game.model.observable;
 using Microsoft.Kinect;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Diagnostics.Eventing;
 
-namespace kinect{
+namespace kinect
+{
     /// <summary>
     /// The KinectManager class will take care of all kinect-related operations and notify the subscribed classes whenever skeletal data is ready.
     /// </summary>
@@ -19,8 +15,7 @@ namespace kinect{
         /// </summary>
         public KinectManager() {
         }
-
-        private KinectSensor kinect;
+        public KinectSensor kinect { get; private set; }
 
         /// <summary>
         /// @return
@@ -33,8 +28,15 @@ namespace kinect{
         public void setKinectAngle(int angle)
         {
             if (kinect == null)
-                Init();
-            kinect.ElevationAngle = angle;
+                return;
+            try
+            {
+                kinect.ElevationAngle = angle;
+            }
+            catch (System.InvalidOperationException)
+            {
+                return;
+            }
         }
 
         public void Init() {

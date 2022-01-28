@@ -1,4 +1,5 @@
-﻿using System;
+﻿using kinect;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,30 @@ namespace Alpha
     /// </summary>
     public partial class MainWindow : Window
     {
+        private KinectManager km;
+
         public MainWindow()
         {
             InitializeComponent();
+            km = new KinectManager();
+            km.setKinectAngle(10);
+        }
+
+        private void ConnectKinnectButton(object sender, RoutedEventArgs e)
+        {
+            km.Init();
+            if (km.kinect.IsRunning)
+                ((Button)sender).Content = "running";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            km.Stop();
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            km.setKinectAngle((int)e.NewValue);
         }
     }
 }
