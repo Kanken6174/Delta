@@ -2,7 +2,6 @@ C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Ma
 C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\App.g.cs
 C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha_MarkupCompile.cache
 C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha_MarkupCompile.lref
-Y:\C#\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha.csprojAssemblyReference.cache
 Y:\C#\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\MainWindow.g.cs
 Y:\C#\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\App.g.cs
 Y:\C#\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha_MarkupCompile.cache
@@ -44,3 +43,5 @@ C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Al
 C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha.exe
 C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha.pdb
 C:\Users\ASUS\Documents\2A\projetKinect\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha.csproj.AssemblyReference.cache
+Y:\C#\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha.csproj.AssemblyReference.cache
+Y:\C#\Delta\Src\Alpha\Alpha\Alpha\obj\Debug\Alpha.csproj.SuggestedBindingRedirects.cache

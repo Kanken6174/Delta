@@ -45,8 +45,8 @@ namespace kinect
             Joint hand = skeletons[0].Joints[JointType.HandRight];
             if (hand.TrackingState == JointTrackingState.NotTracked)
                 return;
-            rightHandPos.ypos = hand.Position.Y*25+50;
-            rightHandPos.xpos = hand.Position.X*25+50;
+            rightHandPos.ypos = hand.Position.Y*500;
+            rightHandPos.xpos = hand.Position.X*500;
         }
 
         public void setKinectAngle(int angle)
