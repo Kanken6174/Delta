@@ -11,7 +11,7 @@ namespace monoDelta.launcher
         [STAThread]
         static void Main()
         {
-            using (var game = new game.GameController())
+            using (game.GameController game = new game.GameController())
                 game.Run();
         }
     }
