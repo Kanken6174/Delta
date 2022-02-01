@@ -21,13 +21,13 @@ namespace Alpha
     /// </summary>
     public partial class MainWindow : Window
     {
-        private KinectManager km;
+        public KinectManager km { get; set; }
 
         public MainWindow()
         {
-            InitializeComponent();
             km = new KinectManager();
-            km.setKinectAngle(10);
+            InitializeComponent();
+            DataContext = this;
         }
 
         private void ConnectKinnectButton(object sender, RoutedEventArgs e)

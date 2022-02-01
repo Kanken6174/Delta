@@ -121,6 +121,7 @@
     <Compile Include="model\game\model\movement\ConcreteEntityMover.cs" />
     <Compile Include="model\game\model\movement\KinectLinkedEntityMover.cs" />
     <Compile Include="model\game\model\movement\Position.cs" />
+    <Compile Include="model\game\model\movement\abstract\EntityMover.cs" />
     <Compile Include="model\game\model\observable\Observable.cs" />
     <Compile Include="model\game\model\observable\Subscriber.cs" />
     <Compile Include="model\game\model\player\Player.cs" />
