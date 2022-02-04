@@ -10,11 +10,12 @@ namespace monoDelta.game
 {
     public class GameController : Microsoft.Xna.Framework.Game
     {
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
         Vector2 baseScreenSize = new Vector2(1600, 900);
         private Matrix globalTransformation;
         int backbufferWidth, backbufferHeight;
+        Texture2D circle;
 
         private kinect.KinectManager km;
 
@@ -22,8 +23,8 @@ namespace monoDelta.game
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 1600;
-            graphics.PreferredBackBufferHeight = 900;
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.PreferredBackBufferHeight = 500;
             km = new kinect.KinectManager();
         }
 
@@ -32,10 +33,15 @@ namespace monoDelta.game
         /// </summary>
         protected override void LoadContent()
         {
-            this.Content.RootDirectory = "ressources";
-            base.LoadContent();
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.Content.RootDirectory = "";
+            circle = Content.Load<Texture2D>("Art/crs");
+            GraphicsDevice.Clear(Color.White);
+            spriteBatch.Begin();
+            spriteBatch.Draw(circle, new Rectangle(0, 0, 100, 100), Color.Red);
+            spriteBatch.End();
         }
-        /// <summary>
+        /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée
         /// </summary>
         /// <param name="gameTime"></param>
