@@ -9,7 +9,7 @@ using System.Text;
 namespace game.model.entity.projectiles{
     public class BigProjectile : Projectile {
 
-        public BigProjectile() {
+        public BigProjectile(Game game) : base(game) {
         }
     }
 }

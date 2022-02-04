@@ -97,7 +97,8 @@
     <Compile Include="game\model\collisions\hitboxes\HitboxSphere.cs" />
     <Compile Include="game\model\entity\BonusItem.cs" />
     <Compile Include="game\model\entity\Crosshair.cs" />
-    <Compile Include="game\model\entity\Entity.cs" />
+    <Compile Include="game\model\entity\GameEntity.cs" />
+    <Compile Include="game\model\entity\EntityManager.cs" />
     <Compile Include="game\model\entity\projectiles\BigProjectile.cs" />
     <Compile Include="game\model\entity\projectiles\PlasmaProjectile.cs" />
     <Compile Include="game\model\entity\projectiles\Projectile.cs" />

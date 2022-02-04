@@ -6,10 +6,7 @@ using System.Linq;
 using System.Text;
 
 namespace game.model.collisions.hitboxes{
-    public abstract class Hitbox : Entity {
-
-        public Hitbox() {
-        }
+    public abstract class Hitbox {
 
     }
 }

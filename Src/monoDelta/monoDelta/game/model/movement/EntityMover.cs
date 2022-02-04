@@ -15,7 +15,7 @@ namespace Alpha.model.game.model.movement
         {
         }
 
-        protected Entity managedEntity;
+        protected GameEntity managedEntity;
 
 
         protected abstract void moveManagedEntity();

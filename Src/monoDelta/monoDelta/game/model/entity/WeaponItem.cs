@@ -10,7 +10,8 @@ using System.Text;
 namespace game.model.entity{
     public class WeaponItem : BonusItem {
 
-        public WeaponItem() {
+        public WeaponItem(Game game) : base(game)
+        {
         }
 
         public Gun newGun;

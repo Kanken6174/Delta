@@ -11,12 +11,12 @@ namespace game.model.collisions.handlers{
         public EntityCollisionHandler() {
         }
 
-        private List<Entity> world;
+        private List<GameEntity> world;
 
         /// <summary>
         /// @param entity
         /// </summary>
-        public static void handleCollisionsForEntity(Entity entity) {
+        public static void handleCollisionsForEntity(GameEntity entity) {
             // TODO implement here
         }
 

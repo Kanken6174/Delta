@@ -9,7 +9,8 @@ using System.Text;
 namespace game.model.entity{
     public class ScoreItem : BonusItem {
 
-        public ScoreItem() {
+        public ScoreItem(Game game) : base(game)
+        {
         }
 
         public int scoretoAdd;

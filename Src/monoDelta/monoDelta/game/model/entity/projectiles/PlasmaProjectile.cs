@@ -9,7 +9,8 @@ using System.Text;
 namespace game.model.entity.projectiles{
     public class PlasmaProjectile : Projectile {
 
-        public PlasmaProjectile() {
+        public PlasmaProjectile(Game game) : base(game)
+        {
         }
     }
 }

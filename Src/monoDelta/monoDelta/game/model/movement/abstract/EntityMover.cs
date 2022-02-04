@@ -10,7 +10,7 @@ namespace game.model.movement
             public EntityMover() {
             }
 
-            private Entity managedEntity;
+            private GameEntity managedEntity;
 
 
             private void moveManagedEntity() {

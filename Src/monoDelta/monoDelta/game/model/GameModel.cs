@@ -17,7 +17,7 @@ namespace game.model{
 
         private KinectManager kinectManager;
 
-        private List<Entity> entities;
+        private List<GameEntity> entities;
 
 
 

@@ -9,9 +9,13 @@ using System.Linq;
 using System.Text;
 
 namespace game.model.entity{
-    public abstract class Entity {
+    public abstract class GameEntity : DrawableGameComponent{
 
-        public Entity() {
+        public GameEntity(Game game) : base(game)
+        {
+            position = new Position();
+            Lifetime = -1;
+            hitbox = new HitboxSphere();
         }
 
         public int Lifetime;

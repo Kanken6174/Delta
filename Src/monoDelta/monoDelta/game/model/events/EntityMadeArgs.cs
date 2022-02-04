@@ -11,7 +11,7 @@ namespace game.model.events{
         public EntityMadeArgs() {
         }
 
-        public Entity entity;
+        public GameEntity entity;
 
     }
 }

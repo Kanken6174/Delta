@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using game.model.entity;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using monoDelta.game.model.entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,6 @@ namespace monoDelta.game
         Vector2 baseScreenSize = new Vector2(1600, 900);
         private Matrix globalTransformation;
         int backbufferWidth, backbufferHeight;
-        Texture2D circle;
 
         private kinect.KinectManager km;
 
@@ -35,11 +36,12 @@ namespace monoDelta.game
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Content.RootDirectory = "";
-            circle = Content.Load<Texture2D>("Art/crs");
+            Texture2D crossTexture = Content.Load<Texture2D>("Art/crs");
             GraphicsDevice.Clear(Color.White);
-            spriteBatch.Begin();
-            spriteBatch.Draw(circle, new Rectangle(0, 0, 100, 100), Color.Red);
-            spriteBatch.End();
+            Crosshair crosshair = new Crosshair(this);
+            crosshair.texture = crossTexture;
+            EntityManager.SetCrosshair(crosshair);
+            km.Init();
         }
         /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée
@@ -47,6 +49,10 @@ namespace monoDelta.game
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.White);
+            spriteBatch.Begin();
+            EntityManager.DrawAll(gameTime, spriteBatch);
+            spriteBatch.End();
             base.Update(gameTime);
         }
 

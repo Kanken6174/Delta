@@ -2,6 +2,7 @@
 using game.model.movement;
 using game.model.observable;
 using Microsoft.Kinect;
+using monoDelta.game.model.entity;
 using System.IO;
 
 namespace kinect
@@ -45,8 +46,11 @@ namespace kinect
             Joint hand = skeletons[0].Joints[JointType.HandRight];
             if (hand.TrackingState == JointTrackingState.NotTracked)
                 return;
-            rightHandPos.ypos = hand.Position.Y*500;
-            rightHandPos.xpos = hand.Position.X*500;
+            rightHandPos.ypos = -((hand.Position.Y)*250*3);
+            rightHandPos.xpos = (hand.Position.X)*250*3;
+
+            EntityManager.GetCrosshair().position.xpos = rightHandPos.xpos;
+            EntityManager.GetCrosshair().position.ypos = rightHandPos.ypos;
         }
 
         public void setKinectAngle(int angle)
@@ -69,6 +73,7 @@ namespace kinect
                 if (potentialSensor.Status == KinectStatus.Connected)
                 {
                     this.kinect = potentialSensor;
+                    setKinectAngle(0);
                     break;
                 }
             }

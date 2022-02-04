@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 
 namespace game.model.entity{
-    public class Target : Entity {
+    public class Target : GameEntity {
 
-        public Target() {
+        public Target(Game game) : base(game)
+        {
+
         }
 
         public int radius;
