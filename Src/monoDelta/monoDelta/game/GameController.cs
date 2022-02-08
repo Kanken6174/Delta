@@ -1,4 +1,5 @@
-﻿using game.model.entity;
+﻿using game.model.collisions.handlers;
+using game.model.entity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.game.model.entity;
@@ -36,12 +37,16 @@ namespace monoDelta.game
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Content.RootDirectory = "";
-            Texture2D crossTexture = Content.Load<Texture2D>("Art/crs");
+
             GraphicsDevice.Clear(Color.White);
             Crosshair crosshair = new Crosshair(this);
-            crosshair.texture = crossTexture;
             EntityManager.SetCrosshair(crosshair);
             km.Init();
+            Random rnd = new Random();
+            for (int i = 0; i < 75; i++)
+            {
+                EntityManager.addRandomTarget(this);
+            }
         }
         /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée

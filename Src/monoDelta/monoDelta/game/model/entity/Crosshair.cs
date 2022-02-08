@@ -11,7 +11,7 @@ namespace game.model.entity{
 
         public Crosshair(Game game) : base(game)
         {
-
+            LoadContent();
         }
 
         public int type;
@@ -20,7 +20,6 @@ namespace game.model.entity{
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-
             spriteBatch.Draw(texture, 
                 new Vector2((float)(position.xpos+400), (float)position.ypos+400), 
                 null, 
@@ -30,6 +29,11 @@ namespace game.model.entity{
                 new Vector2(0.1f,0.1f),   //scale
                 SpriteEffects.None, 
                 0);
+        }
+
+        protected override void LoadContent()
+        {
+            this.texture = Game.Content.Load<Texture2D>("Art/crs");
         }
     }
 }

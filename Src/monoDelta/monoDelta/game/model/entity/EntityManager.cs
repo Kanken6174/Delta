@@ -1,4 +1,5 @@
-﻿using game.model.entity;
+﻿using game.model.collisions.handlers;
+using game.model.entity;
 using game.model.entity.projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -55,6 +56,32 @@ namespace monoDelta.game.model.entity
             {
                 e.Draw(gameTime, spriteBatch);
             }
+        }
+
+        public static void addRandomTarget(Game game)
+        {
+            Random rnd = new Random();
+            Target newtarget = new Target(game);
+            int tries = 0;
+            do
+            {
+                newtarget.position.xpos = rnd.Next(0, 1100);
+                newtarget.position.ypos = rnd.Next(0, 400);
+                tries++;
+                if (tries > 100)
+                    return;
+            } while (Overlaps(newtarget));
+                EntityManager.AddEntity(newtarget);
+        }
+
+        private static bool Overlaps(GameEntity g)
+        {
+            foreach(GameEntity entity in entities)
+            {
+                if (EntityCollisionHandler.IsInCollision(g, entity))
+                    return true;
+            }
+            return false;
         }
     }
 }

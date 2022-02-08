@@ -10,8 +10,6 @@ namespace game.model.collisions.hitboxes{
         public HitboxSphere() {
         }
 
-        private int radius;
-
-
+        public int radius { get; set; }
     }
 }
