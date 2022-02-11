@@ -1,11 +1,11 @@
 
-using game.model.entity;
+using Game.Model.entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.events{
+namespace Game.Model.events{
     public class ScoreItemCollectedEventArgs : EventArgs {
 
         public ScoreItemCollectedEventArgs() {

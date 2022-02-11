@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.entity.projectiles{
+namespace Game.Model.entity.projectiles{
     public class BigProjectile : Projectile {
 
-        public BigProjectile(Game game) : base(game) {
+        public BigProjectile(Microsoft.Xna.Framework.Game game) : base(game) {
         }
     }
 }

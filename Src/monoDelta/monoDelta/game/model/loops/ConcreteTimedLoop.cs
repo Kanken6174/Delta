@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace game.model.loops{
+namespace Game.Model.loops{
     public class ConcreteTimedLoop : TimedLoop {
 
         public ConcreteTimedLoop() {

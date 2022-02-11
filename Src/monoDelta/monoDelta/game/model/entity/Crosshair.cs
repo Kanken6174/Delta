@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.entity{
+namespace Game.Model.entity{
     public class Crosshair : GameEntity {
 
-        public Crosshair(Game game) : base(game)
+        public Crosshair(Microsoft.Xna.Framework.Game game) : base(game)
         {
             LoadContent();
         }
@@ -21,7 +21,7 @@ namespace game.model.entity{
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, 
-                new Vector2((float)(position.xpos+400), (float)position.ypos+400), 
+                new Vector2((float)(position.Xpos+400), (float)position.Ypos+400), 
                 null, 
                 Color.White,
                 0, //rotation 

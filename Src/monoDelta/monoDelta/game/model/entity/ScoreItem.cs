@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.entity{
+namespace Game.Model.entity{
     public class ScoreItem : BonusItem {
 
-        public ScoreItem(Game game) : base(game)
+        public ScoreItem(Microsoft.Xna.Framework.Game game) : base(game)
         {
         }
 

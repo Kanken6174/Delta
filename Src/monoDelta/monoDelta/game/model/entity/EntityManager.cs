@@ -1,6 +1,6 @@
-﻿using game.model.collisions.handlers;
-using game.model.entity;
-using game.model.entity.projectiles;
+﻿using Game.Model.Collisions.Handlers;
+using Game.Model.entity;
+using Game.Model.entity.projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,9 +13,9 @@ namespace monoDelta.game.model.entity
 {
     public static class EntityManager
     {
-        private static List<GameEntity> entities = new List<GameEntity>();
+        private static readonly List<GameEntity> entities = new List<GameEntity>();
 
-        private static List<Projectile> projectiles = new List<Projectile>();
+        private static readonly List<Projectile> projectiles = new List<Projectile>();
 
         private static Crosshair crosshair;
 
@@ -59,15 +59,15 @@ namespace monoDelta.game.model.entity
             crosshair.Draw(gameTime, spriteBatch);
         }
 
-        public static void addRandomTarget(Game game)
+        public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
             Random rnd = new Random();
             Target newtarget = new Target(game);
             int tries = 0;
             do
             {
-                newtarget.position.xpos = rnd.Next(50, 1100);
-                newtarget.position.ypos = rnd.Next(50, 400);
+                newtarget.position.Xpos = rnd.Next(50, 1100);
+                newtarget.position.Ypos = rnd.Next(50, 400);
                 tries++;
                 if (tries > 100)
                     return;

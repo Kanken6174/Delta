@@ -1,5 +1,5 @@
 
-using game.model.weapons;
+using Game.Model.weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,10 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.entity{
+namespace Game.Model.entity{
     public class WeaponItem : BonusItem {
 
-        public WeaponItem(Game game) : base(game)
+        public WeaponItem(Microsoft.Xna.Framework.Game game) : base(game)
         {
         }
 

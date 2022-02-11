@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.player{
+namespace Game.Model.player{
     public class Player {
 
-        public int munitions { get; private set; }
+        public int Munitions { get; private set; }
 
-        public int life { get; private set; }
+        public int Life { get; private set; }
 
-        public int score { get; private set; }
+        public int Score { get; private set; }
 
 
     }

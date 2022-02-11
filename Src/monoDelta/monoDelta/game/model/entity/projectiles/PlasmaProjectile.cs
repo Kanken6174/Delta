@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.entity.projectiles{
+namespace Game.Model.entity.projectiles{
     public class PlasmaProjectile : Projectile {
 
-        public PlasmaProjectile(Game game) : base(game)
+        public PlasmaProjectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
         }
     }

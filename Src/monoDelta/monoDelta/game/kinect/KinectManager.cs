@@ -1,28 +1,31 @@
 
-using game.model.movement;
-using game.model.observable;
+using Game.Model.movement;
+using Game.Model.observable;
 using Microsoft.Kinect;
 using monoDelta.game.model.entity;
 using System.IO;
 
-namespace kinect
+namespace Kinect
 {
     /// <summary>
     /// The KinectManager class will take care of all kinect-related operations and notify the subscribed classes whenever skeletal data is ready.
     /// </summary>
-    public class KinectManager : Observable {
+    public class KinectManager : Observable
+    {
 
-        public Position rightHandPos { get; set; }
+        public Position RightHandPos { get; set; }
         private Skeleton[] skeletons;
 
         /// <summary>
         /// The KinectManager class will take care of all kinect-related operations and notify the subscribed classes whenever skeletal data is ready.
         /// </summary>
         public KinectManager() {
-            rightHandPos = new Position();
-            rightHandPos.xpos = 100;
+            RightHandPos = new Position
+            {
+                Xpos = 100
+            };
         }
-        public KinectSensor kinect { get; private set; }
+        public KinectSensor Kinect { get; private set; }
 
         /// <summary>
         /// @return
@@ -46,20 +49,20 @@ namespace kinect
             Joint hand = skeletons[0].Joints[JointType.HandRight];
             if (hand.TrackingState == JointTrackingState.NotTracked)
                 return;
-            rightHandPos.ypos = -((hand.Position.Y)*250*3);
-            rightHandPos.xpos = (hand.Position.X)*250*3;
+            RightHandPos.Ypos = -((hand.Position.Y)*250*3);
+            RightHandPos.Xpos = (hand.Position.X)*250*3;
 
-            EntityManager.GetCrosshair().position.xpos = rightHandPos.xpos;
-            EntityManager.GetCrosshair().position.ypos = rightHandPos.ypos;
+            EntityManager.GetCrosshair().position.Xpos = RightHandPos.Xpos;
+            EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos;
         }
 
-        public void setKinectAngle(int angle)
+        public void SetKinectAngle(int angle)
         {
-            if (kinect == null)
+            if (Kinect == null)
                 return;
             try
             {
-                kinect.ElevationAngle = angle;
+                Kinect.ElevationAngle = angle;
             }
             catch (System.InvalidOperationException)
             {
@@ -72,13 +75,13 @@ namespace kinect
             {
                 if (potentialSensor.Status == KinectStatus.Connected)
                 {
-                    this.kinect = potentialSensor;
-                    setKinectAngle(0);
+                    this.Kinect = potentialSensor;
+                    SetKinectAngle(0);
                     break;
                 }
             }
 
-            if (null != this.kinect)
+            if (null != this.Kinect)
             {
                 // Turn on the skeleton stream to receive skeleton frames
                 //this.kinect.SkeletonStream.Enable();
@@ -86,19 +89,19 @@ namespace kinect
                 // Start the sensor!
                 try
                 {
-                    this.kinect.Start();
-                    kinect.SkeletonFrameReady += Kinect_SkeletonFrameReady;
-                    kinect.SkeletonStream.Enable();
+                    this.Kinect.Start();
+                    Kinect.SkeletonFrameReady += Kinect_SkeletonFrameReady;
+                    Kinect.SkeletonStream.Enable();
                 }
                 catch (IOException)
                 {
-                    this.kinect = null;
+                    this.Kinect = null;
                 }
             }
         }
 
         public void Stop() {
-            kinect.Stop();
+            Kinect.Stop();
             // TODO implement here
         }
 

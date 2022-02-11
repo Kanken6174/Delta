@@ -1,11 +1,11 @@
 
-using game.model.weapons;
+using Game.Model.weapons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.events{
+namespace Game.Model.events{
     public class WeaponCollectedEventArgs : EventArgs {
 
         public WeaponCollectedEventArgs() {

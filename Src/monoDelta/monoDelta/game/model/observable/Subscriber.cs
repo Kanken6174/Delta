@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.observable{
+namespace Game.Model.observable{
     /// <summary>
     /// This interface will enable implementing classes to subscribe to an Observable-inheriting class (like a timed game loop)
     /// </summary>
-    public interface Subscriber {
+    public interface ISubscriber {
 
 
-        void doAction();
+        void DoAction();
 
     }
 }

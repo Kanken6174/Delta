@@ -1,5 +1,5 @@
-﻿using game.model.collisions.handlers;
-using game.model.entity;
+﻿using Game.Model.Collisions.Handlers;
+using Game.Model.entity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.game.model.entity;
@@ -13,21 +13,26 @@ namespace monoDelta.game
 {
     public class GameController : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
+#pragma warning disable IDE0052 // Supprimer les membres privés non lus
+        readonly GraphicsDeviceManager graphics;
+#pragma warning restore IDE0052 // Supprimer les membres privés non lus
         SpriteBatch spriteBatch;
         Vector2 baseScreenSize = new Vector2(1600, 900);
-        private Matrix globalTransformation;
         int backbufferWidth, backbufferHeight;
-
-        private kinect.KinectManager km;
+#pragma warning disable IDE0052 // Supprimer les membres privés non lus
+        private Matrix globalTransformation;
+#pragma warning restore IDE0052 // Supprimer les membres privés non lus
+        private readonly Kinect.KinectManager km;
 
         public GameController()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferWidth = 1200;
-            graphics.PreferredBackBufferHeight = 500;
-            km = new kinect.KinectManager();
+            graphics = new GraphicsDeviceManager(this)
+            {
+                IsFullScreen = false,
+                PreferredBackBufferWidth = 1200,
+                PreferredBackBufferHeight = 500
+            };
+            km = new Kinect.KinectManager();
         }
 
         /// <summary>
@@ -42,10 +47,9 @@ namespace monoDelta.game
             Crosshair crosshair = new Crosshair(this);
             EntityManager.SetCrosshair(crosshair);
             km.Init();
-            Random rnd = new Random();
             for (int i = 0; i < 75; i++)
             {
-                EntityManager.addRandomTarget(this);
+                EntityManager.AddRandomTarget(this);
             }
         }
         /// <summary>   

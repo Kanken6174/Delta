@@ -1,11 +1,11 @@
 
-using game.model.observable;
+using Game.Model.observable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.loops{
+namespace Game.Model.loops{
     public abstract class TimedLoop : Observable {
 
         public TimedLoop() {

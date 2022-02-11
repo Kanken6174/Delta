@@ -1,4 +1,4 @@
-﻿namespace kinect
+﻿namespace Kinect
 {
     public class KinectSkeleton
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace game.model.movement
+namespace Game.Model.movement
 {
     public class Position {
 
@@ -13,17 +13,25 @@ namespace game.model.movement
 
         private double xposValue = 0;
         private double yposValue = 0;
-        private float zposValue = 0;
+        private double zposValue = 0;
 
         /// <summary>
         /// the current position of the entity on the Z axis (scale)
         /// </summary>
-        public float zpos { get; set; }
+        public double Zpos
+        {
+            get => zposValue;
+
+            set
+            {
+                zposValue = value;
+            }
+        }    //TODO remettre en privé
 
         /// <summary>
         /// the current position of the entity on the Y axis
         /// </summary>
-        public double ypos
+        public double Ypos
         {
             get => yposValue;
             set
@@ -35,7 +43,7 @@ namespace game.model.movement
         /// <summary>
         /// the current position of the entity on the X axis
         /// </summary>
-        public double xpos {
+        public double Xpos {
             get => xposValue;
             set
             {
@@ -46,27 +54,27 @@ namespace game.model.movement
         /// <summary>
         /// The current acceleration of the Entity on the X axis (defines how much the Entity will be moved by the EntityMover next game tick)
         /// </summary>
-        public double xVelocity { get; set; }
+        public double XVelocity { get; set; }
 
         /// <summary>
         /// The current acceleration of the Entity on the Y axis (defines how much the Entity will be moved by the EntityMover next game tick)
         /// </summary>
-        public double yVelocity { get; set; }
+        public double YVelocity { get; set; }
 
         /// <summary>
         /// The current acceleration of the Entity on the Z axis (defines how much the Entity will be moved by the EntityMover next game tick)
         /// </summary>
-        public double zVelocity { get; set; }
+        public double ZVelocity { get; set; }
 
         /// <summary>
         /// Current rotation of the entity (on the XY plane)
         /// </summary>
-        public double rotation { get; private set; }
+        public double Rotation { get; private set; }
 
         /// <summary>
         /// The current velocity at which the entity rotate each tick.
         /// </summary>
-        public double rotationVelocity { get; set; }
+        public double RotationVelocity { get; set; }
 
     }
 }

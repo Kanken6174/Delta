@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.entity.projectiles{
+namespace Game.Model.entity.projectiles{
     /// <summary>
     /// A projectile is a specific type of entity that is "shot" through a Gun object. Its position object will define it's initila velocity and other parameters.
     /// </summary>
     public abstract class Projectile : GameEntity , ProjectilePrototype {
 
-        public Projectile(Game game) : base(game)
+        public Projectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
 
         }

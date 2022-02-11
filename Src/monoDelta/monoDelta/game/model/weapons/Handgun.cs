@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace game.model.weapons{
+namespace Game.Model.weapons{
     public class Handgun : Gun {
 
         public Handgun() {

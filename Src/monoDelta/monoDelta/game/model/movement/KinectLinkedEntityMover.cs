@@ -1,13 +1,13 @@
 
-using game.model.entity;
-using kinect;
+using Game.Model.entity;
+using Kinect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using static game.model.movement.Position;
+using static Game.Model.movement.Position;
 
-namespace game.model.movement{
+namespace Game.Model.movement{
     public class KinectLinkedEntityMover : EntityMover {
 
         public KinectManager dataSource;
