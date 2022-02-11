@@ -1,6 +1,6 @@
 ﻿using Game.Model.Collisions.Handlers;
-using Game.Model.entity;
-using Game.Model.entity.projectiles;
+using Game.Model.Entity;
+using Game.Model.Entity.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace monoDelta.game.model.entity
+namespace MonoDelta.Game.Model.Entity
 {
     public static class EntityManager
     {

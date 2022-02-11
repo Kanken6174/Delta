@@ -1,15 +1,15 @@
 ﻿using Game.Model.Collisions.Handlers;
-using Game.Model.entity;
+using Game.Model.Entity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using monoDelta.game.model.entity;
+using MonoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace monoDelta.game
+namespace MonoDelta.Game
 {
     public class GameController : Microsoft.Xna.Framework.Game
     {

@@ -1,6 +1,6 @@
 
-using Game.Model.entity;
-using Game.Model.entity.projectiles;
+using Game.Model.Entity;
+using Game.Model.Entity.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace Game.Model.Collisions.Handlers{
             double ydistance = p.position.Ypos-entity.position.Ypos;
             double absDistance = Math.Sqrt((xdistance*xdistance) + (ydistance* ydistance));
 
-            return (absDistance < p.hitbox.radius+entity.hitbox.radius);
+            return (absDistance < p.hitbox.Radius+entity.hitbox.Radius);
         }
     }
 }

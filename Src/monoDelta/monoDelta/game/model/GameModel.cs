@@ -1,5 +1,5 @@
 
-using Game.Model.entity;
+using Game.Model.Entity;
 using Game.Model.loops;
 using Kinect;
 using System;

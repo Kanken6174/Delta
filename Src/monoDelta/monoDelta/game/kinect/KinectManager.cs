@@ -1,8 +1,8 @@
 
 using Game.Model.movement;
-using Game.Model.observable;
+using Game.Model.Observable;
 using Microsoft.Kinect;
-using monoDelta.game.model.entity;
+using MonoDelta.Game.Model.Entity;
 using System.IO;
 
 namespace Kinect

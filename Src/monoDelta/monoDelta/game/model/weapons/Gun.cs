@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Game.Model.weapons{
+namespace Game.Model.Weapons{
     /// <summary>
     /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
     /// </summary>
@@ -26,7 +26,7 @@ namespace Game.Model.weapons{
 
 
 
-        public void shoot() {
+        public void Shoot() {
             // TODO implement here
         }
 

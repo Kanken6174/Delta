@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Game.Model.observable{
+namespace Game.Model.Observable{
     public abstract class Observable {
 
         public Observable() {

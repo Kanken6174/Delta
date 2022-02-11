@@ -1,5 +1,5 @@
 
-using Game.Model.weapons;
+using Game.Model.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Linq;

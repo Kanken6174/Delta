@@ -1,5 +1,5 @@
-﻿using Game.Model.entity;
-using Game.Model.observable;
+﻿using Game.Model.Entity;
+using Game.Model.Observable;
 using System;
 using System.Collections.Generic;
 using System.Linq;

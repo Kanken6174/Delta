@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Game.Model.entity{
+namespace Game.Model.Entity{
     public class Crosshair : GameEntity {
 
         public Crosshair(Microsoft.Xna.Framework.Game game) : base(game)

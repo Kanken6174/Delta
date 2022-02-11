@@ -1,5 +1,5 @@
 
-using Game.Model.entity;
+using Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
