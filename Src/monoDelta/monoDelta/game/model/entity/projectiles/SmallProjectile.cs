@@ -12,5 +12,9 @@ namespace Game.Model.Entity.Projectiles{
         {
         }
 
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

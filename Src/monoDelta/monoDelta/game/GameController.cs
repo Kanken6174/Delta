@@ -60,7 +60,7 @@ namespace MonoDelta.Game
         {
             GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
-            EntityManager.DrawAll(gameTime, spriteBatch);
+            EntityManager.ProcessNextFrame(gameTime, spriteBatch);
             spriteBatch.End();
             base.Update(gameTime);
         }

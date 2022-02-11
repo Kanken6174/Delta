@@ -14,5 +14,10 @@ namespace Game.Model.Entity{
         }
 
         public int scoretoAdd;
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -22,12 +22,7 @@ namespace Game.Model.Entity.Projectiles{
         /// </summary>
         public IProjectilePrototype Clone()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-
+            return (IProjectilePrototype)this.MemberwiseClone();
         }
     }
 }

@@ -14,8 +14,8 @@ namespace Game.Model.Entity
         public Target(Microsoft.Xna.Framework.Game game) : base(game)
         {
             LoadContent();
-            this.position.ZVelocity = -0.001;
-            this.position.Zpos = 100;
+            this.position.ZVelocity = -0.005;
+            this.position.Zpos = 10;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -23,7 +23,7 @@ namespace Game.Model.Entity
             float toScale = 0;
 
             if (this.position.Zpos > 0)
-                toScale = ((float)(1f / this.position.Zpos));
+                toScale = ((float)(1/this.position.Zpos));
             else
                 toScale = 0;
 
@@ -32,7 +32,7 @@ namespace Game.Model.Entity
             null,
             Color.White,
             0, //rotation 
-            new Vector2(0, 0), //Origin
+            new Vector2(this.texture.Width / 2, this.texture.Height / 2), //Origin
             new Vector2(toScale, toScale),   //scale
             SpriteEffects.None,
             0) ;

@@ -12,6 +12,7 @@ namespace Game.Model.Entity{
         public Crosshair(Microsoft.Xna.Framework.Game game) : base(game)
         {
             LoadContent();
+            this.position.RotationVelocity = 0.1;
         }
 
         public int type;
@@ -24,8 +25,8 @@ namespace Game.Model.Entity{
                 new Vector2((float)(position.Xpos+400), (float)position.Ypos+400), 
                 null, 
                 Color.White,
-                0, //rotation 
-                new Vector2(0,0), //Origin 
+                (float)position.Rotation, //rotation
+                new Vector2(this.texture.Width/2,this.texture.Height/2), //Origin 
                 new Vector2(0.1f,0.1f),   //scale
                 SpriteEffects.None, 
                 0);
@@ -34,6 +35,12 @@ namespace Game.Model.Entity{
         protected override void LoadContent()
         {
             this.texture = Game.Content.Load<Texture2D>("Art/crs");
+        }
+
+        public override void Move()
+        {
+            this.position.Rotation += this.position.RotationVelocity;
+            //rien, la crosshair est bougée par le kinectManager
         }
     }
 }

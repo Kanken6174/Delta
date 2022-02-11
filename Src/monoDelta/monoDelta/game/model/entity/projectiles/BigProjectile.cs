@@ -11,5 +11,10 @@ namespace Game.Model.Entity.Projectiles{
 
         public BigProjectile(Microsoft.Xna.Framework.Game game) : base(game) {
         }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

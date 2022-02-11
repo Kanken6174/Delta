@@ -27,5 +27,13 @@ namespace Game.Model.Entity{
         public Texture2D texture;
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
+
+        public virtual void Move()
+        {
+            this.position.Rotation += this.position.RotationVelocity;
+            this.position.Xpos += this.position.XVelocity;
+            this.position.Ypos += this.position.YVelocity;
+            this.position.Zpos += this.position.ZVelocity;
+        }
     }
 }

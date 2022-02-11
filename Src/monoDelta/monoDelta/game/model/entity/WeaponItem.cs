@@ -20,5 +20,10 @@ namespace Game.Model.Entity{
         {
 
         }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

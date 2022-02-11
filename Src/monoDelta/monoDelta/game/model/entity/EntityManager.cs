@@ -49,14 +49,16 @@ namespace MonoDelta.Game.Model.Entity
             crosshair = c;
         }
 
-        public static void DrawAll(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            foreach(GameEntity e in entities)
-            {
 
+        public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            foreach (GameEntity e in entities)
+            {
+                e.Move();
                 e.Draw(gameTime, spriteBatch);
             }
-            crosshair.Draw(gameTime, spriteBatch);
+            crosshair.Move();
+            crosshair.Draw(gameTime, spriteBatch);  //pas besoin de la bouger ici
         }
 
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)

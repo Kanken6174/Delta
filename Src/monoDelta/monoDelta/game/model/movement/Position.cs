@@ -69,7 +69,7 @@ namespace Game.Model.movement
         /// <summary>
         /// Current rotation of the entity (on the XY plane)
         /// </summary>
-        public double Rotation { get; private set; }
+        public double Rotation { get; set; }
 
         /// <summary>
         /// The current velocity at which the entity rotate each tick.
