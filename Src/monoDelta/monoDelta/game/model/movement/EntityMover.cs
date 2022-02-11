@@ -6,23 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Alpha.model.game.model.movement
+namespace game.model.movement
 {
     public abstract class EntityMover : Subscriber
     {
 
-        public EntityMover()
+        public EntityMover(GameEntity entity)
         {
+            this.managedEntity = entity;
         }
 
         protected GameEntity managedEntity;
 
+        protected abstract void MoveManagedEntity();
 
-        protected abstract void moveManagedEntity();
-
-        public void doAction()
-        {
-            throw new NotImplementedException();
-        }
+        void Subscriber.doAction() => MoveManagedEntity();
     }
 }

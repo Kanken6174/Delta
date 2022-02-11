@@ -7,15 +7,11 @@ using System.Text;
 namespace game.model.player{
     public class Player {
 
-        public Player() {
-        }
+        public int munitions { get; private set; }
 
-        private int munitions;
+        public int life { get; private set; }
 
-        private int life;
-
-        public int score;
-
+        public int score { get; private set; }
 
 
     }

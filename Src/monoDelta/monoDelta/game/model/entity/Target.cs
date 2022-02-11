@@ -24,7 +24,7 @@ namespace game.model.entity
             Color.White,
             0, //rotation 
             new Vector2(0, 0), //Origin 
-            new Vector2(0.1f, 0.1f),   //scale
+            new Vector2(0.1f*this.position.zpos, 0.1f* this.position.zpos),   //scale
             SpriteEffects.None,
             0);
         }

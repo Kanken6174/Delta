@@ -1,4 +1,5 @@
 
+using game.model.entity;
 using kinect;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,15 @@ using static game.model.movement.Position;
 namespace game.model.movement{
     public class KinectLinkedEntityMover : EntityMover {
 
-        public KinectLinkedEntityMover() {
-        }
-
         public KinectManager dataSource;
 
+        public KinectLinkedEntityMover(GameEntity entity) : base(entity)
+        {
+        }
 
+        protected override void MoveManagedEntity()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

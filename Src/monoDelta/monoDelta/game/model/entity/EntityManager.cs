@@ -51,11 +51,12 @@ namespace monoDelta.game.model.entity
 
         public static void DrawAll(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            crosshair.Draw(gameTime, spriteBatch);
             foreach(GameEntity e in entities)
             {
+
                 e.Draw(gameTime, spriteBatch);
             }
+            crosshair.Draw(gameTime, spriteBatch);
         }
 
         public static void addRandomTarget(Game game)
@@ -65,8 +66,8 @@ namespace monoDelta.game.model.entity
             int tries = 0;
             do
             {
-                newtarget.position.xpos = rnd.Next(0, 1100);
-                newtarget.position.ypos = rnd.Next(0, 400);
+                newtarget.position.xpos = rnd.Next(50, 1100);
+                newtarget.position.ypos = rnd.Next(50, 400);
                 tries++;
                 if (tries > 100)
                     return;

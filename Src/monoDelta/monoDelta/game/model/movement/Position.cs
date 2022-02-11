@@ -13,12 +13,12 @@ namespace game.model.movement
 
         private double xposValue = 0;
         private double yposValue = 0;
-        private double zposValue = 0;
+        private float zposValue = 0;
 
         /// <summary>
         /// the current position of the entity on the Z axis (scale)
         /// </summary>
-        public double zpos {get; private set;}
+        public float zpos { get; set; }
 
         /// <summary>
         /// the current position of the entity on the Y axis
@@ -29,7 +29,6 @@ namespace game.model.movement
             set
             {
                 yposValue = value;
-                posChanged();
             }
         }    //TODO remettre en privé
 
@@ -41,7 +40,6 @@ namespace game.model.movement
             set
             {
                 xposValue = value;
-                posChanged();
             }
         }    //TODO remettre en privé
 
@@ -53,26 +51,22 @@ namespace game.model.movement
         /// <summary>
         /// The current acceleration of the Entity on the Y axis (defines how much the Entity will be moved by the EntityMover next game tick)
         /// </summary>
-        private double yVelocity { get; set; }
+        public double yVelocity { get; set; }
 
-    /// <summary>
-    /// The current acceleration of the Entity on the Z axis (defines how much the Entity will be moved by the EntityMover next game tick)
-    /// </summary>
-    private double zVelocity { get; set; }
+        /// <summary>
+        /// The current acceleration of the Entity on the Z axis (defines how much the Entity will be moved by the EntityMover next game tick)
+        /// </summary>
+        public double zVelocity { get; set; }
 
-    /// <summary>
-    /// Current rotation of the entity (on the XY plane)
-    /// </summary>
-    public double rotation { get; private set; }
+        /// <summary>
+        /// Current rotation of the entity (on the XY plane)
+        /// </summary>
+        public double rotation { get; private set; }
 
         /// <summary>
         /// The current velocity at which the entity rotate each tick.
         /// </summary>
-        private double rotationVelocity = 0;
+        public double rotationVelocity { get; set; }
 
-
-        public void posChanged([CallerMemberName] String propertyName = "")
-        {
-        }
     }
 }
