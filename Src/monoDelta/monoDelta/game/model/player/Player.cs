@@ -1,5 +1,6 @@
 
 using Game.Model.Weapons;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace Game.Model.player{
         public int Score { get; private set; }
 
         public Gun gun { get; private set; }
+
+        public void Update(GameTime time)
+        {
+            gun.Shoot(time);
+        }
 
     }
 }

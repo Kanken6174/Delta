@@ -1,5 +1,8 @@
 
 using Game.Model.Entity;
+using Game.Model.Entity.Projectiles;
+using Microsoft.Xna.Framework;
+using MonoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,25 +14,36 @@ namespace Game.Model.Weapons{
     /// </summary>
     public abstract class Gun {
 
-        /// <summary>
-        /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
-        /// </summary>
-        public Gun() {
-        }
-
         private int munitions = 0;
 
         private int reloadTime = 0;
 
-        public int spread;
+        public int spread = 100;
 
-        public int fireRate;
+        private Random random = new Random();
 
-        private Crosshair crosshair;
+        public int fireRate = 300;
 
+        public Projectile bullet;
 
-        public void Shoot() {
-            // TODO implement here
+        public double lastFired = 0;
+
+        /// <summary>
+        /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
+        /// </summary>
+        public Gun(Microsoft.Xna.Framework.Game game) {
+            bullet = new SmallProjectile(game);
+        }
+
+        public void Shoot(GameTime gameTime) {
+            if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > fireRate)
+            {
+                Projectile bullet = this.bullet.Clone();
+                bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-spread,spread)/10;
+                bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos;
+                EntityManager.AddProjectile(bullet);
+                lastFired = gameTime.TotalGameTime.TotalMilliseconds;
+            }
         }
 
     }

@@ -7,7 +7,8 @@ using System.Text;
 namespace Game.Model.Weapons{
     public class Carabine : Gun {
 
-        public Carabine() {
+        public Carabine(Microsoft.Xna.Framework.Game game) : base(game)
+        {
         }
 
         private int munitions = 20;

@@ -3,6 +3,7 @@ using Game.Model.Entity;
 using Game.Model.Entity.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using monoDelta.Game.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,19 @@ namespace MonoDelta.Game.Model.Entity
                     entities.RemoveAt(nbelem);
                 nbelem++;
             }
+
             crosshair.Move();
+            PlayerManager.GetPlayer().Update(gameTime);
+            nbelem = 0;
+            while (nbelem < projectiles.Count)
+            {
+                projectiles[nbelem].Move();
+                if (projectiles[nbelem].Lifetime == 0)
+                    projectiles.RemoveAt(nbelem);
+                nbelem++;
+            }
+
+
         }
 
         public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
@@ -71,6 +84,12 @@ namespace MonoDelta.Game.Model.Entity
             {
                 e.Draw(gameTime, spriteBatch);
             }
+
+            foreach (Projectile p in projectiles)
+            {
+                p.Draw(gameTime, spriteBatch);
+            }
+
             crosshair.Draw(gameTime, spriteBatch);
         }
 

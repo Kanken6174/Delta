@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace monoDelta.Game.Model
 {
-    class PlayerManager
+    public static class PlayerManager
     {
-        private Player player;
+        private static Player player = new Player();
 
-        public PlayerManager()
-        {
-            player = new Player();
-        }
-
-        public Player GetPlayer()
+        public static Player GetPlayer()
         {
             return player;
         }
 
-        public void SetPlayer(Player p)
+        public static void SetPlayer(Player p)
         {
             player = p;
             

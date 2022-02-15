@@ -10,7 +10,7 @@ namespace Game.Model.Entity.Projectiles{
         /// <summary>
         /// @return
         /// </summary>
-        IProjectilePrototype Clone();
+        Projectile Clone();
 
     }
 }

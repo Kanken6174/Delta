@@ -20,12 +20,9 @@ namespace Game.Model{
 
         private List<GameEntity> entities;
 
-        private PlayerManager playerManager;
-
 
 
         public void StartGame() {
-            playerManager = new PlayerManager();
         }
 
     }
