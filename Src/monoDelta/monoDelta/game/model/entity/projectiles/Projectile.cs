@@ -22,6 +22,7 @@ namespace Game.Model.Entity.Projectiles{
             position = new Position();
             Lifetime = 1000;
             hitbox = new HitboxSphere();
+            hitbox.Radius = 10;
         }
 
         /// <summary>
@@ -29,7 +30,12 @@ namespace Game.Model.Entity.Projectiles{
         /// </summary>
         public IProjectilePrototype Clone()
         {
-            return (IProjectilePrototype)this.MemberwiseClone();
+            Projectile bullet = (Projectile)this.MemberwiseClone();
+            bullet.Lifetime = 100;
+            bullet.position = new Position();
+            bullet.position.ZVelocity = 0.1;
+            bullet.texture = this.texture;
+            return bullet;
         }
     }
 }

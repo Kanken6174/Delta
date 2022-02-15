@@ -19,5 +19,6 @@ namespace Game.Model.Collisions.Handlers{
 
             return (absDistance < p.hitbox.Radius+entity.hitbox.Radius);
         }
+
     }
 }
