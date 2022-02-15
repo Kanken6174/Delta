@@ -1,4 +1,5 @@
-﻿using Game.Model.Collisions.Handlers;
+﻿using Game.Model;
+using Game.Model.Collisions.Handlers;
 using Game.Model.Entity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,6 +24,7 @@ namespace MonoDelta.Game
         private Matrix globalTransformation;
 #pragma warning restore IDE0052 // Supprimer les membres privés non lus
         private readonly Kinect.KinectManager km;
+        private GameModel gameModel;
 
         public GameController()
         {

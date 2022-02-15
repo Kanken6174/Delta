@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\GameController.cs" />
+    <Compile Include="Game\Model\PlayerManager.cs" />
     <Compile Include="Game\Model\Collisions\Handlers\EntityCollisionHandler.cs" />
     <Compile Include="Game\Model\Collisions\Hitboxes\Hitbox.cs" />
     <Compile Include="Game\Model\Collisions\Hitboxes\HitboxSphere.cs" />

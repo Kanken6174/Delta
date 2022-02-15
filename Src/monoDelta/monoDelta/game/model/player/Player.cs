@@ -1,4 +1,5 @@
 
+using Game.Model.Weapons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Game.Model.player{
 
         public int Score { get; private set; }
 
+        public Gun gun { get; private set; }
 
     }
 }

@@ -2,6 +2,7 @@
 using Game.Model.Entity;
 using Game.Model.loops;
 using Kinect;
+using monoDelta.Game.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,14 @@ namespace Game.Model{
 
         private List<GameEntity> entities;
 
-
+        private PlayerManager playerManager;
 
 
 
         public void StartGame() {
-            // TODO implement here
+            playerManager = new PlayerManager();
         }
 
     }
+
 }

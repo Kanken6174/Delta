@@ -1,4 +1,5 @@
 
+using Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Game.Model.Weapons{
 
         public int fireRate;
 
+        private Crosshair crosshair;
 
 
         public void Shoot() {
