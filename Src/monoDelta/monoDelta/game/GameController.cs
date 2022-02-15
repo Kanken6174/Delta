@@ -58,11 +58,17 @@ namespace MonoDelta.Game
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
-            spriteBatch.Begin();
             EntityManager.ProcessNextFrame(gameTime, spriteBatch);
-            spriteBatch.End();
             base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.White);
+            base.Draw(gameTime);
+            spriteBatch.Begin();
+            EntityManager.DrawNextFrame(gameTime, spriteBatch);
+            spriteBatch.End();
         }
 
         public void ScalePresentationArea()

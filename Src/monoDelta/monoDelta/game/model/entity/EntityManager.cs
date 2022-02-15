@@ -60,12 +60,18 @@ namespace MonoDelta.Game.Model.Entity
                 entities[nbelem].Move();
                 if(entities[nbelem].Lifetime == 0 )
                     entities.RemoveAt(nbelem);
-                else
-                    entities[nbelem].Draw(gameTime, spriteBatch);
                 nbelem++;
             }
             crosshair.Move();
-            crosshair.Draw(gameTime, spriteBatch);  //pas besoin de la bouger ici
+        }
+
+        public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            foreach(GameEntity e in entities)
+            {
+                e.Draw(gameTime, spriteBatch);
+            }
+            crosshair.Draw(gameTime, spriteBatch);
         }
 
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
