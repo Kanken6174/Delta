@@ -1,6 +1,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using monoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace Game.Model.Entity.Projectiles{
     /// <summary>
     /// A projectile is a specific type of entity that is "shot" through a Gun object. Its position object will define it's initila velocity and other parameters.
     /// </summary>
-    public abstract class Projectile : GameEntity , IProjectilePrototype {
+    public abstract class Projectile : CollisionnableEntity
+
+    , IProjectilePrototype {
 
         public Projectile(Microsoft.Xna.Framework.Game game) : base(game)
         {

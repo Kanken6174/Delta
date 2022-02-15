@@ -1,13 +1,15 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using monoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Game.Model.Entity{
-    public class Crosshair : GameEntity {
+    public class Crosshair : CollisionnableEntity
+    {
 
         public Crosshair(Microsoft.Xna.Framework.Game game) : base(game)
         {

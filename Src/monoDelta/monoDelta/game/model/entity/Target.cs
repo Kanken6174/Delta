@@ -1,6 +1,7 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using monoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,8 @@ using System.Text;
 
 namespace Game.Model.Entity
 {
-    public class Target : GameEntity
+    public class Target : CollisionnableEntity
+
     {
 
         public Target(Microsoft.Xna.Framework.Game game) : base(game)
@@ -16,6 +18,7 @@ namespace Game.Model.Entity
             LoadContent();
             this.position.ZVelocity = -0.005;
             this.position.Zpos = 10;
+            this.position.XVelocity = 1;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

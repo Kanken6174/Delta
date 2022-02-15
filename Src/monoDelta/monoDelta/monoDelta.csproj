@@ -99,6 +99,7 @@
     <Compile Include="Game\Model\Collisions\Hitboxes\Hitbox.cs" />
     <Compile Include="Game\Model\Collisions\Hitboxes\HitboxSphere.cs" />
     <Compile Include="Game\Model\Entity\BonusItem.cs" />
+    <Compile Include="Game\Model\Entity\CollisionnableEntity.cs" />
     <Compile Include="Game\Model\Entity\Crosshair.cs" />
     <Compile Include="Game\Model\Entity\GameEntity.cs" />
     <Compile Include="Game\Model\Entity\EntityManager.cs" />

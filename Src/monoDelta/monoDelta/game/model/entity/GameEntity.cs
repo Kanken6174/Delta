@@ -34,6 +34,7 @@ namespace Game.Model.Entity{
             this.position.Xpos += this.position.XVelocity;
             this.position.Ypos += this.position.YVelocity;
             this.position.Zpos += this.position.ZVelocity;
+
         }
     }
 }
