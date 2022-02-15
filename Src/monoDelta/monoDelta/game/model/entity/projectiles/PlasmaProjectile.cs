@@ -13,6 +13,11 @@ namespace Game.Model.Entity.Projectiles{
         {
         }
 
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Move()
         {
             throw new NotImplementedException();
