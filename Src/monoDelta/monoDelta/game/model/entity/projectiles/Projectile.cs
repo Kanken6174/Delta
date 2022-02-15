@@ -33,7 +33,8 @@ namespace Game.Model.Entity.Projectiles{
             Projectile bullet = (Projectile)this.MemberwiseClone();
             bullet.Lifetime = 100;
             bullet.position = new Position();
-            bullet.position.ZVelocity = 0.1;
+            bullet.position.ZVelocity = 0.005;
+            bullet.position.RotationVelocity = 1;
             bullet.texture = this.texture;
             return bullet;
         }

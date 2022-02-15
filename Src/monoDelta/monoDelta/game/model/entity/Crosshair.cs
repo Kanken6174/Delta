@@ -24,7 +24,7 @@ namespace Game.Model.Entity{
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, 
-                new Vector2((float)(position.Xpos+400), (float)position.Ypos+400), 
+                new Vector2((float)(position.Xpos), (float)position.Ypos),
                 null, 
                 Color.White,
                 (float)position.Rotation, //rotation

@@ -3,12 +3,14 @@ using Game.Model.Collisions.Handlers;
 using Game.Model.Entity;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using monoDelta.Game.Model;
 using MonoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Model.Player;
 
 namespace MonoDelta.Game
 {
@@ -53,6 +55,7 @@ namespace MonoDelta.Game
             {
                 EntityManager.AddRandomTarget(this);
             }
+            PlayerManager.SetPlayer(new Player(this));
         }
         /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée
@@ -60,7 +63,7 @@ namespace MonoDelta.Game
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
-            EntityManager.ProcessNextFrame(gameTime, spriteBatch);
+            EntityManager.ProcessNextFrame(gameTime, spriteBatch, this);
             base.Update(gameTime);
         }
 

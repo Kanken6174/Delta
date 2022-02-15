@@ -1,4 +1,4 @@
-﻿using Game.Model.player;
+﻿using Game.Model.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace monoDelta.Game.Model
 {
     public static class PlayerManager
     {
-        private static Player player = new Player();
+        private static Player player;
 
         public static Player GetPlayer()
         {

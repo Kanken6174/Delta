@@ -22,6 +22,8 @@ namespace MonoDelta.Game.Model.Entity
 
         private static Random randomiser = new Random();
 
+        private static double lastSpawned = 0;
+
         public static void AddEntity(GameEntity e)
         {
             entities.Add(e);
@@ -53,13 +55,13 @@ namespace MonoDelta.Game.Model.Entity
         }
 
 
-        public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
+        public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch, Microsoft.Xna.Framework.Game game)
         {
             int nbelem = 0;
             while (nbelem < entities.Count)
             {
                 entities[nbelem].Move();
-                if(entities[nbelem].Lifetime == 0 )
+                if(entities[nbelem].position.Zpos < 3 )
                     entities.RemoveAt(nbelem);
                 nbelem++;
             }
@@ -74,8 +76,25 @@ namespace MonoDelta.Game.Model.Entity
                     projectiles.RemoveAt(nbelem);
                 nbelem++;
             }
+            if (gameTime.TotalGameTime.TotalMilliseconds - lastSpawned > 100)
+            {
+                AddRandomTarget(game);
+                lastSpawned = gameTime.TotalGameTime.TotalMilliseconds;
+            }
 
-
+            nbelem = 0;
+            int nbProj = 0;
+            while(nbProj < projectiles.Count)
+            {
+                while (nbelem < entities.Count)
+                {
+                    entities[nbelem].Move();
+                    if (EntityCollisionHandler.hasProjectileCollidedWith(projectiles[nbProj], entities[nbelem]))
+                        entities.RemoveAt(nbelem);
+                    nbelem++;
+                }
+                nbProj++;
+            }
         }
 
         public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)

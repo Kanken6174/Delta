@@ -22,7 +22,7 @@ namespace Game.Model.Weapons{
 
         private Random random = new Random();
 
-        public int fireRate = 300;
+        public int fireRate = 100;
 
         public Projectile bullet;
 
@@ -40,7 +40,7 @@ namespace Game.Model.Weapons{
             {
                 Projectile bullet = this.bullet.Clone();
                 bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-spread,spread)/10;
-                bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos;
+                bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-spread, spread) / 10;
                 EntityManager.AddProjectile(bullet);
                 lastFired = gameTime.TotalGameTime.TotalMilliseconds;
             }

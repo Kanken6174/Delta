@@ -22,7 +22,9 @@ namespace Kinect
         public KinectManager() {
             RightHandPos = new Position
             {
-                Xpos = 100
+                Xpos = 400,
+                Ypos = 400,
+                Zpos = 0
             };
         }
         public KinectSensor Kinect { get; private set; }
@@ -52,8 +54,8 @@ namespace Kinect
             RightHandPos.Ypos = -((hand.Position.Y)*250*3);
             RightHandPos.Xpos = (hand.Position.X)*250*3;
 
-            EntityManager.GetCrosshair().position.Xpos = RightHandPos.Xpos;
-            EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos;
+            EntityManager.GetCrosshair().position.Xpos = RightHandPos.Xpos+400;
+            EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos+400;
         }
 
         public void SetKinectAngle(int angle)
