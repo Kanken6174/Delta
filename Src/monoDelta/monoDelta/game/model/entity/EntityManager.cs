@@ -19,6 +19,8 @@ namespace MonoDelta.Game.Model.Entity
 
         private static Crosshair crosshair;
 
+        private static Random randomiser = new Random();
+
         public static void AddEntity(GameEntity e)
         {
             entities.Add(e);
@@ -52,24 +54,35 @@ namespace MonoDelta.Game.Model.Entity
 
         public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (GameEntity e in entities)
+            int nbelem = 0;
+            while (nbelem < entities.Count)
             {
-                e.Move();
-                e.Draw(gameTime, spriteBatch);
+                entities[nbelem].Move();
+                if(entities[nbelem].Lifetime == 0 )
+                    entities.RemoveAt(nbelem);
+                nbelem++;
             }
             crosshair.Move();
-            crosshair.Draw(gameTime, spriteBatch);  //pas besoin de la bouger ici
+        }
+
+        public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            foreach(GameEntity e in entities)
+            {
+                e.Draw(gameTime, spriteBatch);
+            }
+            crosshair.Draw(gameTime, spriteBatch);
         }
 
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
-            Random rnd = new Random();
             Target newtarget = new Target(game);
             int tries = 0;
             do
             {
-                newtarget.position.Xpos = rnd.Next(50, 1100);
-                newtarget.position.Ypos = rnd.Next(50, 400);
+                newtarget.position.Xpos = randomiser.Next(50, 1100);
+                newtarget.position.Ypos = randomiser.Next(50, 400);
+                newtarget.Lifetime = randomiser.Next(50, 1000);
                 tries++;
                 if (tries > 100)
                     return;

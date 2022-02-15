@@ -30,6 +30,10 @@ namespace Game.Model.Entity{
 
         public virtual void Move()
         {
+            if(this.Lifetime > -1)
+            {
+                this.Lifetime--;
+            }
             this.position.Rotation += this.position.RotationVelocity;
             this.position.Xpos += this.position.XVelocity;
             this.position.Ypos += this.position.YVelocity;

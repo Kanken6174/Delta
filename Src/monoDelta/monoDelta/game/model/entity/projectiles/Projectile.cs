@@ -1,4 +1,6 @@
 
+using Game.Model.Collisions.Hitboxes;
+using Game.Model.movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model.Entity;
@@ -17,7 +19,9 @@ namespace Game.Model.Entity.Projectiles{
 
         public Projectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
-
+            position = new Position();
+            Lifetime = 1000;
+            hitbox = new HitboxSphere();
         }
 
         /// <summary>
