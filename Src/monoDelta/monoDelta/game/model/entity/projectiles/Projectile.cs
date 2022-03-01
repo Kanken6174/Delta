@@ -23,6 +23,8 @@ namespace Game.Model.Entity.Projectiles{
             Lifetime = 1000;
             hitbox = new HitboxSphere();
             hitbox.Radius = 10;
+            this.position.ZVelocity = 0.005;
+            this.position.RotationVelocity = 1;
         }
 
         /// <summary>
@@ -32,9 +34,6 @@ namespace Game.Model.Entity.Projectiles{
         {
             Projectile bullet = (Projectile)this.MemberwiseClone();
             bullet.Lifetime = 100;
-            bullet.position = new Position();
-            bullet.position.ZVelocity = 0.005;
-            bullet.position.RotationVelocity = 1;
             bullet.texture = this.texture;
             return bullet;
         }

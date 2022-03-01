@@ -1,4 +1,5 @@
 
+using Game.Model.Entity.Projectiles;
 using Game.Model.Weapons;
 using Microsoft.Xna.Framework;
 using System;
@@ -12,7 +13,8 @@ namespace Game.Model.Player
 
         public Player(Microsoft.Xna.Framework.Game game)
         {
-            gun = new Handgun(game);
+            Projectile magnum5mm = new SmallProjectile(game);
+            gun = new Handgun(game, magnum5mm);
         }
 
         public int Munitions { get; private set; }

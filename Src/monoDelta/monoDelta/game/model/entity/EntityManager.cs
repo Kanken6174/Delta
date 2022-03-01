@@ -1,6 +1,7 @@
 ﻿using Game.Model.Collisions.Handlers;
 using Game.Model.Entity;
 using Game.Model.Entity.Projectiles;
+using Game.Model.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model;
@@ -115,10 +116,21 @@ namespace MonoDelta.Game.Model.Entity
 
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
-            randomiser.Next(0, 20);
-            //if()
+            CollisionnableEntity newtarget;
+            if (randomiser.Next(0, 20) == 15) //1/20 chances
+            {
+                Projectile magnum9mm = new SmallProjectile(game);
+                magnum9mm.position.ZVelocity = 900;
+                Gun gun = new Minigun(game, magnum9mm);
+                newtarget = new WeaponItem(game, gun);
+                
+            }
+            else
+            {
+                newtarget = new Target(game);
+            }
 
-            CollisionnableEntity newtarget = new Target(game);
+             
 
             int tries = 0;
             do
