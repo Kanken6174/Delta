@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game.Model.Player;
+using Myra;
+using Myra.Graphics2D.UI;
 
 namespace MonoDelta.Game
 {
@@ -27,6 +29,7 @@ namespace MonoDelta.Game
 #pragma warning restore IDE0052 // Supprimer les membres privés non lus
         private readonly Kinect.KinectManager km;
         private GameModel gameModel;
+        private Desktop _desktop;
 
         public GameController()
         {
@@ -36,6 +39,7 @@ namespace MonoDelta.Game
                 PreferredBackBufferWidth = 1200,
                 PreferredBackBufferHeight = 500
             };
+            IsMouseVisible = true;
             km = new Kinect.KinectManager();
         }
 
@@ -44,6 +48,36 @@ namespace MonoDelta.Game
         /// </summary>
         protected override void LoadContent()
         {
+            MyraEnvironment.Game = this;
+            var panel = new Panel();
+            var positionedText = new Label();
+            positionedText.Text = "Positioned Text";
+            positionedText.Left = 50;
+            positionedText.Top = 100;
+            panel.Widgets.Add(positionedText);
+
+            var paddedCenteredButton = new TextButton();
+            paddedCenteredButton.Text = "Padded Centered Button";
+            paddedCenteredButton.HorizontalAlignment = HorizontalAlignment.Center;
+            paddedCenteredButton.VerticalAlignment = VerticalAlignment.Center;
+            panel.Widgets.Add(paddedCenteredButton);
+
+            var rightBottomText = new Label();
+            rightBottomText.Text = "Right Bottom Text";
+            rightBottomText.Left = -30;
+            rightBottomText.Top = -20;
+            rightBottomText.HorizontalAlignment = HorizontalAlignment.Right;
+            rightBottomText.VerticalAlignment = VerticalAlignment.Bottom;
+            panel.Widgets.Add(rightBottomText);
+
+            var fixedSizeButton = new TextButton();
+            fixedSizeButton.Text = "Fixed Size Button";
+            fixedSizeButton.Width = 110;
+            fixedSizeButton.Height = 80;
+            panel.Widgets.Add(fixedSizeButton);
+            _desktop = new Desktop();
+            _desktop.Root = panel;
+
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Content.RootDirectory = "";
 
@@ -72,7 +106,15 @@ namespace MonoDelta.Game
             GraphicsDevice.Clear(Color.White);
             base.Draw(gameTime);
             spriteBatch.Begin();
-            EntityManager.DrawNextFrame(gameTime, spriteBatch);
+            if (IsMouseVisible)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                _desktop.Render();
+            }
+            else
+            {
+                EntityManager.DrawNextFrame(gameTime, spriteBatch);
+            }
             spriteBatch.End();
         }
 
