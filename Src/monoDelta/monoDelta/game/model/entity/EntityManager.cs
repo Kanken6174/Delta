@@ -4,6 +4,7 @@ using Game.Model.Entity.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model;
+using monoDelta.Game.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,7 +115,11 @@ namespace MonoDelta.Game.Model.Entity
 
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
-            Target newtarget = new Target(game);
+            randomiser.Next(0, 20);
+            //if()
+
+            CollisionnableEntity newtarget = new Target(game);
+
             int tries = 0;
             do
             {

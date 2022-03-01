@@ -30,7 +30,7 @@ namespace Game.Model.Entity.Projectiles{
             Color.White,
             0, //rotation 
             new Vector2(this.texture.Width / 2, this.texture.Height / 2), //Origin
-            new Vector2(toScale/100, toScale/100),   //scale
+            new Vector2((float)(Math.Sqrt(toScale))/100, ((float)Math.Sqrt(toScale))/100),   //scale
             SpriteEffects.None,
             0);
         }
