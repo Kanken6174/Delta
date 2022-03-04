@@ -14,6 +14,8 @@ namespace Game.Model.Entity{
         {
             LoadContent();
             newGun = gun;
+            this.position.ZVelocity = -0.005;
+            this.position.Zpos = 10;
         }
 
         public Gun newGun { get; private set; }
@@ -41,7 +43,7 @@ namespace Game.Model.Entity{
 
         protected override void LoadContent()
         {
-            this.texture = Game.Content.Load<Texture2D>("Art/target");
+            this.texture = Game.Content.Load<Texture2D>("Art/gun");
             this.hitbox.Radius = texture.Width / 22;
         }
     }

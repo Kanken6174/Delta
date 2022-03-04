@@ -54,7 +54,7 @@ namespace Kinect
             RightHandPos.Ypos = -((hand.Position.Y)*250*3);
             RightHandPos.Xpos = (hand.Position.X)*250*3;
 
-            EntityManager.GetCrosshair().position.Xpos = RightHandPos.Xpos+400;
+            EntityManager.GetCrosshair().position.Xpos = (RightHandPos.Xpos+400)*2;
             EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos+400;
         }
 

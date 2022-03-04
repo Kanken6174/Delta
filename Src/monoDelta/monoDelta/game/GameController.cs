@@ -106,6 +106,7 @@ namespace MonoDelta.Game
             GraphicsDevice.Clear(Color.White);
             base.Draw(gameTime);
             spriteBatch.Begin();
+            IsMouseVisible = false;
             if (IsMouseVisible)
             {
                 GraphicsDevice.Clear(Color.Black);

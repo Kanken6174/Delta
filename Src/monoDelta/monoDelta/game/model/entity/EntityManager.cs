@@ -117,10 +117,10 @@ namespace MonoDelta.Game.Model.Entity
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
             CollisionnableEntity newtarget;
-            if (randomiser.Next(0, 20) == 15) //1/20 chances
+            if (randomiser.Next(0, 100) == 15) //1/100 chances
             {
                 Projectile magnum9mm = new SmallProjectile(game);
-                magnum9mm.position.ZVelocity = 900;
+                magnum9mm.position.ZVelocity = 0.05;
                 Gun gun = new Minigun(game, magnum9mm);
                 newtarget = new WeaponItem(game, gun);
                 
@@ -142,7 +142,7 @@ namespace MonoDelta.Game.Model.Entity
                 if (tries > 100)
                     return;
             } while (Overlaps(newtarget));
-                EntityManager.AddEntity(newtarget);
+            EntityManager.AddEntity(newtarget);
         }
 
         private static bool Overlaps(GameEntity g)

@@ -18,6 +18,7 @@ namespace Game.Model.Entity
             LoadContent();
             this.position.ZVelocity = -0.005;
             this.position.Zpos = 10;
+            this.hitbox.Radius = 1;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

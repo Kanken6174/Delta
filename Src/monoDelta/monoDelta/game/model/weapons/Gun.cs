@@ -22,7 +22,7 @@ namespace Game.Model.Weapons{
 
         private Random random = new Random();
 
-        public int fireRate = 100;
+        public int fireRate = 200;
 
         public Projectile Bullet { get; private set; }
 
@@ -32,7 +32,7 @@ namespace Game.Model.Weapons{
         /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
         /// </summary>
         public Gun(Microsoft.Xna.Framework.Game game, Projectile bullet) {
-            Bullet = new SmallProjectile(game);
+            Bullet = bullet;
         }
 
         public void Shoot(GameTime gameTime) {
@@ -41,6 +41,7 @@ namespace Game.Model.Weapons{
                 Projectile bullet = this.Bullet.Clone();
                 bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-spread,spread)/10;
                 bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-spread, spread) / 10;
+                bullet.position.Zpos = 0;
                 EntityManager.AddProjectile(bullet);
                 lastFired = gameTime.TotalGameTime.TotalMilliseconds;
             }

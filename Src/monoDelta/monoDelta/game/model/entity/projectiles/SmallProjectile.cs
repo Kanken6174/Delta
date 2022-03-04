@@ -12,6 +12,11 @@ namespace Game.Model.Entity.Projectiles{
 
         public SmallProjectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
+            this.position.ZVelocity = 0.005;
+            this.position.Zpos = 0;
+            this.hitbox.Radius = 1;
+            this.position.ZVelocity = 0.005;
+            this.position.RotationVelocity = 1;
             LoadContent();
         }
 
@@ -20,10 +25,11 @@ namespace Game.Model.Entity.Projectiles{
             float toScale = 0.1f;
 
             if (this.position.Zpos > 0)
-                toScale = ((float)(1 / this.position.Zpos));
+                toScale = ((float)(1 / this.position.Zpos))*10;
             else
                 toScale = 0;
 
+            double test = this.position.ZVelocity;
             spriteBatch.Draw(texture,
             new Vector2((float)position.Xpos, (float)position.Ypos),
             null,
