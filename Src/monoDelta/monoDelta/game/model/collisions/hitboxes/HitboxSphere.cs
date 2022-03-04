@@ -15,7 +15,7 @@ namespace Game.Model.Collisions.Hitboxes{
             int togrow = (int)(1 / pos.Xpos);
             if (togrow == 0)
                 togrow = 1;
-            Radius = togrow;
+            Radius = togrow; //
         }
     }
 }
