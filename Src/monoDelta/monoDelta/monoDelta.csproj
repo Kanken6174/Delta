@@ -158,6 +158,7 @@
     <Compile Include="Game\Model\Weapons\Minigun.cs" />
     <Compile Include="Game\Kinect\KinectManager.cs" />
     <Compile Include="Game\Kinect\KinectSkeleton.cs" />
+    <Compile Include="Game\Model\Weapons\Shotgun.cs" />
     <Compile Include="Game\Utilities\Math\MathUtilities.cs" />
     <Compile Include="Launcher\launcher.cs" />
   </ItemGroup>

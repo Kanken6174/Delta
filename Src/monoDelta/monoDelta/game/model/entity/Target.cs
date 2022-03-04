@@ -25,6 +25,10 @@ namespace Game.Model.Entity
         {
             float toScale = 0;
 
+            Color color = Color.White;
+            if (this.position.Zpos < 5)
+                color = Color.Orange;
+
             if (this.position.Zpos > 0)
                 toScale = ((float)(1/this.position.Zpos));
             else
@@ -33,12 +37,12 @@ namespace Game.Model.Entity
             spriteBatch.Draw(texture,
             new Vector2((float)(position.Xpos), (float)position.Ypos),
             null,
-            Color.White,
+            color,
             0, //rotation 
             new Vector2(this.texture.Width / 2, this.texture.Height / 2), //Origin
             new Vector2(toScale, toScale),   //scale
             SpriteEffects.None,
-            0) ;
+            0);
         }
 
         protected override void LoadContent()

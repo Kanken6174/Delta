@@ -39,23 +39,25 @@ namespace Kinect
 
         private void Kinect_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-            SkeletonFrame currentFrame = e.OpenSkeletonFrame();
-            if (currentFrame == null)
-                return;
-            if ((this.skeletons == null) || (this.skeletons.Length != currentFrame.SkeletonArrayLength))
+            using (SkeletonFrame currentFrame = e.OpenSkeletonFrame())
             {
-                this.skeletons = new Skeleton[currentFrame.SkeletonArrayLength];
+                if (currentFrame == null)
+                    return;
+                if ((this.skeletons == null) || (this.skeletons.Length != currentFrame.SkeletonArrayLength))
+                {
+                    this.skeletons = new Skeleton[currentFrame.SkeletonArrayLength];
+                }
+                currentFrame.CopySkeletonDataTo(skeletons);
+
+                Joint hand = skeletons[0].Joints[JointType.HandRight];
+                if (hand.TrackingState == JointTrackingState.NotTracked)
+                    return;
+                RightHandPos.Ypos = -((hand.Position.Y) * 250 * 3);
+                RightHandPos.Xpos = (hand.Position.X) * 250 * 3;
+
+                EntityManager.GetCrosshair().position.Xpos = (RightHandPos.Xpos + 400) * 2;
+                EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos + 400;
             }
-            currentFrame.CopySkeletonDataTo(skeletons);
-
-            Joint hand = skeletons[0].Joints[JointType.HandRight];
-            if (hand.TrackingState == JointTrackingState.NotTracked)
-                return;
-            RightHandPos.Ypos = -((hand.Position.Y)*250*3);
-            RightHandPos.Xpos = (hand.Position.X)*250*3;
-
-            EntityManager.GetCrosshair().position.Xpos = (RightHandPos.Xpos+400)*2;
-            EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos+400;
         }
 
         public void SetKinectAngle(int angle)

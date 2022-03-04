@@ -28,7 +28,7 @@ namespace MonoDelta.Game.Model.Entity
 
         public static void AddEntity(GameEntity e)
         {
-            entities.Add(e);
+            entities.Insert(0, e);
         }
 
         public static List<Projectile> GetProjectiles()
@@ -101,7 +101,7 @@ namespace MonoDelta.Game.Model.Entity
 
         public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach(GameEntity e in entities)
+            foreach (GameEntity e in entities)
             {
                 e.Draw(gameTime, spriteBatch);
             }

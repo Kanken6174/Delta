@@ -20,7 +20,7 @@ namespace Game.Model.Weapons{
 
         public int spread = 100;
 
-        private Random random = new Random();
+        protected Random random = new Random();
 
         public int fireRate = 200;
 
@@ -35,12 +35,16 @@ namespace Game.Model.Weapons{
             Bullet = bullet;
         }
 
-        public void Shoot(GameTime gameTime) {
+        public virtual void Shoot(GameTime gameTime) {
             if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > fireRate)
             {
                 Projectile bullet = this.Bullet.Clone();
                 bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-spread,spread)/10;
                 bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-spread, spread) / 10;
+
+                bullet.position.XVelocity = (float)random.Next(-spread, spread) / 100;
+                bullet.position.YVelocity = (float)random.Next(-spread, spread) / 100;
+
                 bullet.position.Zpos = 0;
                 EntityManager.AddProjectile(bullet);
                 lastFired = gameTime.TotalGameTime.TotalMilliseconds;
