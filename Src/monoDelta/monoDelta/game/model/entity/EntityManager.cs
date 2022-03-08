@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model;
 using monoDelta.Game.Model.Entity;
+using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,14 +58,23 @@ namespace MonoDelta.Game.Model.Entity
         }
 
 
+        public static void ClearAll()
+        {
+            entities.Clear();
+            projectiles.Clear();
+        }
+
         public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch, Microsoft.Xna.Framework.Game game)
         {
             int nbelem = 0;
             while (nbelem < entities.Count)
             {
                 entities[nbelem].Move();
-                if(entities[nbelem].position.Zpos < 3 )
+                if (entities[nbelem].position.Zpos < 3)
+                {
                     entities.RemoveAt(nbelem);
+                    PlayerManager.GetPlayer().DecrementLife();
+                }
                 nbelem++;
             }
 
@@ -92,7 +102,10 @@ namespace MonoDelta.Game.Model.Entity
                 {
                     entities[nbelem].Move();
                     if (EntityCollisionHandler.hasProjectileCollidedWith(projectiles[nbProj], entities[nbelem]))
+                    {
                         entities.RemoveAt(nbelem);
+                        PlayerManager.GetPlayer().IncrementScore(10);
+                    }
                     nbelem++;
                 }
                 nbProj++;

@@ -30,6 +30,7 @@ namespace MonoDelta.Game
         private readonly Kinect.KinectManager km;
         private GameModel gameModel;
         private Desktop _desktop;
+        private bool justExittedGame = false, firstGame = true;
 
         public GameController()
         {
@@ -48,39 +49,8 @@ namespace MonoDelta.Game
         /// </summary>
         protected override void LoadContent()
         {
-            MyraEnvironment.Game = this;
-            var panel = new Panel();
-            var positionedText = new Label();
-            positionedText.Text = "Positioned Text";
-            positionedText.Left = 50;
-            positionedText.Top = 100;
-            panel.Widgets.Add(positionedText);
-
-            var paddedCenteredButton = new TextButton();
-            paddedCenteredButton.Text = "Padded Centered Button";
-            paddedCenteredButton.HorizontalAlignment = HorizontalAlignment.Center;
-            paddedCenteredButton.VerticalAlignment = VerticalAlignment.Center;
-            panel.Widgets.Add(paddedCenteredButton);
-
-            var rightBottomText = new Label();
-            rightBottomText.Text = "Right Bottom Text";
-            rightBottomText.Left = -30;
-            rightBottomText.Top = -20;
-            rightBottomText.HorizontalAlignment = HorizontalAlignment.Right;
-            rightBottomText.VerticalAlignment = VerticalAlignment.Bottom;
-            panel.Widgets.Add(rightBottomText);
-
-            var fixedSizeButton = new TextButton();
-            fixedSizeButton.Text = "Fixed Size Button";
-            fixedSizeButton.Width = 110;
-            fixedSizeButton.Height = 80;
-            panel.Widgets.Add(fixedSizeButton);
-            _desktop = new Desktop();
-            _desktop.Root = panel;
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Content.RootDirectory = "";
-
             GraphicsDevice.Clear(Color.White);
             Crosshair crosshair = new Crosshair(this);
             EntityManager.SetCrosshair(crosshair);
@@ -90,6 +60,11 @@ namespace MonoDelta.Game
                 EntityManager.AddRandomTarget(this);
             }
             PlayerManager.SetPlayer(new Player(this));
+            if (firstGame)
+            {
+                firstGame = false;
+                drawMenuUI();
+            }
         }
         /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée
@@ -97,38 +72,88 @@ namespace MonoDelta.Game
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
-            EntityManager.ProcessNextFrame(gameTime, spriteBatch, this);
             base.Update(gameTime);
+            if (!IsMouseVisible)
+            {
+                EntityManager.ProcessNextFrame(gameTime, spriteBatch, this);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
+            if (PlayerManager.GetPlayer().Life <= 0)
+            {
+                resetGame();
+                justExittedGame = IsMouseVisible = true;
+            }
             base.Draw(gameTime);
-            spriteBatch.Begin();
-            IsMouseVisible = false;
+
+            
             if (IsMouseVisible)
             {
-                GraphicsDevice.Clear(Color.Black);
-                _desktop.Render();
+                drawMenu();
             }
             else
             {
+                spriteBatch.Begin();
                 EntityManager.DrawNextFrame(gameTime, spriteBatch);
+                spriteBatch.End();
+                var panel = new Panel();
+                var positionedText = new Label();
+                positionedText.Text = "vie " + PlayerManager.GetPlayer().Life.ToString() + " Score: " + PlayerManager.GetPlayer().Score.ToString() + " temps: " + gameTime.TotalGameTime.TotalSeconds.ToString();
+                positionedText.Left = 400;
+                positionedText.Top = 465;
+                Myra.Graphics2D.Brushes.SolidBrush black = new Myra.Graphics2D.Brushes.SolidBrush(Color.Black);
+                positionedText.Background = black;
+                panel.Widgets.Add(positionedText);
+                _desktop = new Desktop();
+                _desktop.Root = panel;
+                _desktop.Render();
             }
-            spriteBatch.End();
         }
 
-        public void ScalePresentationArea()
+        private void resetGame()
         {
-            //Work out how much we need to scale our graphics to fill the screen
-            backbufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
-            backbufferHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
-            float horScaling = backbufferWidth / baseScreenSize.X;
-            float verScaling = backbufferHeight / baseScreenSize.Y;
-            Vector3 screenScalingFactor = new Vector3(horScaling, verScaling, 1);
-            globalTransformation = Matrix.CreateScale(screenScalingFactor);
-            
+            PlayerManager.SetPlayer(new Player(this));
+            EntityManager.ClearAll();
+            km.Stop();
+            km.Init();
+        }
+
+        private void drawMenu()
+        {
+            if (justExittedGame)
+            {
+                drawMenuUI();
+                justExittedGame = false;
+            }
+            _desktop.Render();
+        }
+
+        private void drawMenuUI()
+        {
+            MyraEnvironment.Game = this;
+            var panel = new Panel();
+
+            var paddedCenteredButton = new TextButton();
+            paddedCenteredButton.Text = "Click to play";
+            paddedCenteredButton.HorizontalAlignment = HorizontalAlignment.Center;
+            paddedCenteredButton.VerticalAlignment = VerticalAlignment.Center;
+            paddedCenteredButton.TouchDown += (sender, args) => PaddedCenteredButton_TouchUp();
+            paddedCenteredButton.Enabled = true;
+
+            panel.Widgets.Add(paddedCenteredButton);
+
+            _desktop = new Desktop();
+            _desktop.Root = panel;
+        }
+
+        public void PaddedCenteredButton_TouchUp()
+        {
+            IsMouseVisible = false;
+            PlayerManager.SetPlayer(new Player(this));
+            this.LoadContent();
         }
     }
 }

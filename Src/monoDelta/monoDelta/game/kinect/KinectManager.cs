@@ -14,6 +14,7 @@ namespace Kinect
     {
 
         public Position RightHandPos { get; set; }
+        public ushort SkeletonIndex { get; set; }
         private Skeleton[] skeletons;
 
         /// <summary>
@@ -26,6 +27,7 @@ namespace Kinect
                 Ypos = 400,
                 Zpos = 0
             };
+            SkeletonIndex = 0;
         }
         public KinectSensor Kinect { get; private set; }
 
@@ -48,8 +50,17 @@ namespace Kinect
                     this.skeletons = new Skeleton[currentFrame.SkeletonArrayLength];
                 }
                 currentFrame.CopySkeletonDataTo(skeletons);
+                for (ushort i = 0; i < skeletons.Length; i++)
+                {
+                    Joint possibleHand = skeletons[i].Joints[JointType.HandRight];
+                    if(possibleHand.TrackingState != JointTrackingState.NotTracked)
+                    {
+                        SkeletonIndex = i;
+                        break;
+                    }
 
-                Joint hand = skeletons[0].Joints[JointType.HandRight];
+                }
+                Joint hand = skeletons[SkeletonIndex].Joints[JointType.HandRight];
                 if (hand.TrackingState == JointTrackingState.NotTracked)
                     return;
                 RightHandPos.Ypos = -((hand.Position.Y) * 250 * 3);
@@ -109,5 +120,10 @@ namespace Kinect
             // TODO implement here
         }
 
+        public void reset()
+        {
+            Kinect.Stop();
+            Init();
+        }
     }
 }

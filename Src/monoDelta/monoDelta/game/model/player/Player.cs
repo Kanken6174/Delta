@@ -15,6 +15,8 @@ namespace Game.Model.Player
         {
             Projectile magnum5mm = new SmallProjectile(game);
             gun = new Shotgun(game, magnum5mm);
+            Score = 0;
+            Life = 3;
         }
 
         public int Munitions { get; private set; }
@@ -24,11 +26,12 @@ namespace Game.Model.Player
         public int Score { get; private set; }
 
         public Gun gun { get; private set; }
+        public void DecrementLife() => Life--;
 
-        public void Update(GameTime time)
-        {
-            gun.Shoot(time);
-        }
+        public void IncrementScore(int toAdd) => Score += toAdd;
+
+        public void Update(GameTime time) => gun.Shoot(time);
+
 
     }
 }

@@ -14,8 +14,8 @@ namespace Game.Model.Weapons
 
         public Shotgun(Microsoft.Xna.Framework.Game game, Projectile bullet) : base(game, bullet)
         {
-            this.fireRate = 800;
-            this.spread = 50;
+            this.fireRate = 600;
+            this.spread = 5;
         }
 
         private int munitions = 12;
