@@ -14,7 +14,7 @@ namespace Game.Model.Player
         public Player(Microsoft.Xna.Framework.Game game)
         {
             Projectile magnum5mm = new SmallProjectile(game);
-            gun = new Shotgun(game, magnum5mm);
+            gun = new Shotgun(magnum5mm);
             Score = 0;
             Life = 3;
         }

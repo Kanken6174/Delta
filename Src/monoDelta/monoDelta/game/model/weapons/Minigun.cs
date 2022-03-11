@@ -8,7 +8,7 @@ using System.Text;
 namespace Game.Model.Weapons{
     public class Minigun : Gun {
 
-        public Minigun(Microsoft.Xna.Framework.Game game, Projectile bullet) : base(game, bullet)
+        public Minigun(Projectile bullet) : base(bullet)
         {
         }
 

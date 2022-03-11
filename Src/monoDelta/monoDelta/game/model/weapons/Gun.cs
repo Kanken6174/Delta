@@ -31,7 +31,7 @@ namespace Game.Model.Weapons{
         /// <summary>
         /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
         /// </summary>
-        public Gun(Microsoft.Xna.Framework.Game game, Projectile bullet) {
+        public Gun(Projectile bullet) {
             Bullet = bullet;
         }
 

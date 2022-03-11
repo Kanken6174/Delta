@@ -134,7 +134,7 @@ namespace MonoDelta.Game.Model.Entity
             {
                 Projectile magnum9mm = new SmallProjectile(game);
                 magnum9mm.position.ZVelocity = 0.05;
-                Gun gun = new Minigun(game, magnum9mm);
+                Gun gun = new Minigun(magnum9mm);
                 newtarget = new WeaponItem(game, gun);
                 
             }

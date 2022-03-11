@@ -12,7 +12,7 @@ namespace Game.Model.Weapons
     public class Shotgun : Gun
     {
 
-        public Shotgun(Microsoft.Xna.Framework.Game game, Projectile bullet) : base(game, bullet)
+        public Shotgun(Projectile bullet) : base(bullet)
         {
             this.fireRate = 25;
             this.spread = 200;
