@@ -32,7 +32,16 @@ namespace Game.Model.Entity.Projectiles{
         /// </summary>
         public Projectile Clone()
         {
-            Projectile bullet = (Projectile)this.MemberwiseClone();
+            Projectile bullet = new SmallProjectile(base.Game);
+            bullet.position = new Position();
+            bullet.position.Xpos = this.position.Xpos;
+            bullet.position.Ypos = this.position.Ypos;
+            bullet.position.Zpos = this.position.Zpos;
+            bullet.position.XVelocity = this.position.XVelocity;
+            bullet.position.YVelocity = this.position.YVelocity;
+            bullet.position.ZVelocity = this.position.ZVelocity;
+            bullet.position.Rotation = this.position.Rotation;
+            bullet.position.RotationVelocity = this.position.RotationVelocity;
             bullet.Lifetime = 100;
             bullet.texture = this.texture;
             return bullet;

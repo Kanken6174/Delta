@@ -14,8 +14,8 @@ namespace Game.Model.Weapons
 
         public Shotgun(Microsoft.Xna.Framework.Game game, Projectile bullet) : base(game, bullet)
         {
-            this.fireRate = 600;
-            this.spread = 5;
+            this.fireRate = 25;
+            this.spread = 200;
         }
 
         private int munitions = 12;
@@ -26,7 +26,7 @@ namespace Game.Model.Weapons
         {
             if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > fireRate)
             {
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 15; i++)
                 {
                     Projectile bullet = this.Bullet.Clone();
                     bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-spread, spread) / 10;
@@ -35,10 +35,9 @@ namespace Game.Model.Weapons
                     bullet.position.XVelocity = (float)random.Next(-spread, spread) / 200;
                     bullet.position.YVelocity = (float)random.Next(-spread, spread) / 200;
 
-                    bullet.position.Zpos = 0;
                     EntityManager.AddProjectile(bullet);
-                    lastFired = gameTime.TotalGameTime.TotalMilliseconds;
                 }
+                lastFired = gameTime.TotalGameTime.TotalMilliseconds;
             }
         }
 

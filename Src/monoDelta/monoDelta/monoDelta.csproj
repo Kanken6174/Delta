@@ -117,6 +117,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\GameController.cs" />
+    <Compile Include="Game\Model\Levels\Levels\AbstractLevel.cs" />
+    <Compile Include="Game\Model\Levels\Levels\Tutorial.cs" />
+    <Compile Include="Game\Model\Levels\Manager\LevelManager.cs" />
     <Compile Include="Game\Model\PlayerManager.cs" />
     <Compile Include="Game\Model\Collisions\Handlers\EntityCollisionHandler.cs" />
     <Compile Include="Game\Model\Collisions\Hitboxes\Hitbox.cs" />
