@@ -30,7 +30,7 @@ namespace MonoDelta.Game
         private readonly Kinect.KinectManager km;
         private GameModel gameModel;
         private Desktop _desktop;
-        private bool justExittedGame = false, firstGame = true;
+        private bool justExittedGame = false, firstGame = true, gameOver = false;
 
         public GameController()
         {
@@ -41,6 +41,7 @@ namespace MonoDelta.Game
                 PreferredBackBufferHeight = 500
             };
             IsMouseVisible = true;
+            gameOver = false;
             km = new Kinect.KinectManager();
         }
 
@@ -85,12 +86,19 @@ namespace MonoDelta.Game
             if (PlayerManager.GetPlayer().Life <= 0)
             {
                 resetGame();
-                justExittedGame = IsMouseVisible = true;
+                justExittedGame = gameOver = IsMouseVisible = true;
+                drawGameOver();
+
             }
             base.Draw(gameTime);
 
+            if(IsMouseVisible && gameOver)
+            {
+                drawGameOver();
+            }
+
             
-            if (IsMouseVisible)
+            else if (IsMouseVisible && !gameOver)
             {
                 drawMenu();
             }
@@ -123,9 +131,19 @@ namespace MonoDelta.Game
 
         private void drawMenu()
         {
-            if (justExittedGame)
+            if (justExittedGame )
             {
                 drawMenuUI();
+                justExittedGame = false;
+            }
+            _desktop.Render();
+        }
+
+        private void drawGameOver()
+        {
+            if (justExittedGame)
+            {
+                drawGameOverUI();
                 justExittedGame = false;
             }
             _desktop.Render();
@@ -135,6 +153,14 @@ namespace MonoDelta.Game
         {
             MyraEnvironment.Game = this;
             var panel = new Panel();
+
+            var titre = new Label();
+            titre.Text = "Target Wave";
+            titre.HorizontalAlignment = HorizontalAlignment.Center;
+            titre.Top = 50;
+            titre.TextColor = Color.Black;
+            panel.Widgets.Add(titre);
+
 
             var paddedCenteredButton = new TextButton();
             paddedCenteredButton.Text = "Click to play";
@@ -154,6 +180,33 @@ namespace MonoDelta.Game
             IsMouseVisible = false;
             PlayerManager.SetPlayer(new Player(this));
             this.LoadContent();
+        }
+
+        private void drawGameOverUI()
+        {
+            MyraEnvironment.Game = this;
+            var panel = new Panel();
+
+            var gm_btn = new TextButton();
+            gm_btn.Text = "Retour au menu";
+            gm_btn.TouchDown += (sender, args) => backMenu();
+            gm_btn.Enabled = true;
+
+            panel.Widgets.Add(gm_btn);
+
+
+            _desktop = new Desktop();
+            _desktop.Root = panel;
+        }
+
+        public void backMenu()
+        {
+            GameTime gt = new GameTime();
+            PlayerManager.SetPlayer(new Player(this));
+            IsMouseVisible = true;
+            justExittedGame = true;
+            gameOver = false;
+            Draw(gt);
         }
     }
 }
