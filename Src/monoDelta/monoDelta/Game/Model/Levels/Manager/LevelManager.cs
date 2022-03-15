@@ -29,12 +29,14 @@ namespace monoDelta.Game.Model.Levels
             File.WriteAllText(fileName, jsonObj);
         }
 
-        public static void loadAllLevels()
+        public static void loadAllLevels(Microsoft.Xna.Framework.Game game)
         {
             foreach(string levelname in Directory.GetFiles(levelFolderPath))
             {
                 _levels.Add(JsonSerializer.Deserialize<Level>(File.ReadAllText(levelFolderPath+levelname)));
             }
+
+            //for(Level lvl )
         }
 
         public static List<Level> getAllLevels()

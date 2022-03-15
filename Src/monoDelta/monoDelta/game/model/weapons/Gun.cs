@@ -17,7 +17,7 @@ namespace Game.Model.Weapons{
         private int munitions = 0;
 
         private int reloadTime = 0;
-
+        private int powerLevel = 0;
         public int spread = 100;
 
         protected Random random = new Random();
@@ -25,6 +25,7 @@ namespace Game.Model.Weapons{
         public int fireRate = 200;
 
         public Projectile Bullet { get; private set; }
+        public int PowerLevel { get => powerLevel; protected set => powerLevel = value; }
 
         public double lastFired = 0;
 
@@ -32,9 +33,13 @@ namespace Game.Model.Weapons{
         /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
         /// </summary>
         public Gun(Projectile bullet) {
-            Bullet = bullet;
+            ReArm(bullet);
         }
 
+        /// <summary>
+        /// Va tirer une balle en clonant Bullet à un certain intervalle
+        /// </summary>
+        /// <param name="gameTime">Le temps actuel du jeu</param>
         public virtual void Shoot(GameTime gameTime) {
             if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > fireRate)
             {
@@ -49,6 +54,12 @@ namespace Game.Model.Weapons{
                 EntityManager.AddProjectile(bullet);
                 lastFired = gameTime.TotalGameTime.TotalMilliseconds;
             }
+        }
+
+        //Va remplacer la balle actuelle de l'arme
+        public void ReArm(Projectile bullet)
+        {
+            Bullet = bullet;
         }
 
     }
