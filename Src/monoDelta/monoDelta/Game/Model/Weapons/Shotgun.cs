@@ -41,5 +41,10 @@ namespace Game.Model.Weapons
             }
         }
 
+        public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
+        {
+            Bullet = new SmallProjectile(game);
+        }
+
     }
 }

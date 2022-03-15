@@ -24,7 +24,7 @@ namespace Game.Model.Weapons{
 
         public int fireRate = 200;
 
-        public Projectile Bullet { get; private set; }
+        public Projectile Bullet { get; protected set; }
         public int PowerLevel { get => powerLevel; protected set => powerLevel = value; }
 
         public double lastFired = 0;
@@ -62,5 +62,6 @@ namespace Game.Model.Weapons{
             Bullet = bullet;
         }
 
+        public abstract void ReArmDefault(Microsoft.Xna.Framework.Game game);
     }
 }

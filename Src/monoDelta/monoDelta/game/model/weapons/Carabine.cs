@@ -14,5 +14,9 @@ namespace Game.Model.Weapons{
 
         private int munitions = 20;
 
+        public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
+        {
+            Bullet = new SmallProjectile(game);
+        }
     }
 }

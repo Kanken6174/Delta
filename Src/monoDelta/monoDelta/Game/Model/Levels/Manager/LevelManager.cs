@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
+using Game.Model.Weapons;
 
 namespace monoDelta.Game.Model.Levels
 {
@@ -36,7 +37,13 @@ namespace monoDelta.Game.Model.Levels
                 _levels.Add(JsonSerializer.Deserialize<Level>(File.ReadAllText(levelFolderPath+levelname)));
             }
 
-            //for(Level lvl )
+            foreach(Level level in _levels)
+            {
+                foreach(Gun gun in level.PossibleWeapons)
+                {
+                    gun.ReArmDefault(game);
+                }
+            }
         }
 
         public static List<Level> getAllLevels()
