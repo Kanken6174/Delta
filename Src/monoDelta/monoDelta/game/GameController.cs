@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Game.Model.Player;
 using Myra;
 using Myra.Graphics2D.UI;
+using System.Diagnostics;
+using monoDelta.Game.Model.Levels;
 
 namespace MonoDelta.Game
 {
@@ -30,7 +32,9 @@ namespace MonoDelta.Game
         private readonly Kinect.KinectManager km;
         private GameModel gameModel;
         private Desktop _desktop;
+        Stopwatch timer;
         private bool justExittedGame = false, firstGame = true, gameOver = false;
+        
 
         public GameController()
         {
@@ -42,6 +46,7 @@ namespace MonoDelta.Game
             };
             IsMouseVisible = true;
             gameOver = false;
+            timer = new Stopwatch();
             km = new Kinect.KinectManager();
         }
 
@@ -53,6 +58,7 @@ namespace MonoDelta.Game
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Content.RootDirectory = "";
             GraphicsDevice.Clear(Color.White);
+            timer.Start();
             Crosshair crosshair = new Crosshair(this);
             EntityManager.SetCrosshair(crosshair);
             km.Init();
@@ -109,7 +115,7 @@ namespace MonoDelta.Game
                 spriteBatch.End();
                 var panel = new Panel();
                 var positionedText = new Label();
-                positionedText.Text = "vie " + PlayerManager.GetPlayer().Life.ToString() + " Score: " + PlayerManager.GetPlayer().Score.ToString() + " temps: " + gameTime.TotalGameTime.TotalSeconds.ToString();
+                positionedText.Text = "vie " + PlayerManager.GetPlayer().Life.ToString() + " Score: " + PlayerManager.GetPlayer().Score.ToString() + " temps: " + timer.Elapsed;
                 positionedText.Left = 400;
                 positionedText.Top = 465;
                 Myra.Graphics2D.Brushes.SolidBrush black = new Myra.Graphics2D.Brushes.SolidBrush(Color.Black);
@@ -161,23 +167,32 @@ namespace MonoDelta.Game
             titre.TextColor = Color.Black;
             panel.Widgets.Add(titre);
 
+            var level1 = new TextButton();
+            level1.Text = "LEVEL 1";
+            level1.Top = 400;
+            level1.Left = 300;
+            level1.TouchDown += (sender, args) => LevelOneHit();
+            panel.Widgets.Add(level1);
 
-            var paddedCenteredButton = new TextButton();
-            paddedCenteredButton.Text = "Click to play";
-            paddedCenteredButton.HorizontalAlignment = HorizontalAlignment.Center;
-            paddedCenteredButton.VerticalAlignment = VerticalAlignment.Center;
-            paddedCenteredButton.TouchDown += (sender, args) => PaddedCenteredButton_TouchUp();
-            paddedCenteredButton.Enabled = true;
+            var level2 = new TextButton();
+            level2.Text = "LEVEL 2";
+            level2.Top = 400;
+            level2.Left= 600;
+            
+            level2.Enabled = true;
 
-            panel.Widgets.Add(paddedCenteredButton);
+            panel.Widgets.Add(level2);
 
             _desktop = new Desktop();
             _desktop.Root = panel;
         }
 
-        public void PaddedCenteredButton_TouchUp()
+        public void LevelOneHit()
         {
+            LevelManager.CurrentLevel = new Level();
+            timer.Restart();
             IsMouseVisible = false;
+            GameTime gametime = new GameTime();
             PlayerManager.SetPlayer(new Player(this));
             this.LoadContent();
         }
@@ -188,6 +203,8 @@ namespace MonoDelta.Game
             var panel = new Panel();
 
             var gm_btn = new TextButton();
+            gm_btn.VerticalAlignment= VerticalAlignment.Center;
+            gm_btn.HorizontalAlignment = HorizontalAlignment.Center;
             gm_btn.Text = "Retour au menu";
             gm_btn.TouchDown += (sender, args) => backMenu();
             gm_btn.Enabled = true;
