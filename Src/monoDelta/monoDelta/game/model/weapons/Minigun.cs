@@ -12,9 +12,13 @@ namespace Game.Model.Weapons{
         {
         }
 
+        public Minigun()
+        {
+        }
+
         private int munitions = 200;
 
-        public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
+        public void ReArmDefault(Microsoft.Xna.Framework.Game game)
         {
             Bullet = new SmallProjectile(game);
         }

@@ -16,7 +16,6 @@ namespace monoDelta.Game.Model.Levels
         public float PlayerLives { get; set; } = 3;    //nb de vies du joueur au début
         public float WinScore { get; set; } = 1000;       //Score requis pour gagner
         public string LevelName { get; set; } = "Level";     //nom du niveau
-        public int MaxWeaponPowerLevel { get; set; } = 999; //définit la classe d'arme maximale qui peut apparaître
         public float Gravity { get; set; } = 0;    //déviation d'accélération YY
         public List<Gun> PossibleWeapons { get; set; } = new List<Gun>();   //liste des armes pouvant apparaître dans ce niveau
         public ushort StartingGunIndex { get; set; } = 0;   //arme de départ

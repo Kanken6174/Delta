@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Game.Model.Weapons{
     public class Handgun : Gun {
@@ -11,10 +12,13 @@ namespace Game.Model.Weapons{
         public Handgun(Projectile bullet) : base(bullet)
         {
         }
+        
+        [JsonConstructor]
+        public Handgun() { }
 
         private int munitions = 12;
 
-        public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
+        public void ReArmDefault(Microsoft.Xna.Framework.Game game)
         {
             Bullet = new SmallProjectile(game);
         }

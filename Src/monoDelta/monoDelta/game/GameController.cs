@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Game.Model.Player;
 using Myra;
 using Myra.Graphics2D.UI;
+using monoDelta.Game.Model.Levels;
+using Game.Model.Weapons;
+using Game.Model.Entity.Projectiles;
 
 namespace MonoDelta.Game
 {
@@ -66,6 +69,9 @@ namespace MonoDelta.Game
                 firstGame = false;
                 drawMenuUI();
             }
+            LevelManager.loadAllLevels(this);
+            LevelManager.CurrentLevel.PossibleWeapons.Add(new Handgun(null));
+            LevelManager.serializeCurrentLevel();
         }
         /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée

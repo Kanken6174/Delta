@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;
 using System.IO;
 using Game.Model.Weapons;
+using System.Reflection;
+using Newtonsoft.Json;
 
 namespace monoDelta.Game.Model.Levels
 {
@@ -20,7 +21,9 @@ namespace monoDelta.Game.Model.Levels
         public static void serializeCurrentLevel()
         {
             string fileName = levelFolderPath + CurrentLevel.LevelName+".json";
-            string jsonObj = JsonSerializer.Serialize(CurrentLevel);
+            //string jsonObj = JsonSerializer.Serialize(CurrentLevel);
+            string jsonObj = JsonConvert.SerializeObject(CurrentLevel, Formatting.Indented, 
+                new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
             if(!Directory.Exists(levelFolderPath))
                 Directory.CreateDirectory(levelFolderPath);
             if (File.Exists(fileName))
@@ -34,7 +37,7 @@ namespace monoDelta.Game.Model.Levels
         {
             foreach(string levelname in Directory.GetFiles(levelFolderPath))
             {
-                _levels.Add(JsonSerializer.Deserialize<Level>(File.ReadAllText(levelFolderPath+levelname)));
+                _levels.Add(JsonConvert.DeserializeObject<Level>(File.ReadAllText(levelname), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects }));
             }
 
             foreach(Level level in _levels)

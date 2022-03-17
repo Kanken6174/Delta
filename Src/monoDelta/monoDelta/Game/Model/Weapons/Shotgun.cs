@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Game.Model.Weapons
 {
@@ -14,8 +15,15 @@ namespace Game.Model.Weapons
 
         public Shotgun(Projectile bullet) : base(bullet)
         {
-            this.fireRate = 25;
-            this.spread = 200;
+            this.FireRate = 25;
+            this.Spread = 200;
+        }
+
+        [JsonConstructor]
+        public Shotgun()
+        {
+            this.FireRate = 25;
+            this.Spread = 200;
         }
 
         private int munitions = 12;
@@ -24,16 +32,16 @@ namespace Game.Model.Weapons
 
         public override void Shoot(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > fireRate)
+            if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > FireRate)
             {
                 for (int i = 0; i < 15; i++)
                 {
                     Projectile bullet = this.Bullet.Clone();
-                    bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-spread, spread) / 10;
-                    bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-spread, spread) / 10;
+                    bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-Spread, Spread) / 10;
+                    bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-Spread, Spread) / 10;
 
-                    bullet.position.XVelocity = (float)random.Next(-spread, spread) / 200;
-                    bullet.position.YVelocity = (float)random.Next(-spread, spread) / 200;
+                    bullet.position.XVelocity = (float)random.Next(-Spread, Spread) / 200;
+                    bullet.position.YVelocity = (float)random.Next(-Spread, Spread) / 200;
 
                     EntityManager.AddProjectile(bullet);
                 }
@@ -41,7 +49,7 @@ namespace Game.Model.Weapons
             }
         }
 
-        public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
+        public void ReArmDefault(Microsoft.Xna.Framework.Game game)
         {
             Bullet = new SmallProjectile(game);
         }
