@@ -7,7 +7,7 @@ namespace monoDelta.Game.Model.Levels
     {
         public float StartTargetAmount { get; set; } = 1;  //nombre de cibles au début
         public float StartTargetZ { get; set; } = 10;   //distance de départ des cibles
-        public int TargetSpawnDelay { get; set; } = 100;
+        public int TargetSpawnDelay { get; set; } = 200;
         public float TargetSpeed { get; set; } = -0.005f;    //vitesse des cibles
         public float BonusChance { get; set; } = 0.01f;    //chance de spawner un bonus
         public int PlayerLives { get; set; } = 3;    //nb de vies du joueur au début

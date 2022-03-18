@@ -26,7 +26,7 @@ namespace Game.Model.Entity
 
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-        public virtual void Move()
+        public virtual void Move(GameTime gameTime)
         {
             if (this.Lifetime > -1)
             {

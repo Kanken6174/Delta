@@ -70,7 +70,7 @@ namespace Game.Model.Entity.Projectiles
             0);
         }
 
-        public override void Move()
+        public override void Move(GameTime gameTime)
         {
             if (this.Lifetime > -1)
             {
