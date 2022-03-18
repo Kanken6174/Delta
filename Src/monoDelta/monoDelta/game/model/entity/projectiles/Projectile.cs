@@ -4,6 +4,7 @@ using Game.Model.movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model.Entity;
+using monoDelta.Game.Model.Levels;
 
 namespace Game.Model.Entity.Projectiles
 {
@@ -68,6 +69,23 @@ namespace Game.Model.Entity.Projectiles
             SpriteEffects.None,
             0);
         }
+
+        public override void Move()
+        {
+            if (this.Lifetime > -1)
+            {
+                this.Lifetime--;
+            }
+            this.position.Rotation += this.position.RotationVelocity;
+            this.position.Xpos += this.position.XVelocity;
+            this.position.Ypos += this.position.YVelocity;
+            this.position.Zpos += this.position.ZVelocity;
+
+            this.position.XVelocity -= LevelManager.CurrentLevel.Gravity;
+            this.position.YVelocity += LevelManager.CurrentLevel.Wind;
+
+
+    }
 
         protected override void LoadContent()
         {
