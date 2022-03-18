@@ -25,7 +25,6 @@ namespace MonoDelta.Game
         private Matrix globalTransformation;
 #pragma warning restore IDE0052 // Supprimer les membres privés non lus
         private readonly Kinect.KinectManager km;
-        private GameModel gameModel;
         private Desktop _desktop;
         Stopwatch timer;
         private bool justExittedGame = false, firstGame = true, gameOver = false;
