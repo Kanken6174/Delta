@@ -19,7 +19,7 @@ namespace Game.Model.Weapons
         public int PowerLevel { get; protected set; } = 0;
         public int Munitions { get; set; } = 0;
         public int Spread { get; set; } = 100;
-        public int FireRate { get; set; } = 200;
+        public int FireRate { get; set; } = 50;
 
         public double lastFired = 0;
 

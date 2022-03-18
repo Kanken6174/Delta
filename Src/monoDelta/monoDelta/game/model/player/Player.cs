@@ -39,6 +39,7 @@ namespace Game.Model.Player
 
         public void Update(GameTime time) => gun.Shoot(time);
 
+        public bool HasWon =>  (Score > LevelManager.CurrentLevel.WinScore);
 
     }
 }

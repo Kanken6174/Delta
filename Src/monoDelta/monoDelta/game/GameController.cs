@@ -9,6 +9,7 @@ using monoDelta.Game.Model.Levels;
 using MonoDelta.Game.Model.Entity;
 using Myra;
 using Myra.Graphics2D.UI;
+using System;
 using System.Diagnostics;
 
 namespace MonoDelta.Game
@@ -27,7 +28,7 @@ namespace MonoDelta.Game
         private readonly Kinect.KinectManager km;
         private Desktop _desktop;
         Stopwatch timer;
-        private bool justExittedGame = false, firstGame = true, gameOver = false;
+        private bool justExittedGame = false, firstGame = true, gameOver = false, hasWon = false;
 
 
         public GameController()
@@ -38,9 +39,10 @@ namespace MonoDelta.Game
                 PreferredBackBufferWidth = 1200,
                 PreferredBackBufferHeight = 500
             };
+            timer = new Stopwatch();
             IsMouseVisible = true;
             gameOver = false;
-            timer = new Stopwatch();
+           
             km = new Kinect.KinectManager();
         }
 
@@ -81,6 +83,14 @@ namespace MonoDelta.Game
             {
                 EntityManager.ProcessNextFrame(gameTime, spriteBatch, this);
             }
+
+            if (PlayerManager.GetPlayer().HasWon)
+            {
+                ResetGame();
+                timer.Stop();
+                justExittedGame = IsMouseVisible = hasWon = true;
+            }
+
         }
 
         protected override void Draw(GameTime gameTime)
@@ -95,7 +105,12 @@ namespace MonoDelta.Game
             }
             base.Draw(gameTime);
 
-            if (IsMouseVisible && gameOver)
+            if (IsMouseVisible  && hasWon)
+            {
+                DrawWon();
+            }
+
+            else if (IsMouseVisible && gameOver)
             {
                 drawGameOver();
             }
@@ -190,15 +205,53 @@ namespace MonoDelta.Game
 
             panel.Widgets.Add(level2);
 
-            _desktop = new Desktop
-            {
-                Root = panel
-            };
+            _desktop = new Desktop();
+            _desktop.Root= panel;
+
         }
 
         public void DrawWon()
         {
-            //TODO make this part
+            if (justExittedGame)
+            {
+                DrawWonUI();
+                justExittedGame = false;
+            }
+            _desktop.Render();
+        }
+
+        private void DrawWonUI()
+        {
+            MyraEnvironment.Game = this;
+            var panel = new Panel();
+
+            var textFinal = new Label();
+            textFinal.Text = "Vous avez gagné le niveau ! ";
+            textFinal.HorizontalAlignment = HorizontalAlignment.Center;
+            textFinal.Top = 50;
+            textFinal.TextColor = Color.Black;
+            panel.Widgets.Add(textFinal);
+
+            var textScore = new Label();
+            textScore.TextColor = Color.Black;
+            textScore.HorizontalAlignment= HorizontalAlignment.Center;
+            textScore.Top = 100;
+            textScore.Text = "Il vous reste : " + PlayerManager.GetPlayer().Life.ToString() + " vies, votre temps : " + timer.Elapsed;
+
+            var btn_exit = new TextButton();
+            btn_exit.Text = "Appuie methode back menu ";
+            btn_exit.VerticalAlignment = VerticalAlignment.Center;
+            btn_exit.HorizontalAlignment = HorizontalAlignment.Center;
+
+            btn_exit.TouchDown += (sender, args) => BackMenu();
+            btn_exit.Enabled = true;
+
+            panel.Widgets.Add(btn_exit);
+            panel.Widgets.Add(textScore);
+
+            _desktop = new Desktop();
+            _desktop.Root = panel;
+
         }
 
         public void LevelOneHit()
@@ -240,8 +293,11 @@ namespace MonoDelta.Game
             PlayerManager.SetPlayer(new Player(this));
             IsMouseVisible = true;
             justExittedGame = true;
+            hasWon = false;
             gameOver = false;
             Draw(gt);
         }
+
+        
     }
 }
