@@ -14,7 +14,9 @@ namespace Game.Model.Weapons
         [JsonConstructor]
         public Handgun() { }
 
+#pragma warning disable CS0414 // Le champ 'Handgun.munitions' est assigné, mais sa valeur n'est jamais utilisée
         private int munitions = 12;
+#pragma warning restore CS0414 // Le champ 'Handgun.munitions' est assigné, mais sa valeur n'est jamais utilisée
 
         public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
         {

@@ -1,4 +1,5 @@
 ﻿
+using Game.Model.Entity;
 using Game.Model.Entity.Projectiles;
 using Microsoft.Xna.Framework;
 using MonoDelta.Game.Model.Entity;
@@ -30,14 +31,17 @@ namespace Game.Model.Weapons
             {
                 for (int i = 0; i < 15; i++)
                 {
-                    Projectile bullet = this.Bullet.Clone();
-                    bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-Spread, Spread) / 10;
-                    bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-Spread, Spread) / 10;
+                    foreach(Crosshair cr in EntityManager.GetCrosshairs())
+                    {
+                        Projectile bullet = this.Bullet.Clone();
+                        bullet.position.Xpos = cr.position.Xpos + (float)random.Next(-Spread, Spread) / 10;
+                        bullet.position.Ypos = cr.position.Ypos + (float)random.Next(-Spread, Spread) / 10;
 
-                    bullet.position.XVelocity = (float)random.Next(-Spread, Spread) / 200;
-                    bullet.position.YVelocity = (float)random.Next(-Spread, Spread) / 200;
+                        bullet.position.XVelocity = (float)random.Next(-Spread, Spread) / 200;
+                        bullet.position.YVelocity = (float)random.Next(-Spread, Spread) / 200;
 
-                    EntityManager.AddProjectile(bullet);
+                        EntityManager.AddProjectile(bullet);
+                    }
                 }
                 lastFired = gameTime.TotalGameTime.TotalMilliseconds;
             }

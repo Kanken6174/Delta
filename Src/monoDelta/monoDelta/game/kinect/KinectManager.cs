@@ -1,7 +1,9 @@
 
+using Game.Model.Entity;
 using Game.Model.movement;
 using Microsoft.Kinect;
 using MonoDelta.Game.Model.Entity;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Kinect
@@ -11,9 +13,11 @@ namespace Kinect
     /// </summary>
     public class KinectManager
     {
-
-        public Position RightHandPos { get; set; }
+        //Position fo the right hand
+        public List<Position> RightHandPos { get; set; } = new List<Position>();
+        //The index of the skeleton to be used with the kinect
         public ushort SkeletonIndex { get; set; }
+        //An array used to store all the skeletons detected by the kinect (up to 10 with the kinect V1), only one will be used for target tracking
         private Skeleton[] skeletons;
 
         /// <summary>
@@ -21,11 +25,9 @@ namespace Kinect
         /// </summary>
         public KinectManager()
         {
-            RightHandPos = new Position
+            RightHandPos = new List<Position>
             {
-                Xpos = 400,
-                Ypos = 400,
-                Zpos = 0
+                new Position(){ }
             };
             SkeletonIndex = 0;
         }
@@ -44,6 +46,7 @@ namespace Kinect
         {
             using (SkeletonFrame currentFrame = e.OpenSkeletonFrame())
             {
+                RightHandPos.Clear();
                 if (currentFrame == null)
                     return;
                 if ((this.skeletons == null) || (this.skeletons.Length != currentFrame.SkeletonArrayLength))
@@ -56,19 +59,16 @@ namespace Kinect
                     Joint possibleHand = skeletons[i].Joints[JointType.HandRight];
                     if (possibleHand.TrackingState != JointTrackingState.NotTracked)
                     {
-                        SkeletonIndex = i;
-                        break;
+                        Position pos = new Position();
+                        pos.Ypos = -((possibleHand.Position.Y) * 250 * 3)+100*2; //We offset the target to be at the center of the screen, and scaled properly
+                        pos.Xpos = ((possibleHand.Position.X) * 250 * 3)+400;
+                        RightHandPos.Add(pos);
                     }
 
                 }
-                Joint hand = skeletons[SkeletonIndex].Joints[JointType.HandRight];
-                if (hand.TrackingState == JointTrackingState.NotTracked)
-                    return;
-                RightHandPos.Ypos = -((hand.Position.Y) * 250 * 3);
-                RightHandPos.Xpos = (hand.Position.X) * 250 * 3;
 
-                EntityManager.GetCrosshair().position.Xpos = (RightHandPos.Xpos + 400) * 2;
-                EntityManager.GetCrosshair().position.Ypos = RightHandPos.Ypos + 400;
+            EntityManager.SetCrosshairs(RightHandPos);
+                
             }
         }
 
@@ -100,10 +100,6 @@ namespace Kinect
 
             if (null != this.Kinect)
             {
-                // Turn on the skeleton stream to receive skeleton frames
-                //this.kinect.SkeletonStream.Enable();
-
-                // Start the sensor!
                 try
                 {
                     this.Kinect.Start();
@@ -117,11 +113,7 @@ namespace Kinect
             }
         }
 
-        public void Stop()
-        {
-            Kinect.Stop();
-            // TODO implement here
-        }
+        public void Stop() => Kinect.Stop();
 
         public void reset()
         {
