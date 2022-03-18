@@ -2,16 +2,15 @@
 using Game.Model.Entity;
 using Game.Model.loops;
 using Kinect;
-using monoDelta.Game.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Game.Model{
-    public class GameModel {
+namespace Game.Model
+{
+    public class GameModel
+    {
 
-        public GameModel() {
+        public GameModel()
+        {
         }
 
         private LoopsManager loopsManager;
@@ -22,7 +21,8 @@ namespace Game.Model{
 
 
 
-        public void StartGame() {
+        public void StartGame()
+        {
         }
 
     }

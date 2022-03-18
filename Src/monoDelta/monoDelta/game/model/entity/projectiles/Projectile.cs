@@ -4,25 +4,25 @@ using Game.Model.movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Game.Model.Entity.Projectiles{
+namespace Game.Model.Entity.Projectiles
+{
     /// <summary>
     /// A projectile is a specific type of entity that is "shot" through a Gun object. Its position object will define it's initila velocity and other parameters.
     /// </summary>
     public abstract class Projectile : CollisionnableEntity
 
-    , IProjectilePrototype {
+    , IProjectilePrototype
+    {
 
         public Projectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
             position = new Position();
             Lifetime = 1000;
-            hitbox = new HitboxSphere();
-            hitbox.Radius = 10;
+            hitbox = new HitboxSphere
+            {
+                Radius = 10
+            };
             this.position.ZVelocity = 0.005;
             this.position.RotationVelocity = 1;
         }
@@ -32,8 +32,10 @@ namespace Game.Model.Entity.Projectiles{
         /// </summary>
         public Projectile Clone()
         {
-            Projectile bullet = new SmallProjectile(base.Game);
-            bullet.position = new Position();
+            Projectile bullet = new SmallProjectile(base.Game)
+            {
+                position = new Position()
+            };
             bullet.position.Xpos = this.position.Xpos;
             bullet.position.Ypos = this.position.Ypos;
             bullet.position.Zpos = this.position.Zpos;

@@ -2,10 +2,6 @@
 using Game.Model.Entity.Projectiles;
 using Microsoft.Xna.Framework;
 using MonoDelta.Game.Model.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace Game.Model.Weapons
@@ -49,7 +45,7 @@ namespace Game.Model.Weapons
             }
         }
 
-        public void ReArmDefault(Microsoft.Xna.Framework.Game game)
+        public override void ReArmDefault(Microsoft.Xna.Framework.Game game)
         {
             Bullet = new SmallProjectile(game);
         }

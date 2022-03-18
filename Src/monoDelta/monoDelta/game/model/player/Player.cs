@@ -3,21 +3,27 @@ using Game.Model.Entity.Projectiles;
 using Game.Model.Weapons;
 using Microsoft.Xna.Framework;
 using monoDelta.Game.Model.Levels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Game.Model.Player
 {
-    public class Player {
+    public class Player
+    {
 
         public Player(Microsoft.Xna.Framework.Game game)
         {
-            Projectile magnum5mm = new SmallProjectile(game);
-            gun = new Shotgun(magnum5mm);
+            if (LevelManager.CurrentLevel.PossibleWeapons.Count <= 0)
+            {
+                gun = new Handgun();
+                gun.ReArmDefault(game);
+            }
+            else
+            {
+                gun = LevelManager.CurrentLevel.PossibleWeapons[LevelManager.CurrentLevel.StartingGunIndex];
+                if (gun.Bullet == null)
+                    gun.ReArmDefault(game);
+            }
             Score = 0;
-            Life = (int)LevelManager.CurrentLevel.PlayerLives;
+            Life = LevelManager.CurrentLevel.PlayerLives;
         }
 
         public int Munitions { get; private set; }

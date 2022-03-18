@@ -1,19 +1,16 @@
-
-using Game.Model.Entity;
 using Game.Model.Entity.Projectiles;
 using Microsoft.Xna.Framework;
 using MonoDelta.Game.Model.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Game.Model.Weapons{
+namespace Game.Model.Weapons
+{
     /// <summary>
     /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
     /// </summary>
-    public class Gun {
+    public class Gun
+    {
 
         protected Random random = new Random();
 
@@ -29,7 +26,8 @@ namespace Game.Model.Weapons{
         /// <summary>
         /// A gun object is used to "shoot" Projectile entities by cloning said entity and placing it at the spot designated by the Crosshair entity.
         /// </summary>
-        public Gun(Projectile bullet) {
+        public Gun(Projectile bullet)
+        {
             ReArm(bullet);
         }
 
@@ -43,11 +41,12 @@ namespace Game.Model.Weapons{
         /// Va tirer une balle en clonant Bullet à un certain intervalle
         /// </summary>
         /// <param name="gameTime">Le temps actuel du jeu</param>
-        public virtual void Shoot(GameTime gameTime) {
+        public virtual void Shoot(GameTime gameTime)
+        {
             if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > FireRate)
             {
                 Projectile bullet = this.Bullet.Clone();
-                bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-Spread,Spread)/10;
+                bullet.position.Xpos = EntityManager.GetCrosshair().position.Xpos + (float)random.Next(-Spread, Spread) / 10;
                 bullet.position.Ypos = EntityManager.GetCrosshair().position.Ypos + (float)random.Next(-Spread, Spread) / 10;
 
                 bullet.position.XVelocity = (float)random.Next(-Spread, Spread) / 100;
@@ -65,6 +64,8 @@ namespace Game.Model.Weapons{
             Bullet = bullet;
         }
 
-        public void ReArmDefault(Microsoft.Xna.Framework.Game game) { }
+        public virtual void ReArmDefault(Microsoft.Xna.Framework.Game game) { 
+            
+        }
     }
 }

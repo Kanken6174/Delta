@@ -3,10 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model.Entity;
 using monoDelta.Game.Model.Levels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Game.Model.Entity
 {
@@ -31,7 +27,7 @@ namespace Game.Model.Entity
                 color = Color.Orange;
 
             if (this.position.Zpos > 0)
-                toScale = ((float)(1/this.position.Zpos));
+                toScale = ((float)(1 / this.position.Zpos));
             else
                 toScale = 0;
 

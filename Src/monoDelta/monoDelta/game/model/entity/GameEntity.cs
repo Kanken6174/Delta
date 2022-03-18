@@ -3,13 +3,11 @@ using Game.Model.Collisions.Hitboxes;
 using Game.Model.movement;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Game.Model.Entity{
-    public abstract class GameEntity : DrawableGameComponent{
+namespace Game.Model.Entity
+{
+    public abstract class GameEntity : DrawableGameComponent
+    {
 
         public GameEntity(Microsoft.Xna.Framework.Game game) : base(game)
         {
@@ -30,7 +28,7 @@ namespace Game.Model.Entity{
 
         public virtual void Move()
         {
-            if(this.Lifetime > -1)
+            if (this.Lifetime > -1)
             {
                 this.Lifetime--;
             }

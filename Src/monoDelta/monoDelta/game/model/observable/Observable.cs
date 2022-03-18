@@ -1,13 +1,12 @@
-
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Game.Model.Observable{
-    public abstract class Observable {
+namespace Game.Model.Observable
+{
+    public abstract class Observable
+    {
 
-        public Observable() {
+        public Observable()
+        {
         }
 
         private List<ISubscriber> subscribers;
@@ -16,14 +15,16 @@ namespace Game.Model.Observable{
         /// <summary>
         /// @param subscriber
         /// </summary>
-        public void subscribe(ISubscriber subscriber) {
+        public void subscribe(ISubscriber subscriber)
+        {
             // TODO implement here
         }
 
         /// <summary>
         /// @param subscriber
         /// </summary>
-        public void unsubscribe(ISubscriber subscriber) {
+        public void unsubscribe(ISubscriber subscriber)
+        {
             // TODO implement here
         }
 

@@ -7,12 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model;
 using monoDelta.Game.Model.Entity;
 using monoDelta.Game.Model.Levels;
-using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonoDelta.Game.Model.Entity
 {
@@ -97,7 +94,7 @@ namespace MonoDelta.Game.Model.Entity
 
             nbelem = 0;
             int nbProj = 0;
-            while(nbProj < projectiles.Count)
+            while (nbProj < projectiles.Count)
             {
                 while (nbelem < entities.Count)
                 {
@@ -131,8 +128,8 @@ namespace MonoDelta.Game.Model.Entity
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
             CollisionnableEntity newtarget;
-            
-            if (randomiser.Next(0, 100)/100 > LevelManager.CurrentLevel.BonusChance  && LevelManager.CurrentLevel.PossibleWeapons.Count > 0) //1/100 chances
+
+            if (randomiser.Next(0, 100) / 100 > LevelManager.CurrentLevel.BonusChance && LevelManager.CurrentLevel.PossibleWeapons.Count > 0) //1/100 chances
             {
                 int randomGunIndex = randomiser.Next(0, LevelManager.CurrentLevel.PossibleWeapons.Count());
                 Gun gun = LevelManager.CurrentLevel.PossibleWeapons[randomGunIndex];
@@ -143,7 +140,7 @@ namespace MonoDelta.Game.Model.Entity
                 newtarget = new Target(game);
             }
 
-             
+
 
             int tries = 0;
             do
@@ -160,7 +157,7 @@ namespace MonoDelta.Game.Model.Entity
 
         private static bool Overlaps(GameEntity g)
         {
-            foreach(GameEntity entity in entities)
+            foreach (GameEntity entity in entities)
             {
                 if (EntityCollisionHandler.IsInCollision(g, entity))
                     return true;

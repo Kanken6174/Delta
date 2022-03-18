@@ -1,13 +1,6 @@
 ﻿using Game.Model.Collisions.Hitboxes;
 using Game.Model.Entity;
 using Game.Model.movement;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace monoDelta.Game.Model.Entity
 {

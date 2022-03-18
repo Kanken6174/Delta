@@ -1,14 +1,12 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoDelta.Game.Model.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Game.Model.Entity.Projectiles{
-    public class SmallProjectile : Projectile {
+namespace Game.Model.Entity.Projectiles
+{
+    public class SmallProjectile : Projectile
+    {
 
         public SmallProjectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
@@ -24,7 +22,7 @@ namespace Game.Model.Entity.Projectiles{
             float toScale = 0.1f;
 
             if (this.position.Zpos > 0)
-                toScale = ((float)(1 / this.position.Zpos))*10;
+                toScale = ((float)(1 / this.position.Zpos)) * 10;
             else
                 toScale = 0;
 
@@ -35,7 +33,7 @@ namespace Game.Model.Entity.Projectiles{
             Color.White,
             0, //rotation 
             new Vector2(this.texture.Width / 2, this.texture.Height / 2), //Origin
-            new Vector2((float)(Math.Sqrt(toScale))/100, ((float)Math.Sqrt(toScale))/100),   //scale
+            new Vector2((float)(Math.Sqrt(toScale)) / 100, ((float)Math.Sqrt(toScale)) / 100),   //scale
             SpriteEffects.None,
             0);
         }

@@ -20,7 +20,8 @@ namespace Kinect
         /// <summary>
         /// The KinectManager class will take care of all kinect-related operations and notify the subscribed classes whenever skeletal data is ready.
         /// </summary>
-        public KinectManager() {
+        public KinectManager()
+        {
             RightHandPos = new Position
             {
                 Xpos = 400,
@@ -34,7 +35,8 @@ namespace Kinect
         /// <summary>
         /// @return
         /// </summary>
-        public KinectSkeleton ReadSkeleton(){
+        public KinectSkeleton ReadSkeleton()
+        {
             // TODO implement here
             return null;
         }
@@ -53,7 +55,7 @@ namespace Kinect
                 for (ushort i = 0; i < skeletons.Length; i++)
                 {
                     Joint possibleHand = skeletons[i].Joints[JointType.HandRight];
-                    if(possibleHand.TrackingState != JointTrackingState.NotTracked)
+                    if (possibleHand.TrackingState != JointTrackingState.NotTracked)
                     {
                         SkeletonIndex = i;
                         break;
@@ -85,7 +87,8 @@ namespace Kinect
             }
         }
 
-        public void Init() {
+        public void Init()
+        {
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
                 if (potentialSensor.Status == KinectStatus.Connected)
@@ -115,7 +118,8 @@ namespace Kinect
             }
         }
 
-        public void Stop() {
+        public void Stop()
+        {
             Kinect.Stop();
             // TODO implement here
         }

@@ -1,21 +1,14 @@
 ﻿using Game.Model;
-using Game.Model.Collisions.Handlers;
 using Game.Model.Entity;
+using Game.Model.Player;
+using Game.Model.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model;
+using monoDelta.Game.Model.Levels;
 using MonoDelta.Game.Model.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.Model.Player;
 using Myra;
 using Myra.Graphics2D.UI;
-using monoDelta.Game.Model.Levels;
-using Game.Model.Weapons;
-using Game.Model.Entity.Projectiles;
 using System.Diagnostics;
 
 namespace MonoDelta.Game
@@ -36,7 +29,7 @@ namespace MonoDelta.Game
         private Desktop _desktop;
         Stopwatch timer;
         private bool justExittedGame = false, firstGame = true, gameOver = false;
-        
+
 
         public GameController()
         {
@@ -96,19 +89,19 @@ namespace MonoDelta.Game
             GraphicsDevice.Clear(Color.White);
             if (PlayerManager.GetPlayer().Life <= 0)
             {
-                resetGame();
+                ResetGame();
                 justExittedGame = gameOver = IsMouseVisible = true;
                 drawGameOver();
 
             }
             base.Draw(gameTime);
 
-            if(IsMouseVisible && gameOver)
+            if (IsMouseVisible && gameOver)
             {
                 drawGameOver();
             }
 
-            
+
             else if (IsMouseVisible && !gameOver)
             {
                 drawMenu();
@@ -119,20 +112,24 @@ namespace MonoDelta.Game
                 EntityManager.DrawNextFrame(gameTime, spriteBatch);
                 spriteBatch.End();
                 var panel = new Panel();
-                var positionedText = new Label();
-                positionedText.Text = "vie " + PlayerManager.GetPlayer().Life.ToString() + " Score: " + PlayerManager.GetPlayer().Score.ToString() + " temps: " + timer.Elapsed;
-                positionedText.Left = 400;
-                positionedText.Top = 465;
+                var positionedText = new Label
+                {
+                    Text = "vie " + PlayerManager.GetPlayer().Life.ToString() + " Score: " + PlayerManager.GetPlayer().Score.ToString() + " temps: " + timer.Elapsed,
+                    Left = 400,
+                    Top = 465
+                };
                 Myra.Graphics2D.Brushes.SolidBrush black = new Myra.Graphics2D.Brushes.SolidBrush(Color.Black);
                 positionedText.Background = black;
                 panel.Widgets.Add(positionedText);
-                _desktop = new Desktop();
-                _desktop.Root = panel;
+                _desktop = new Desktop
+                {
+                    Root = panel
+                };
                 _desktop.Render();
             }
         }
 
-        private void resetGame()
+        private void ResetGame()
         {
             PlayerManager.SetPlayer(new Player(this));
             EntityManager.ClearAll();
@@ -142,7 +139,7 @@ namespace MonoDelta.Game
 
         private void drawMenu()
         {
-            if (justExittedGame )
+            if (justExittedGame)
             {
                 drawMenuUI();
                 justExittedGame = false;
@@ -154,7 +151,7 @@ namespace MonoDelta.Game
         {
             if (justExittedGame)
             {
-                drawGameOverUI();
+                DrawGameOverUI();
                 justExittedGame = false;
             }
             _desktop.Render();
@@ -165,31 +162,44 @@ namespace MonoDelta.Game
             MyraEnvironment.Game = this;
             var panel = new Panel();
 
-            var titre = new Label();
-            titre.Text = "Target Wave";
-            titre.HorizontalAlignment = HorizontalAlignment.Center;
-            titre.Top = 50;
-            titre.TextColor = Color.Black;
+            var titre = new Label
+            {
+                Text = "Target Wave",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Top = 50,
+                TextColor = Color.Black
+            };
             panel.Widgets.Add(titre);
 
-            var level1 = new TextButton();
-            level1.Text = "LEVEL 1";
-            level1.Top = 400;
-            level1.Left = 300;
+            var level1 = new TextButton
+            {
+                Text = "LEVEL 1",
+                Top = 400,
+                Left = 300
+            };
             level1.TouchDown += (sender, args) => LevelOneHit();
             panel.Widgets.Add(level1);
 
-            var level2 = new TextButton();
-            level2.Text = "LEVEL 2";
-            level2.Top = 400;
-            level2.Left= 600;
-            
-            level2.Enabled = true;
+            var level2 = new TextButton
+            {
+                Text = "LEVEL 2",
+                Top = 400,
+                Left = 600,
+
+                Enabled = true
+            };
 
             panel.Widgets.Add(level2);
 
-            _desktop = new Desktop();
-            _desktop.Root = panel;
+            _desktop = new Desktop
+            {
+                Root = panel
+            };
+        }
+
+        public void DrawWon()
+        {
+            //TODO make this part
         }
 
         public void LevelOneHit()
@@ -202,26 +212,30 @@ namespace MonoDelta.Game
             this.LoadContent();
         }
 
-        private void drawGameOverUI()
+        private void DrawGameOverUI()
         {
             MyraEnvironment.Game = this;
             var panel = new Panel();
 
-            var gm_btn = new TextButton();
-            gm_btn.VerticalAlignment= VerticalAlignment.Center;
-            gm_btn.HorizontalAlignment = HorizontalAlignment.Center;
-            gm_btn.Text = "Retour au menu";
-            gm_btn.TouchDown += (sender, args) => backMenu();
+            var gm_btn = new TextButton
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Text = "Retour au menu"
+            };
+            gm_btn.TouchDown += (sender, args) => BackMenu();
             gm_btn.Enabled = true;
 
             panel.Widgets.Add(gm_btn);
 
 
-            _desktop = new Desktop();
-            _desktop.Root = panel;
+            _desktop = new Desktop
+            {
+                Root = panel
+            };
         }
 
-        public void backMenu()
+        public void BackMenu()
         {
             GameTime gt = new GameTime();
             PlayerManager.SetPlayer(new Player(this));

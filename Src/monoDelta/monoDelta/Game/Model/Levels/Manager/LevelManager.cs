@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using Game.Model.Weapons;
-using System.Reflection;
+﻿using Game.Model.Weapons;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 
 namespace monoDelta.Game.Model.Levels
 {
@@ -20,11 +15,11 @@ namespace monoDelta.Game.Model.Levels
 
         public static void serializeCurrentLevel()
         {
-            string fileName = levelFolderPath + CurrentLevel.LevelName+".json";
+            string fileName = levelFolderPath + CurrentLevel.LevelName + ".json";
             //string jsonObj = JsonSerializer.Serialize(CurrentLevel);
-            string jsonObj = JsonConvert.SerializeObject(CurrentLevel, Formatting.Indented, 
+            string jsonObj = JsonConvert.SerializeObject(CurrentLevel, Formatting.Indented,
                 new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects });
-            if(!Directory.Exists(levelFolderPath))
+            if (!Directory.Exists(levelFolderPath))
                 Directory.CreateDirectory(levelFolderPath);
             if (File.Exists(fileName))
                 File.Delete(fileName);
@@ -35,14 +30,14 @@ namespace monoDelta.Game.Model.Levels
 
         public static void loadAllLevels(Microsoft.Xna.Framework.Game game)
         {
-            foreach(string levelname in Directory.GetFiles(levelFolderPath))
+            foreach (string levelname in Directory.GetFiles(levelFolderPath))
             {
-                _levels.Add(JsonConvert.DeserializeObject<Level>(File.ReadAllText(levelname), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects})); ;
+                _levels.Add(JsonConvert.DeserializeObject<Level>(File.ReadAllText(levelname), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects })); ;
             }
 
-            foreach(Level level in _levels)
+            foreach (Level level in _levels)
             {
-                foreach(Gun gun in level.PossibleWeapons)
+                foreach (Gun gun in level.PossibleWeapons)
                 {
                     gun.ReArmDefault(game);
                 }

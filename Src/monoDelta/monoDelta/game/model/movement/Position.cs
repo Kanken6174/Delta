@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-
 namespace Game.Model.movement
 {
-    public class Position {
+    public class Position
+    {
 
-        public Position() {
+        public Position()
+        {
         }
 
         private double xposValue = 0;
@@ -43,7 +39,8 @@ namespace Game.Model.movement
         /// <summary>
         /// the current position of the entity on the X axis
         /// </summary>
-        public double Xpos {
+        public double Xpos
+        {
             get => xposValue;
             set
             {

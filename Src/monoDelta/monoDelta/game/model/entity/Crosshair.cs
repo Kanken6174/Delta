@@ -2,12 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Game.Model.Entity{
+namespace Game.Model.Entity
+{
     public class Crosshair : CollisionnableEntity
     {
 
@@ -23,14 +20,14 @@ namespace Game.Model.Entity{
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, 
+            spriteBatch.Draw(texture,
                 new Vector2((float)(position.Xpos), (float)position.Ypos),
-                null, 
+                null,
                 Color.White,
                 (float)position.Rotation, //rotation
-                new Vector2(this.texture.Width/2,this.texture.Height/2), //Origin 
-                new Vector2(0.1f,0.1f),   //scale
-                SpriteEffects.None, 
+                new Vector2(this.texture.Width / 2, this.texture.Height / 2), //Origin 
+                new Vector2(0.1f, 0.1f),   //scale
+                SpriteEffects.None,
                 0);
         }
 
