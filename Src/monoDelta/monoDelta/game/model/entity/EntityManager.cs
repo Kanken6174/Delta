@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model;
 using monoDelta.Game.Model.Entity;
+using monoDelta.Game.Model.Levels;
 using Myra.Graphics2D.UI;
 using System;
 using System.Collections.Generic;
@@ -88,7 +89,7 @@ namespace MonoDelta.Game.Model.Entity
                     projectiles.RemoveAt(nbelem);
                 nbelem++;
             }
-            if (gameTime.TotalGameTime.TotalMilliseconds - lastSpawned > 100)
+            if (gameTime.TotalGameTime.TotalMilliseconds - lastSpawned > LevelManager.CurrentLevel.TargetSpawnDelay)
             {
                 AddRandomTarget(game);
                 lastSpawned = gameTime.TotalGameTime.TotalMilliseconds;
@@ -130,13 +131,12 @@ namespace MonoDelta.Game.Model.Entity
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
             CollisionnableEntity newtarget;
-            if (randomiser.Next(0, 100) == 15) //1/100 chances
+            
+            if (randomiser.Next(0, 100)/100 > LevelManager.CurrentLevel.BonusChance  && LevelManager.CurrentLevel.PossibleWeapons.Count > 0) //1/100 chances
             {
-                Projectile magnum9mm = new SmallProjectile(game);
-                magnum9mm.position.ZVelocity = 0.05;
-                Gun gun = new Minigun(magnum9mm);
+                int randomGunIndex = randomiser.Next(0, LevelManager.CurrentLevel.PossibleWeapons.Count());
+                Gun gun = LevelManager.CurrentLevel.PossibleWeapons[randomGunIndex];
                 newtarget = new WeaponItem(game, gun);
-                
             }
             else
             {

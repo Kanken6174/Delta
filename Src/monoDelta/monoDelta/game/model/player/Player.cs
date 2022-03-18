@@ -2,6 +2,7 @@
 using Game.Model.Entity.Projectiles;
 using Game.Model.Weapons;
 using Microsoft.Xna.Framework;
+using monoDelta.Game.Model.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Game.Model.Player
             Projectile magnum5mm = new SmallProjectile(game);
             gun = new Shotgun(magnum5mm);
             Score = 0;
-            Life = 3;
+            Life = (int)LevelManager.CurrentLevel.PlayerLives;
         }
 
         public int Munitions { get; private set; }

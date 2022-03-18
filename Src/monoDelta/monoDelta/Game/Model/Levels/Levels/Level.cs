@@ -10,10 +10,12 @@ namespace monoDelta.Game.Model.Levels
     public class Level
     {
         public float StartTargetAmount { get; set; } = 1;  //nombre de cibles au début
-        public float StartTargetZ { get; set; } = 4;   //distance de départ des cibles
-        public float TargetSpeed { get; set; } = 0.01f;    //vitesse des cibles
-        public float BonusChance { get; set; } = 30;    //chance de spawner un bonus (/100)
-        public float PlayerLives { get; set; } = 3;    //nb de vies du joueur au début
+        public float StartTargetZ { get; set; } = 10;   //distance de départ des cibles
+        public int TargetSpawnDelay { get; set; } = 100;
+
+        public float TargetSpeed { get; set; } = -0.005f;    //vitesse des cibles
+        public float BonusChance { get; set; } = 0.01f;    //chance de spawner un bonus
+        public int PlayerLives { get; set; } = 3;    //nb de vies du joueur au début
         public float WinScore { get; set; } = 1000;       //Score requis pour gagner
         public string LevelName { get; set; } = "Level";     //nom du niveau
         public float Gravity { get; set; } = 0;    //déviation d'accélération YY

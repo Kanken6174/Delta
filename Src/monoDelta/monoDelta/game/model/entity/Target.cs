@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using monoDelta.Game.Model.Entity;
+using monoDelta.Game.Model.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace Game.Model.Entity
         public Target(Microsoft.Xna.Framework.Game game) : base(game)
         {
             LoadContent();
-            this.position.ZVelocity = -0.005;
-            this.position.Zpos = 10;
+            this.position.ZVelocity = LevelManager.CurrentLevel.TargetSpeed;
+            this.position.Zpos = LevelManager.CurrentLevel.StartTargetZ;
             this.hitbox.Radius = 1;
         }
 

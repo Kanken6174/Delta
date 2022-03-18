@@ -37,7 +37,7 @@ namespace monoDelta.Game.Model.Levels
         {
             foreach(string levelname in Directory.GetFiles(levelFolderPath))
             {
-                _levels.Add(JsonConvert.DeserializeObject<Level>(File.ReadAllText(levelname), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects }));
+                _levels.Add(JsonConvert.DeserializeObject<Level>(File.ReadAllText(levelname), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects})); ;
             }
 
             foreach(Level level in _levels)

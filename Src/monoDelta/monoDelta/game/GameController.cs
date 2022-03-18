@@ -64,7 +64,7 @@ namespace MonoDelta.Game
             Crosshair crosshair = new Crosshair(this);
             EntityManager.SetCrosshair(crosshair);
             km.Init();
-            for (int i = 0; i < 75; i++)
+            for (int i = 0; i < LevelManager.CurrentLevel.StartTargetAmount; i++)
             {
                 EntityManager.AddRandomTarget(this);
             }
