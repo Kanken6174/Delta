@@ -33,15 +33,6 @@ namespace Kinect
         }
         public KinectSensor Kinect { get; private set; }
 
-        /// <summary>
-        /// @return
-        /// </summary>
-        public KinectSkeleton ReadSkeleton()
-        {
-            // TODO implement here
-            return null;
-        }
-
         private void Kinect_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (SkeletonFrame currentFrame = e.OpenSkeletonFrame())
