@@ -1,6 +1,7 @@
 ﻿using Game.Model.Collisions.Handlers;
 using Game.Model.Entity;
 using Game.Model.Entity.Projectiles;
+using Game.Model.movement;
 using Game.Model.Weapons;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,11 +20,17 @@ namespace MonoDelta.Game.Model.Entity
 
         private static readonly List<Projectile> projectiles = new List<Projectile>();
 
-        private static Crosshair crosshair;
+        private static List<Crosshair> crosshairs = new List<Crosshair>();
 
         private static Random randomiser = new Random();
 
         private static double lastSpawned = 0;
+
+        private static Microsoft.Xna.Framework.Game game;
+
+        private static UInt64 gametimer = 0;
+
+        public static void Init(Microsoft.Xna.Framework.Game g) => game = g;
 
         public static void AddEntity(GameEntity e)
         {
@@ -45,14 +52,28 @@ namespace MonoDelta.Game.Model.Entity
             return entities;
         }
 
-        public static Crosshair GetCrosshair()
+        public static List<Crosshair> GetCrosshairs()
         {
-            return crosshair;
+            return crosshairs;
         }
 
-        public static void SetCrosshair(Crosshair c)
+        public static void SetCrosshairs(List<Crosshair> c)
         {
-            crosshair = c;
+            if(c.Count > 0)
+                crosshairs = c;
+        }
+
+        public static void SetCrosshairs(List<Position> ps)
+        {
+            if (game == null)
+                return;
+            crosshairs.Clear();
+            foreach(Position p in ps)
+            {
+                Crosshair cr = new Crosshair(game);
+                cr.position = p;
+                crosshairs.Add(cr);
+            }
         }
 
 
@@ -64,49 +85,48 @@ namespace MonoDelta.Game.Model.Entity
 
         public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch, Microsoft.Xna.Framework.Game game)
         {
-            int nbelem = 0;
-            while (nbelem < entities.Count)
+            if(gameTime.TotalGameTime.TotalMilliseconds > gametimer + 15)
+                gametimer += 15;
+            else
+                return;
+
+            for (int nbelem = 0; nbelem < entities.Count; nbelem++)
             {
-                entities[nbelem].Move();
+                entities[nbelem].Move(gameTime);
                 if (entities[nbelem].position.Zpos < 3)
                 {
                     entities.RemoveAt(nbelem);
                     PlayerManager.GetPlayer().DecrementLife();
                 }
-                nbelem++;
             }
 
-            crosshair.Move();
-            PlayerManager.GetPlayer().Update(gameTime);
-            nbelem = 0;
-            while (nbelem < projectiles.Count)
+            foreach(Crosshair cr in crosshairs)
             {
-                projectiles[nbelem].Move();
+                cr.Move(gameTime);
+            }
+
+            PlayerManager.GetPlayer().Update(gameTime);
+            for (int nbelem = 0; nbelem < projectiles.Count && projectiles.Count > 0; nbelem++)
+            {
+                projectiles[nbelem].Move(gameTime);
                 if (projectiles[nbelem].Lifetime == 0)
                     projectiles.RemoveAt(nbelem);
-                nbelem++;
             }
             if (gameTime.TotalGameTime.TotalMilliseconds - lastSpawned > LevelManager.CurrentLevel.TargetSpawnDelay)
             {
                 AddRandomTarget(game);
                 lastSpawned = gameTime.TotalGameTime.TotalMilliseconds;
             }
-
-            nbelem = 0;
-            int nbProj = 0;
-            while (nbProj < projectiles.Count)
+            for (int j = 0; j < entities.Count; j++)
             {
-                while (nbelem < entities.Count)
+                for (int i = 0; i < projectiles.Count; i++)
                 {
-                    entities[nbelem].Move();
-                    if (EntityCollisionHandler.hasProjectileCollidedWith(projectiles[nbProj], entities[nbelem]))
+                    if (j < entities.Count &&  EntityCollisionHandler.hasProjectileCollidedWith(projectiles[i], entities[j]))
                     {
-                        entities.RemoveAt(nbelem);
+                        entities.RemoveAt(j);
                         PlayerManager.GetPlayer().IncrementScore(10);
                     }
-                    nbelem++;
                 }
-                nbProj++;
             }
         }
 
@@ -122,7 +142,8 @@ namespace MonoDelta.Game.Model.Entity
                 p.Draw(gameTime, spriteBatch);
             }
 
-            crosshair.Draw(gameTime, spriteBatch);
+            foreach(Crosshair crosshair in crosshairs)
+                crosshair.Draw(gameTime, spriteBatch);
         }
 
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)

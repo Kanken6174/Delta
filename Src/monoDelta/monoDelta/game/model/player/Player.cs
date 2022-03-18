@@ -12,16 +12,12 @@ namespace Game.Model.Player
         public Player(Microsoft.Xna.Framework.Game game)
         {
             if (LevelManager.CurrentLevel.PossibleWeapons.Count <= 0)
-            {
                 gun = new Handgun();
-                gun.ReArmDefault(game);
-            }
             else
-            {
                 gun = LevelManager.CurrentLevel.PossibleWeapons[LevelManager.CurrentLevel.StartingGunIndex];
-                if (gun.Bullet == null)
-                    gun.ReArmDefault(game);
-            }
+
+            if (gun.Bullet == null)
+                gun.ReArmDefault(game);
             Score = 0;
             Life = LevelManager.CurrentLevel.PlayerLives;
         }

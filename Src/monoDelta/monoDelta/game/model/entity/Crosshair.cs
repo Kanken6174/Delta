@@ -36,7 +36,7 @@ namespace Game.Model.Entity
             this.texture = Game.Content.Load<Texture2D>("Art/crs");
         }
 
-        public override void Move()
+        public override void Move(GameTime gameTime)
         {
             this.position.Rotation += this.position.RotationVelocity;
             //rien, la crosshair est bougée par le kinectManager

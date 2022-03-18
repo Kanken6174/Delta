@@ -16,15 +16,17 @@ namespace MonoDelta.Game
 {
     public class GameController : Microsoft.Xna.Framework.Game
     {
-#pragma warning disable IDE0052 // Supprimer les membres privés non lus
         readonly GraphicsDeviceManager graphics;
-#pragma warning restore IDE0052 // Supprimer les membres privés non lus
         SpriteBatch spriteBatch;
         Vector2 baseScreenSize = new Vector2(1600, 900);
+#pragma warning disable CS0169 // Le champ 'GameController.backbufferHeight' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'GameController.backbufferWidth' n'est jamais utilisé
         int backbufferWidth, backbufferHeight;
-#pragma warning disable IDE0052 // Supprimer les membres privés non lus
+#pragma warning restore CS0169 // Le champ 'GameController.backbufferWidth' n'est jamais utilisé
+#pragma warning restore CS0169 // Le champ 'GameController.backbufferHeight' n'est jamais utilisé
+#pragma warning disable CS0169 // Le champ 'GameController.globalTransformation' n'est jamais utilisé
         private Matrix globalTransformation;
-#pragma warning restore IDE0052 // Supprimer les membres privés non lus
+#pragma warning restore CS0169 // Le champ 'GameController.globalTransformation' n'est jamais utilisé
         private readonly Kinect.KinectManager km;
         private Desktop _desktop;
         Stopwatch timer;
@@ -42,7 +44,12 @@ namespace MonoDelta.Game
             timer = new Stopwatch();
             IsMouseVisible = true;
             gameOver = false;
+<<<<<<< HEAD
            
+=======
+            timer = new Stopwatch();
+            EntityManager.Init(this);
+>>>>>>> 0a5b4804246ff20d35c4674f2a616af77954abe8
             km = new Kinect.KinectManager();
         }
 
@@ -55,8 +62,6 @@ namespace MonoDelta.Game
             this.Content.RootDirectory = "";
             GraphicsDevice.Clear(Color.White);
             timer.Start();
-            Crosshair crosshair = new Crosshair(this);
-            EntityManager.SetCrosshair(crosshair);
             km.Init();
             for (int i = 0; i < LevelManager.CurrentLevel.StartTargetAmount; i++)
             {
@@ -70,6 +75,11 @@ namespace MonoDelta.Game
             }
             LevelManager.loadAllLevels(this);
             LevelManager.CurrentLevel.PossibleWeapons.Add(new Handgun(null));
+            LevelManager.CurrentLevel.PossibleWeapons.Add(new Minigun(null));
+            LevelManager.CurrentLevel.PossibleWeapons.Add(new Carabine(null));
+            LevelManager.CurrentLevel.PossibleWeapons.Add(new Shotgun(null));
+            LevelManager.CurrentLevel.PossibleWeapons.Add(new Carabine(null));
+            
             LevelManager.serializeCurrentLevel();
         }
         /// <summary>   
