@@ -1,6 +1,5 @@
 
 using Game.Model.movement;
-using Game.Model.Observable;
 using Microsoft.Kinect;
 using MonoDelta.Game.Model.Entity;
 using System.IO;
@@ -10,7 +9,7 @@ namespace Kinect
     /// <summary>
     /// The KinectManager class will take care of all kinect-related operations and notify the subscribed classes whenever skeletal data is ready.
     /// </summary>
-    public class KinectManager : Observable
+    public class KinectManager
     {
 
         public Position RightHandPos { get; set; }

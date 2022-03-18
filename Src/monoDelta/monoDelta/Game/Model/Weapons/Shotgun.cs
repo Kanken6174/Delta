@@ -22,8 +22,6 @@ namespace Game.Model.Weapons
             this.Spread = 200;
         }
 
-        private int munitions = 12;
-
 
 
         public override void Shoot(GameTime gameTime)

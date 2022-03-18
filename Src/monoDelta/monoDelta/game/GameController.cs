@@ -15,15 +15,11 @@ namespace MonoDelta.Game
 {
     public class GameController : Microsoft.Xna.Framework.Game
     {
-#pragma warning disable IDE0052 // Supprimer les membres privés non lus
         readonly GraphicsDeviceManager graphics;
-#pragma warning restore IDE0052 // Supprimer les membres privés non lus
         SpriteBatch spriteBatch;
         Vector2 baseScreenSize = new Vector2(1600, 900);
         int backbufferWidth, backbufferHeight;
-#pragma warning disable IDE0052 // Supprimer les membres privés non lus
         private Matrix globalTransformation;
-#pragma warning restore IDE0052 // Supprimer les membres privés non lus
         private readonly Kinect.KinectManager km;
         private Desktop _desktop;
         Stopwatch timer;
