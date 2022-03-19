@@ -37,3 +37,5 @@ Les cibles, quand trop près du joueur, deviendront orange pour l'avertir, et fe
 Le jeu supporte jusqu'à 2 joueurs en co-op dans un même niveau (max testé). En théorie, dans un environnement idéal, la kinect V1 devrait supporter jusqu'à 10 joueurs, mais les tests n'ont pas permi cela (perturbations extérieures?).
 
 La kinect passera automatiquement des armes aux joueurs dont elle détecte la main droite (montré par un réticule sur l'écran). Elle redémarre également à chaque nouvelle partie pour prévenir des problèmes liés aux perturbations extérieures (elle a tendance à détecter des sources de lumière infrarouge sinon).
+
+Les niveaux sont caractérisés par un fichier de configuration présent dans le dossier `./level/` qui contiendra un ou plusieurs fichiers json de la forme `<nom_du_niveau.json>`. L'interface graphique affichera les niveaux qu'elle trouve sur le menu principal pour que le joueuren choisisse un.
