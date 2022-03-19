@@ -35,7 +35,10 @@ namespace monoDelta.Game.Model.Levels
             File.WriteAllText(fileName, jsonObj);
             
         }
-
+        /// <summary>
+        /// Charge tout les niveaux 
+        /// </summary>
+        /// <param name="game"></param>
         public static void loadAllLevels(Microsoft.Xna.Framework.Game game)
         {
             foreach (string levelname in Directory.GetFiles(levelFolderPath))
@@ -52,6 +55,10 @@ namespace monoDelta.Game.Model.Levels
             }
         }
 
+        /// <summary>
+        /// Retourne tout les niveaux
+        /// </summary>
+        /// <returns></returns>
         public static List<Level> getAllLevels()
         {
             return _levels;

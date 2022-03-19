@@ -104,10 +104,14 @@ namespace MonoDelta.Game
 
         }
 
+        /// <summary>
+        /// Va appeler les différents methodes Draw pour dessiner la bonne interface
+        /// </summary>
+        /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            if (PlayerManager.GetPlayer().Life <= 0)
+            if (PlayerManager.GetPlayer().Life <= 0) 
             {
                 ResetGame();
                 justExittedGame = gameOver = IsMouseVisible = true;
@@ -116,22 +120,22 @@ namespace MonoDelta.Game
             }
             base.Draw(gameTime);
 
-            if (IsMouseVisible  && hasWon)
+            if (IsMouseVisible  && hasWon) // Cas ou le joueur a gagné 
             {
                 DrawWon();
             }
 
-            else if (IsMouseVisible && gameOver)
+            else if (IsMouseVisible && gameOver) // Cas ou le joueur a perdu 
             {
                 drawGameOver();
             }
 
 
-            else if (IsMouseVisible && !gameOver)
+            else if (IsMouseVisible && !gameOver) // Cas ou le joueur n'est pas en partie 
             {
                 drawMenu();
             }
-            else
+            else // Draw la partie 
             {
                 spriteBatch.Begin();
                 EntityManager.DrawNextFrame(gameTime, spriteBatch);
@@ -162,6 +166,9 @@ namespace MonoDelta.Game
             }
         }
 
+        /// <summary>
+        /// Réinitialise les stats, les entités et le relaunch le kinect
+        /// </summary>
         private void ResetGame()
         {
             PlayerManager.SetPlayer(new Player(this));
@@ -169,7 +176,9 @@ namespace MonoDelta.Game
             km.Stop();
             km.Init();
         }
-
+        /// <summary>
+        /// Appelle la méthode qui va draw l'interface Menu
+        /// </summary>
         private void drawMenu()
         {
             if (justExittedGame)
@@ -179,7 +188,9 @@ namespace MonoDelta.Game
             }
             _desktop.Render();
         }
-
+        /// <summary>
+        /// Appelle la méthode qui va draw l'interface du GameOver
+        /// </summary>
         private void drawGameOver()
         {
             if (justExittedGame)
@@ -189,7 +200,9 @@ namespace MonoDelta.Game
             }
             _desktop.Render();
         }
-
+        /// <summary>
+        /// Draw l'interface du Menu
+        /// </summary>
         private void drawMenuUI()
         {
             MyraEnvironment.Game = this;
@@ -212,7 +225,7 @@ namespace MonoDelta.Game
             scroll.HorizontalAlignment = HorizontalAlignment.Center;
             scroll.Top = 60;
             panel.Widgets.Add(scroll);
-            if (levelCreer.Count == 0)
+            if (levelCreer.Count == 0)//Cas de la première partie 
             {
                 foreach (var level in LevelManager.getAllLevels())
                 {
@@ -226,7 +239,7 @@ namespace MonoDelta.Game
                     levelCreer.Add(level);
                 }
             }
-            else
+            else // Cas des parties suivantes 
             {
                 foreach (var level in levelCreer)
                 {
@@ -244,7 +257,10 @@ namespace MonoDelta.Game
             _desktop.Root= panel;
 
         }
-
+        /// <summary>
+        /// Méthode quand on appuie sur un bouton "Level" qui va appeler la méthode LoadContent
+        /// </summary>
+        /// <param name="levelName"></param>
         public void ClickLevel(String levelName)
         {
             foreach(var level in LevelManager.getAllLevels())
@@ -260,7 +276,9 @@ namespace MonoDelta.Game
             PlayerManager.SetPlayer(new Player(this));
             this.LoadContent();
         }
-
+        /// <summary>
+        /// Appelle la méthode qui dessine l'interface d'une partie gagnée
+        /// </summary>
         public void DrawWon()
         {
             if (justExittedGame)
@@ -270,7 +288,9 @@ namespace MonoDelta.Game
             }
             _desktop.Render();
         }
-
+        /// <summary>
+        /// Méthode qui dessine l'interface d'une partie gagnée
+        /// </summary>
         private void DrawWonUI()
         {
             MyraEnvironment.Game = this;
@@ -304,21 +324,20 @@ namespace MonoDelta.Game
             _desktop.Root = panel;
 
         }
-
-        public void LevelOneHit()
-        {
-            LevelManager.CurrentLevel = new Level();
-            timer.Restart();
-            IsMouseVisible = false;
-            GameTime gametime = new GameTime();
-            PlayerManager.SetPlayer(new Player(this));
-            this.LoadContent();
-        }
-
+        /// <summary>
+        /// Dessine l'interface du gameOver 
+        /// </summary>
         private void DrawGameOverUI()
         {
             MyraEnvironment.Game = this;
             var panel = new Panel();
+
+            var title = new Label();
+            title.Text = "Vous avez perdu, votre temps : " + timer.Elapsed.ToString();
+            title.HorizontalAlignment = HorizontalAlignment.Center;
+            title.Top = 100;
+            title.TextColor = Color.Black;
+            panel.Widgets.Add(title);
 
             var gm_btn = new TextButton
             {
@@ -334,14 +353,17 @@ namespace MonoDelta.Game
 
             _desktop = new Desktop{Root = panel};
         }
-
+        /// <summary>
+        /// Méthode appelée quand on clique sur le bouton sur l'interface gameOver ou partie Gagnée 
+        /// appelle la méthode LoadContent
+        /// </summary>
         public void BackMenu()
         {
             GameTime gt = new GameTime();
             PlayerManager.SetPlayer(new Player(this));
             IsMouseVisible = justExittedGame = true;
             hasWon = gameOver = false;
-            Draw(gt);
+            this.LoadContent();
         }
 
         

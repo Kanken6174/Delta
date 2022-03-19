@@ -31,10 +31,17 @@ namespace Game.Model.Player
         public Gun gun { get; private set; }
         public void DecrementLife() => Life--;
 
+
+        /// <summary>
+        /// Incremente le score du joueur
+        /// </summary>
+        /// <param name="toAdd"></param>
         public void IncrementScore(int toAdd) => Score += toAdd;
 
         public void Update(GameTime time) => gun.Shoot(time);
-
+        /// <summary>
+        /// Verifie si le joueur a gagné la partie ou non selon son score
+        /// </summary>
         public bool HasWon =>  (Score > LevelManager.CurrentLevel.WinScore);
 
     }
