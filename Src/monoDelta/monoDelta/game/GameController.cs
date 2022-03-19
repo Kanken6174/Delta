@@ -10,7 +10,9 @@ using MonoDelta.Game.Model.Entity;
 using Myra;
 using Myra.Graphics2D.UI;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace MonoDelta.Game
 {
@@ -31,7 +33,8 @@ namespace MonoDelta.Game
         private Desktop _desktop;
         Stopwatch timer;
         private bool justExittedGame = false, firstGame = true, gameOver = false, hasWon = false;
-
+        private List<Level> levelCreer = new List<Level>();
+        private List<Level> tmp= new List<Level>();
 
         public GameController()
         {
@@ -67,8 +70,9 @@ namespace MonoDelta.Game
             PlayerManager.SetPlayer(new Player(this));
             if (firstGame)
             {
-                firstGame = false;
                 drawMenuUI();
+                firstGame = false;
+                
             }
             LevelManager.loadAllLevels(this);
             LevelManager.CurrentLevel.PossibleWeapons.Add(new Handgun(null));
@@ -139,8 +143,16 @@ namespace MonoDelta.Game
                     Left = 400,
                     Top = 465
                 };
+                var levelName = new Label
+                {
+                    Text = LevelManager.CurrentLevel.LevelName,
+                    Left = 10,
+                    Top = 465,
+                    TextColor = Color.Black
+            };
                 Myra.Graphics2D.Brushes.SolidBrush black = new Myra.Graphics2D.Brushes.SolidBrush(Color.Black);
                 positionedText.Background = black;
+                panel.Widgets.Add(levelName);
                 panel.Widgets.Add(positionedText);
                 _desktop = new Desktop
                 {
@@ -181,6 +193,10 @@ namespace MonoDelta.Game
         private void drawMenuUI()
         {
             MyraEnvironment.Game = this;
+            int position = 60;
+            int x = 0;
+            LevelManager.loadAllLevels(this);
+            int test = LevelManager.getAllLevels().Count();
             var panel = new Panel();
 
             var titre = new Label
@@ -192,29 +208,57 @@ namespace MonoDelta.Game
             };
             panel.Widgets.Add(titre);
 
-            var level1 = new TextButton
+            var scroll = new ScrollViewer();
+            scroll.HorizontalAlignment = HorizontalAlignment.Center;
+            scroll.Top = 60;
+            panel.Widgets.Add(scroll);
+            if (levelCreer.Count == 0)
             {
-                Text = "LEVEL 1",
-                Top = 400,
-                Left = 300
-            };
-            level1.TouchDown += (sender, args) => LevelOneHit();
-            panel.Widgets.Add(level1);
-
-            var level2 = new TextButton
+                foreach (var level in LevelManager.getAllLevels())
+                {
+                    var levelButtonbis = new TextButton();
+                    levelButtonbis.Text = level.LevelName;
+                    levelButtonbis.Top = 400;
+                    levelButtonbis.Left = position;
+                    position += 200;
+                    levelButtonbis.TouchDown += (sender, args) => ClickLevel(levelButtonbis.Text);
+                    panel.Widgets.Add(levelButtonbis);
+                    levelCreer.Add(level);
+                }
+            }
+            else
             {
-                Text = "LEVEL 2",
-                Top = 400,
-                Left = 600,
-
-                Enabled = true
-            };
-
-            panel.Widgets.Add(level2);
-
+                foreach (var level in levelCreer)
+                {
+                    var levelButton = new TextButton();
+                    levelButton.Text = levelCreer[x].LevelName;
+                    levelButton.Top = 400;
+                    levelButton.Left = position;
+                    position += 200;
+                    levelButton.TouchDown += (sender, args) => ClickLevel(levelButton.Text);
+                    panel.Widgets.Add(levelButton);
+                    x++;
+                }
+            }
             _desktop = new Desktop();
             _desktop.Root= panel;
 
+        }
+
+        public void ClickLevel(String levelName)
+        {
+            foreach(var level in LevelManager.getAllLevels())
+            {
+                if(levelName == level.LevelName)
+                {
+                    LevelManager.CurrentLevel = level;
+                }
+            }
+            timer.Restart();
+            IsMouseVisible = false;
+            GameTime gametime = new GameTime();
+            PlayerManager.SetPlayer(new Player(this));
+            this.LoadContent();
         }
 
         public void DrawWon()
@@ -288,20 +332,15 @@ namespace MonoDelta.Game
             panel.Widgets.Add(gm_btn);
 
 
-            _desktop = new Desktop
-            {
-                Root = panel
-            };
+            _desktop = new Desktop{Root = panel};
         }
 
         public void BackMenu()
         {
             GameTime gt = new GameTime();
             PlayerManager.SetPlayer(new Player(this));
-            IsMouseVisible = true;
-            justExittedGame = true;
-            hasWon = false;
-            gameOver = false;
+            IsMouseVisible = justExittedGame = true;
+            hasWon = gameOver = false;
             Draw(gt);
         }
 

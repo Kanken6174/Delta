@@ -15,6 +15,13 @@ namespace monoDelta.Game.Model.Levels
 
         public static void serializeCurrentLevel()
         {
+            foreach (Level level in _levels)
+            {
+                foreach (Gun gun in level.PossibleWeapons)
+                {
+                    gun.ReArm(null);
+                }
+            }
             string fileName = levelFolderPath + CurrentLevel.LevelName + ".json";
             //string jsonObj = JsonSerializer.Serialize(CurrentLevel);
             string jsonObj = JsonConvert.SerializeObject(CurrentLevel, Formatting.Indented,
@@ -26,6 +33,7 @@ namespace monoDelta.Game.Model.Levels
             var fileStream = File.Create(fileName);
             fileStream.Close();
             File.WriteAllText(fileName, jsonObj);
+            
         }
 
         public static void loadAllLevels(Microsoft.Xna.Framework.Game game)
