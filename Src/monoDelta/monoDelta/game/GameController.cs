@@ -44,12 +44,9 @@ namespace MonoDelta.Game
             timer = new Stopwatch();
             IsMouseVisible = true;
             gameOver = false;
-<<<<<<< HEAD
-           
-=======
+
             timer = new Stopwatch();
             EntityManager.Init(this);
->>>>>>> 0a5b4804246ff20d35c4674f2a616af77954abe8
             km = new Kinect.KinectManager();
         }
 

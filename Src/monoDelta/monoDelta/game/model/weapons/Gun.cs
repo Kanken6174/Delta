@@ -19,13 +19,9 @@ namespace Game.Model.Weapons
         public Projectile Bullet { get; protected set; }
         public int PowerLevel { get; protected set; } = 0;
         public int Munitions { get; set; } = 0;
-<<<<<<< HEAD
+
         public int Spread { get; set; } = 100;
         public int FireRate { get; set; } = 50;
-=======
-        public int Spread { get; set; } = 10;
-        public int FireRate { get; set; } = 200;
->>>>>>> 0a5b4804246ff20d35c4674f2a616af77954abe8
 
         public double lastFired = 0;
 

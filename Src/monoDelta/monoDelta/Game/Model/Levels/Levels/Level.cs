@@ -11,7 +11,7 @@ namespace monoDelta.Game.Model.Levels
         public float TargetSpeed { get; set; } = -0.005f;    //vitesse des cibles
         public float BonusChance { get; set; } = 0.01f;    //chance de spawner un bonus
         public int PlayerLives { get; set; } = 3;    //nb de vies du joueur au début
-        public float WinScore { get; set; } = 50;       //Score requis pour gagner
+        public float WinScore { get; set; } = 1000;       //Score requis pour gagner
         public string LevelName { get; set; } = "Level";     //nom du niveau
         public float Gravity { get; set; } = 0;    //déviation d'accélération Y
         public float Wind { get; set; } = 0;   //déviation d'accélération X
