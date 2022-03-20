@@ -5,6 +5,11 @@ using monoDelta.Game.Model.Entity;
 
 namespace Game.Model.Entity
 {
+    /// <summary>
+    /// The crosshair is a specific type of CollisionnableEntity that serves as ... crosshair for the player to aim.
+    /// its position is set by the kinectManager and whenever a projectile is cloned it will place itself on one or more crosshairs (depending on how
+    /// many players there are)
+    /// </summary>
     public class Crosshair : CollisionnableEntity
     {
 
@@ -39,7 +44,7 @@ namespace Game.Model.Entity
         public override void Move(GameTime gameTime)
         {
             this.position.Rotation += this.position.RotationVelocity;
-            //rien, la crosshair est bougée par le kinectManager
+            //the crosshair is moved by the KinectManager
         }
     }
 }

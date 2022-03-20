@@ -6,6 +6,10 @@ using monoDelta.Game.Model.Levels;
 
 namespace Game.Model.Entity
 {
+    /// <summary>
+    /// This GameEntity represents a target which the player has to hit with a projectile in order to destroy it and earn 10 points.
+    /// If a target gets within 3 game units of the player they will explode, and damage the player.
+    /// </summary>
     public class Target : CollisionnableEntity
 
     {

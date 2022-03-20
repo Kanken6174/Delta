@@ -14,13 +14,16 @@ using System.Linq;
 
 namespace MonoDelta.Game.Model.Entity
 {
+    /// <summary>
+    /// The EntityManager will manage all the GameEntities on the playspace, ask them to move and to draw themselves whenever the corresponding methods are called.
+    /// </summary>
     public static class EntityManager
     {
-        private static readonly List<GameEntity> entities = new List<GameEntity>();
+        private static readonly List<GameEntity> entities = new List<GameEntity>(); //the current entities on the playspace (usually targets and bonus)
 
-        private static readonly List<Projectile> projectiles = new List<Projectile>();
+        private static readonly List<Projectile> projectiles = new List<Projectile>();  //the current projectiles on the playspace (usually smallProjectiles)
 
-        private static List<Crosshair> crosshairs = new List<Crosshair>();
+        private static List<Crosshair> crosshairs = new List<Crosshair>();  //list of the current crosshairs managed by the KinectManager
 
         private static Random randomiser = new Random();
 
@@ -82,7 +85,12 @@ namespace MonoDelta.Game.Model.Entity
             entities.Clear();
             projectiles.Clear();
         }
-
+        /// <summary>
+        /// This method is called by the main game controller, to process the positions of everyn entity for the next frame
+        /// </summary>
+        /// <param name="gameTime">global game timer</param>
+        /// <param name="spriteBatch">game sprite helper</param>
+        /// <param name="game">the game itself</param>
         public static void ProcessNextFrame(GameTime gameTime, SpriteBatch spriteBatch, Microsoft.Xna.Framework.Game game)
         {
             if(gameTime.TotalGameTime.TotalMilliseconds > gametimer + 15)
@@ -92,60 +100,63 @@ namespace MonoDelta.Game.Model.Entity
 
             for (int nbelem = 0; nbelem < entities.Count; nbelem++)
             {
-                entities[nbelem].Move(gameTime);
-                if (entities[nbelem].position.Zpos < 3)
+                entities[nbelem].Move(gameTime);    //moves every target/bonus on the playspace towards the player
+                if (entities[nbelem].position.Zpos < 3) //checks if an element has collided with the player (treshold is 3 game units)
                 {
                     entities.RemoveAt(nbelem);
-                    PlayerManager.GetPlayer().DecrementLife();
+                    PlayerManager.GetPlayer().DecrementLife(); //if we have a collision we decrement the player's life and delete that element
                 }
             }
 
-            foreach(Crosshair cr in crosshairs)
+            foreach(Crosshair cr in crosshairs) //we move each crosshair (not really needed since crosshair movement is handled by the kinectManager)
             {
                 cr.Move(gameTime);
             }
 
-            PlayerManager.GetPlayer().Update(gameTime);
-            for (int nbelem = 0; nbelem < projectiles.Count && projectiles.Count > 0; nbelem++)
+            PlayerManager.GetPlayer().Update(gameTime); //we update the player (may cause its gun to shoot a bullet if the shooting delay is met)
+
+            for (int nbelem = 0; nbelem < projectiles.Count && projectiles.Count > 0; nbelem++) //move each projectile
             {
                 projectiles[nbelem].Move(gameTime);
-                if (projectiles[nbelem].Lifetime == 0)
+                if (projectiles[nbelem].Lifetime == 0)  //remove the projectile if it has exceeded its life time
                     projectiles.RemoveAt(nbelem);
             }
-            if (gameTime.TotalGameTime.TotalMilliseconds - lastSpawned > LevelManager.CurrentLevel.TargetSpawnDelay)
+
+            if (gameTime.TotalGameTime.TotalMilliseconds - lastSpawned > LevelManager.CurrentLevel.TargetSpawnDelay)//if the delay is met spawn a random target
             {
                 AddRandomTarget(game);
                 lastSpawned = gameTime.TotalGameTime.TotalMilliseconds;
             }
-            for (int j = 0; j < entities.Count; j++)
+
+            for (int j = 0; j < entities.Count; j++)    //here we will check the collision for each target/bonus
             {
-                for (int i = 0; i < projectiles.Count; i++)
+                for (int i = 0; i < projectiles.Count; i++) //with each projectile
                 {
                     if (j < entities.Count &&  EntityCollisionHandler.HasProjectileCollidedWith(projectiles[i], entities[j]))
                     {
-                        entities.RemoveAt(j);
+                        entities.RemoveAt(j);   //remove the target if one of the projectile has hit it
                         PlayerManager.GetPlayer().IncrementScore(10);
                     }
                 }
             }
         }
 
-        public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)
+        public static void DrawNextFrame(GameTime gameTime, SpriteBatch spriteBatch)    //calls the draw method of each GameEntity in the 3 lists
         {
             foreach (GameEntity e in entities)
-            {
                 e.Draw(gameTime, spriteBatch);
-            }
 
             foreach (Projectile p in projectiles)
-            {
                 p.Draw(gameTime, spriteBatch);
-            }
 
-            foreach(Crosshair crosshair in crosshairs)
+            foreach (Crosshair crosshair in crosshairs)
                 crosshair.Draw(gameTime, spriteBatch);
         }
 
+        /// <summary>
+        /// Will randomly add a target on the game's playspace, can also add a bonus instead
+        /// </summary>
+        /// <param name="game">the Xna game</param>
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
             CollisionnableEntity newtarget;
@@ -161,9 +172,7 @@ namespace MonoDelta.Game.Model.Entity
                 newtarget = new Target(game);
             }
 
-
-
-            int tries = 0;
+            int tries = 0;  //while the target's hitbox collides with another target, try to place it again, up to 150 tries
             do
             {
                 newtarget.position.Xpos = randomiser.Next(50, 1100);
@@ -176,6 +185,11 @@ namespace MonoDelta.Game.Model.Entity
             EntityManager.AddEntity(newtarget);
         }
 
+        /// <summary>
+        /// This method checks if a GameEntity collieds with any of the others on the 2d plane
+        /// </summary>
+        /// <param name="g">GameEntity to check for collisions with the others</param>
+        /// <returns></returns>
         private static bool Overlaps(GameEntity g)
         {
             foreach (GameEntity entity in entities)
