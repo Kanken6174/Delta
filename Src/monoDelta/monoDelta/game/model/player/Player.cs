@@ -22,25 +22,30 @@ namespace Game.Model.Player
             Life = LevelManager.CurrentLevel.PlayerLives;
         }
 
-        public int Munitions { get; private set; }
-
         public int Life { get; private set; }
 
         public int Score { get; private set; }
 
+        /// <summary>
+        /// The player's current active weapon, it will be responsible for firing bullets through the crosshair's position
+        /// </summary>
         public Gun gun { get; private set; }
         public void DecrementLife() => Life--;
 
-
         /// <summary>
-        /// Incremente le score du joueur
+        /// Increments the player's score
         /// </summary>
         /// <param name="toAdd"></param>
         public void IncrementScore(int toAdd) => Score += toAdd;
 
-        public void Update(GameTime time) => gun.Shoot(time);
         /// <summary>
-        /// Verifie si le joueur a gagné la partie ou non selon son score
+        /// this method is mainly used to fire the player's weapon when a certain firing delay is met
+        /// </summary>
+        /// <param name="time"></param>
+        public void Update(GameTime time) => gun.Shoot(time);
+
+        /// <summary>
+        /// Checks if the player's score has exceeded the level's win treshold
         /// </summary>
         public bool HasWon =>  (Score > LevelManager.CurrentLevel.WinScore);
 

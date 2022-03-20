@@ -16,6 +16,9 @@ using System.Linq;
 
 namespace MonoDelta.Game
 {
+    /// <summary>
+    /// The game controller manages every loop in the game, in fact, it is the Xna framework Game object itself.
+    /// </summary>
     public class GameController : Microsoft.Xna.Framework.Game
     {
         readonly GraphicsDeviceManager graphics;
@@ -53,7 +56,7 @@ namespace MonoDelta.Game
         }
 
         /// <summary>
-        /// Charge les différentes ressources du jeu (fichiers)
+        /// Loads every graphical ressource needed for the game to run (as well as json-serialized levels)
         /// </summary>
         protected override void LoadContent()
         {
@@ -76,7 +79,7 @@ namespace MonoDelta.Game
             LevelManager.loadAllLevels(this);
         }
         /// <summary>   
-        /// met à jour le jeu selon une vitesse de tick prédéterminée
+        /// this method is called by the Game base class at a predetermined tickrate
         /// </summary>
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
