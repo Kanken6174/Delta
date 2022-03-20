@@ -149,8 +149,8 @@ namespace MonoDelta.Game.Model.Entity
         public static void AddRandomTarget(Microsoft.Xna.Framework.Game game)
         {
             CollisionnableEntity newtarget;
-
-            if (randomiser.Next(0, 100) / 100 > LevelManager.CurrentLevel.BonusChance && LevelManager.CurrentLevel.PossibleWeapons.Count > 0) //1/100 chances
+            double rand = randomiser.NextDouble();
+            if (rand < LevelManager.CurrentLevel.BonusChance && LevelManager.CurrentLevel.PossibleWeapons.Count > 0) //1/100 chances
             {
                 int randomGunIndex = randomiser.Next(0, LevelManager.CurrentLevel.PossibleWeapons.Count());
                 Gun gun = LevelManager.CurrentLevel.PossibleWeapons[randomGunIndex];

@@ -11,7 +11,7 @@ namespace Game.Model.Entity.Projectiles
         public SmallProjectile(Microsoft.Xna.Framework.Game game) : base(game)
         {
             this.position.Zpos = 0;
-            this.hitbox.Radius = 1;
+            this.hitbox.Radius = 0.01;
             this.position.ZVelocity = 0.1;
             this.position.RotationVelocity = 1;
             LoadContent();

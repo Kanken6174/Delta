@@ -1,4 +1,5 @@
-﻿using Game.Model.Weapons;
+﻿using Game.Model.Entity.Projectiles;
+using Game.Model.Weapons;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -15,13 +16,6 @@ namespace monoDelta.Game.Model.Levels
 
         public static void serializeCurrentLevel()
         {
-            foreach (Level level in _levels)
-            {
-                foreach (Gun gun in level.PossibleWeapons)
-                {
-                    gun.ReArm(null);
-                }
-            }
             string fileName = levelFolderPath + CurrentLevel.LevelName + ".json";
             //string jsonObj = JsonSerializer.Serialize(CurrentLevel);
             string jsonObj = JsonConvert.SerializeObject(CurrentLevel, Formatting.Indented,
@@ -33,7 +27,6 @@ namespace monoDelta.Game.Model.Levels
             var fileStream = File.Create(fileName);
             fileStream.Close();
             File.WriteAllText(fileName, jsonObj);
-            
         }
         /// <summary>
         /// Charge tout les niveaux 

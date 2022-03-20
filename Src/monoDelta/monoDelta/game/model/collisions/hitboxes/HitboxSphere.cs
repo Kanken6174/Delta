@@ -6,7 +6,7 @@ namespace Game.Model.Collisions.Hitboxes
     public class HitboxSphere
     {
 
-        public int Radius { get; set; }
+        public double Radius { get; set; }
 
         public void grow(Position pos)
         {

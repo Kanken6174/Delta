@@ -22,7 +22,7 @@ namespace Game.Model.Entity.Projectiles
             Lifetime = 1000;
             hitbox = new HitboxSphere
             {
-                Radius = 10
+                Radius = .1
             };
             this.position.ZVelocity = 0.005;
             this.position.RotationVelocity = 1;
@@ -81,8 +81,8 @@ namespace Game.Model.Entity.Projectiles
             this.position.Ypos += this.position.YVelocity;
             this.position.Zpos += this.position.ZVelocity;
 
-            this.position.XVelocity -= LevelManager.CurrentLevel.Gravity;
-            this.position.YVelocity += LevelManager.CurrentLevel.Wind;
+            this.position.YVelocity -= LevelManager.CurrentLevel.Gravity;
+            this.position.XVelocity += LevelManager.CurrentLevel.Wind;
 
 
     }

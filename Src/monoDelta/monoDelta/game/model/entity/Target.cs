@@ -15,7 +15,7 @@ namespace Game.Model.Entity
             LoadContent();
             this.position.ZVelocity = LevelManager.CurrentLevel.TargetSpeed;
             this.position.Zpos = LevelManager.CurrentLevel.StartTargetZ;
-            this.hitbox.Radius = 1;
+            this.hitbox.Radius = 0.05;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

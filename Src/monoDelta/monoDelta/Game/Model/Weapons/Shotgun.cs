@@ -12,14 +12,7 @@ namespace Game.Model.Weapons
 
         public Shotgun(Projectile bullet) : base(bullet)
         {
-            this.FireRate = 25;
-            this.Spread = 200;
-        }
-
-        [JsonConstructor]
-        public Shotgun()
-        {
-            this.FireRate = 25;
+            FireRate = 200;
             this.Spread = 200;
         }
 

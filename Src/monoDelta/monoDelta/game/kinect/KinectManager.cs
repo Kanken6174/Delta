@@ -84,7 +84,7 @@ namespace Kinect
                 if (potentialSensor.Status == KinectStatus.Connected)
                 {
                     this.Kinect = potentialSensor;
-                    SetKinectAngle(0);
+                    SetKinectAngle(15);
                     break;
                 }
             }

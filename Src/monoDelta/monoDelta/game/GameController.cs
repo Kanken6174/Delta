@@ -75,13 +75,6 @@ namespace MonoDelta.Game
                 
             }
             LevelManager.loadAllLevels(this);
-            LevelManager.CurrentLevel.PossibleWeapons.Add(new Handgun(null));
-            LevelManager.CurrentLevel.PossibleWeapons.Add(new Minigun(null));
-            LevelManager.CurrentLevel.PossibleWeapons.Add(new Carabine(null));
-            LevelManager.CurrentLevel.PossibleWeapons.Add(new Shotgun(null));
-            LevelManager.CurrentLevel.PossibleWeapons.Add(new Carabine(null));
-            
-            LevelManager.serializeCurrentLevel();
         }
         /// <summary>   
         /// met à jour le jeu selon une vitesse de tick prédéterminée

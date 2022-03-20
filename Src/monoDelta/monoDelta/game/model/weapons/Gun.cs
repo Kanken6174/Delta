@@ -15,13 +15,12 @@ namespace Game.Model.Weapons
 
         protected Random random = new Random();
 
-        [JsonIgnore]
-        public Projectile Bullet { get; protected set; }
+        protected Projectile Bullet;
         public int PowerLevel { get; protected set; } = 0;
         public int Munitions { get; set; } = 0;
 
         public int Spread { get; set; } = 100;
-        public int FireRate { get; set; } = 50;
+        public int FireRate { get; set; } = 200;
 
         public double lastFired = 0;
 
@@ -69,8 +68,10 @@ namespace Game.Model.Weapons
             Bullet = bullet;
         }
 
-        public virtual void ReArmDefault(Microsoft.Xna.Framework.Game game) { 
-            
+        public virtual void ReArmDefault(Microsoft.Xna.Framework.Game game) {
+            Bullet = new SmallProjectile(game);
         }
+
+        public bool hasBullet() => Bullet != null;
     }
 }
