@@ -4,6 +4,7 @@ Delta est un jeu de tir codé en C# avec le framework Monogame pour le côté je
 
 
 # Prérequis
+Une release portable est disponible pour ce projet, il s'agit de la façon conseillée pour jouer au jeu (cela évite davoir à recompiler les .xnb et à remettre les niveaux dans le dossier de l'exécutable).
 ## nugets
 Pour compiler ce projet vous aurez besoin d'un certain nombre de nugets (qui devraient être pré-installés):
 
@@ -39,3 +40,12 @@ Le jeu supporte jusqu'à 2 joueurs en co-op dans un même niveau (max testé). E
 La kinect passera automatiquement des armes aux joueurs dont elle détecte la main droite (montré par un réticule sur l'écran). Elle redémarre également à chaque nouvelle partie pour prévenir des problèmes liés aux perturbations extérieures (elle a tendance à détecter des sources de lumière infrarouge sinon).
 
 Les niveaux sont caractérisés par un fichier de configuration présent dans le dossier `./level/` qui contiendra un ou plusieurs fichiers json de la forme `<nom_du_niveau.json>`. L'interface graphique affichera les niveaux qu'elle trouve sur le menu principal pour que le joueuren choisisse un.
+
+# niveaux
+Le jeu a différents niveaux sous la forme de fichiers .json qu'il est posible d'éditer pour créer ses properes niveaux, voici un test global de l'application avec tous les niveaux par défaut en facile:
+
+https://www.youtube.com/watch?v=iok65KI_y6Q
+
+et voici un test d'une version normale et difficile (créés en modifiant la valeur de vitesse des cibles `TargetSpeed`
+
+https://www.youtube.com/watch?v=nbpAwVdXggk
