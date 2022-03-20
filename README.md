@@ -4,6 +4,7 @@ Delta est un jeu de tir codé en C# avec le framework Monogame pour le côté je
 
 
 # Prérequis
+Une release portable est disponible pour ce projet, il s'agit de la façon conseillée pour jouer au jeu (cela évite davoir à recompiler les .xnb et à remettre les niveaux dans le dossier de l'exécutable).
 ## nugets
 Pour compiler ce projet vous aurez besoin d'un certain nombre de nugets (qui devraient être pré-installés):
 
