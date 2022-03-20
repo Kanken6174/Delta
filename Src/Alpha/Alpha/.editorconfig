@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# CS0414: Le champ 'Carabine.munitions' est assigné, mais sa valeur n'est jamais utilisée
-dotnet_diagnostic.CS0414.severity = none
