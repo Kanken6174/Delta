@@ -20,15 +20,6 @@ namespace MonoDelta.Game
     {
         readonly GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Vector2 baseScreenSize = new Vector2(1600, 900);
-#pragma warning disable CS0169 // Le champ 'GameController.backbufferHeight' n'est jamais utilisé
-#pragma warning disable CS0169 // Le champ 'GameController.backbufferWidth' n'est jamais utilisé
-        int backbufferWidth, backbufferHeight;
-#pragma warning restore CS0169 // Le champ 'GameController.backbufferWidth' n'est jamais utilisé
-#pragma warning restore CS0169 // Le champ 'GameController.backbufferHeight' n'est jamais utilisé
-#pragma warning disable CS0169 // Le champ 'GameController.globalTransformation' n'est jamais utilisé
-        private Matrix globalTransformation;
-#pragma warning restore CS0169 // Le champ 'GameController.globalTransformation' n'est jamais utilisé
         private readonly Kinect.KinectManager km;
         private Desktop _desktop;
         Stopwatch timer;
@@ -53,7 +44,7 @@ namespace MonoDelta.Game
         }
 
         /// <summary>
-        /// Charge les différentes ressources du jeu (fichiers)
+        /// Load the differents ressource's game (files)
         /// </summary>
         protected override void LoadContent()
         {
@@ -76,7 +67,7 @@ namespace MonoDelta.Game
             LevelManager.loadAllLevels(this);
         }
         /// <summary>   
-        /// met à jour le jeu selon une vitesse de tick prédéterminée
+        /// Update the game following a preconfigured tick speed
         /// </summary>
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
@@ -97,7 +88,7 @@ namespace MonoDelta.Game
         }
 
         /// <summary>
-        /// Va appeler les différents methodes Draw pour dessiner la bonne interface
+        /// Call the differents Draw methods 
         /// </summary>
         /// <param name="gameTime"></param>
         protected override void Draw(GameTime gameTime)
@@ -112,22 +103,22 @@ namespace MonoDelta.Game
             }
             base.Draw(gameTime);
 
-            if (IsMouseVisible  && hasWon) // Cas ou le joueur a gagné 
+            if (IsMouseVisible  && hasWon) // Case where the player won 
             {
                 DrawWon();
             }
 
-            else if (IsMouseVisible && gameOver) // Cas ou le joueur a perdu 
+            else if (IsMouseVisible && gameOver) // Case where the player lost
             {
                 drawGameOver();
             }
 
 
-            else if (IsMouseVisible && !gameOver) // Cas ou le joueur n'est pas en partie 
+            else if (IsMouseVisible && !gameOver) // Case where the player is is the menu
             {
                 drawMenu();
             }
-            else // Draw la partie 
+            else // Draw the game
             {
                 spriteBatch.Begin();
                 EntityManager.DrawNextFrame(gameTime, spriteBatch);
@@ -159,7 +150,7 @@ namespace MonoDelta.Game
         }
 
         /// <summary>
-        /// Réinitialise les stats, les entités et le relaunch le kinect
+        /// Restart every statistics, entities and relaunch the kinect
         /// </summary>
         private void ResetGame()
         {
@@ -169,7 +160,7 @@ namespace MonoDelta.Game
             km.Init();
         }
         /// <summary>
-        /// Appelle la méthode qui va draw l'interface Menu
+        /// Call the draw method that draw the menu interface
         /// </summary>
         private void drawMenu()
         {
@@ -181,7 +172,7 @@ namespace MonoDelta.Game
             _desktop.Render();
         }
         /// <summary>
-        /// Appelle la méthode qui va draw l'interface du GameOver
+        /// Call the draw method which draws the gameOver interface
         /// </summary>
         private void drawGameOver()
         {
@@ -193,7 +184,7 @@ namespace MonoDelta.Game
             _desktop.Render();
         }
         /// <summary>
-        /// Draw l'interface du Menu
+        /// Draw the Menu interface
         /// </summary>
         private void drawMenuUI()
         {
@@ -217,7 +208,7 @@ namespace MonoDelta.Game
             scroll.HorizontalAlignment = HorizontalAlignment.Center;
             scroll.Top = 60;
             panel.Widgets.Add(scroll);
-            if (levelCreer.Count == 0)//Cas de la première partie 
+            if (levelCreer.Count == 0)//First game case
             {
                 foreach (var level in LevelManager.getAllLevels())
                 {
@@ -231,7 +222,7 @@ namespace MonoDelta.Game
                     levelCreer.Add(level);
                 }
             }
-            else // Cas des parties suivantes 
+            else // Following games
             {
                 foreach (var level in levelCreer)
                 {
@@ -250,7 +241,7 @@ namespace MonoDelta.Game
 
         }
         /// <summary>
-        /// Méthode quand on appuie sur un bouton "Level" qui va appeler la méthode LoadContent
+        /// Method which calls the LoadContent method when a Button "Level" is clicked
         /// </summary>
         /// <param name="levelName"></param>
         public void ClickLevel(String levelName)
@@ -269,9 +260,9 @@ namespace MonoDelta.Game
             this.LoadContent();
         }
         /// <summary>
-        /// Appelle la méthode qui dessine l'interface d'une partie gagnée
+        /// Call the method which draws the "game won" interface
         /// </summary>
-        public void DrawWon()
+        private void DrawWon()
         {
             if (justExittedGame)
             {
@@ -281,7 +272,7 @@ namespace MonoDelta.Game
             _desktop.Render();
         }
         /// <summary>
-        /// Méthode qui dessine l'interface d'une partie gagnée
+        /// Draws the gameWon interface
         /// </summary>
         private void DrawWonUI()
         {
@@ -317,7 +308,7 @@ namespace MonoDelta.Game
 
         }
         /// <summary>
-        /// Dessine l'interface du gameOver 
+        /// Draws the gameOver interface
         /// </summary>
         private void DrawGameOverUI()
         {
@@ -346,8 +337,7 @@ namespace MonoDelta.Game
             _desktop = new Desktop{Root = panel};
         }
         /// <summary>
-        /// Méthode appelée quand on clique sur le bouton sur l'interface gameOver ou partie Gagnée 
-        /// appelle la méthode LoadContent
+        /// Method which calls the LoadContent method when a Button "Retour au menu" is clicked
         /// </summary>
         public void BackMenu()
         {

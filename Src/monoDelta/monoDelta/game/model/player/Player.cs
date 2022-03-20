@@ -22,8 +22,6 @@ namespace Game.Model.Player
             Life = LevelManager.CurrentLevel.PlayerLives;
         }
 
-        public int Munitions { get; private set; }
-
         public int Life { get; private set; }
 
         public int Score { get; private set; }

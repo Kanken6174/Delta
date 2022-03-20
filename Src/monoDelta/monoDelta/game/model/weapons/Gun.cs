@@ -16,9 +16,7 @@ namespace Game.Model.Weapons
         protected Random random = new Random();
 
         protected Projectile Bullet;
-        public int PowerLevel { get; protected set; } = 0;
-        public int Munitions { get; set; } = 0;
-
+       
         public int Spread { get; set; } = 100;
         public int FireRate { get; set; } = 200;
 

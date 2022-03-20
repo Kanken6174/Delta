@@ -13,7 +13,7 @@ namespace monoDelta.Game.Model.Levels
     {
         private static string levelFolderPath = @".\level\";
 
-        public static Level CurrentLevel = new Level();
+        public static Level CurrentLevel = new Level(); 
 
         private static List<Level> _levels = new List<Level>(); //list of the levels loaded by the game
 
