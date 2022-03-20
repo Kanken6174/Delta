@@ -29,8 +29,9 @@ namespace Game.Model.Entity.Projectiles
         }
 
         /// <summary>
-        /// A projectile is a specific type of entity that is "shot" through a Gun object. Its position object will define it's initila velocity and other parameters.
+        /// this is the clone method of the projectile, it will deep-clone itself and create new attributes where needed (like for the position)
         /// </summary>
+        /// <returns>the clone of the current proejctile</returns>
         public Projectile Clone()
         {
             Projectile bullet = new SmallProjectile(base.Game)

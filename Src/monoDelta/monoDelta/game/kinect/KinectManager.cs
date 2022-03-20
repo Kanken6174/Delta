@@ -33,6 +33,11 @@ namespace Kinect
         }
         public KinectSensor Kinect { get; private set; }
 
+        /// <summary>
+        /// This event will fire every time the kinect has a skeleton data frame ready to be read
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">the event args carrying the skeleton frame data</param>
         private void Kinect_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (SkeletonFrame currentFrame = e.OpenSkeletonFrame())

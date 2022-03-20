@@ -5,12 +5,18 @@ using System;
 
 namespace Game.Model.Collisions.Handlers
 {
+    /// <summary>
+    /// The EntityCollisionHandler is used to check for collisions between spherical hitboxes in a 3d plane
+    /// </summary>
     public static class EntityCollisionHandler
     {
 
         /// <summary>
-        /// @param entity
+        /// this method will check if 2 GameEntity are in collision on the 2d plane (xy)
         /// </summary>
+        /// <param name="p">first entity</param>
+        /// <param name="entity">second entity</param>
+        /// <returns></returns>
         public static bool IsInCollision(GameEntity p, GameEntity entity)
         {
             double xdistance = p.position.Xpos - entity.position.Xpos;
@@ -20,17 +26,23 @@ namespace Game.Model.Collisions.Handlers
             return (absDistance < p.hitbox.Radius + entity.hitbox.Radius);
         }
 
-        public static bool hasProjectileCollidedWith(Projectile p, GameEntity entity)
+        /// <summary>
+        /// this method checks for collision between a bullet and a gameEntity on the 3d plane (xyz)
+        /// </summary>
+        /// <param name="p">projectile to check for collisions (the path that the projectile took to hit the </param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public static bool HasProjectileCollidedWith(Projectile p, GameEntity entity)
         {
             double xdistance = p.position.Xpos - entity.position.Xpos;
             double ydistance = p.position.Ypos - entity.position.Ypos;
             double absDistance = Math.Sqrt((xdistance * xdistance) + (ydistance * ydistance));
             if (absDistance > ((p.hitbox.Radius + entity.hitbox.Radius)) * 2)
-                return false;   //le projectile n'est pas sur l'axe de la cible
+                return false;   //projectile isn't on the target's 2d axis
 
             double zVelocityA = entity.position.ZVelocity;
             double zVelocityB = p.position.ZVelocity;
-            double zDistance = p.position.Zpos - entity.position.Zpos;  //la distance entre les deux points actuels des entités
+            double zDistance = p.position.Zpos - entity.position.Zpos;
 
             return (zDistance < (p.hitbox.Radius + entity.hitbox.Radius + Math.Abs(zVelocityA) + Math.Abs(zVelocityB)));
 

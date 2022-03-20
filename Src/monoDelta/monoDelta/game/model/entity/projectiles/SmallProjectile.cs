@@ -5,6 +5,9 @@ using System;
 
 namespace Game.Model.Entity.Projectiles
 {
+    /// <summary>
+    /// Describes a smaller version of the abstract projectile, used as the default projectile in this project
+    /// </summary>
     public class SmallProjectile : Projectile
     {
 

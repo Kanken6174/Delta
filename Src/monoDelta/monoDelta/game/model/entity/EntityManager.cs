@@ -121,7 +121,7 @@ namespace MonoDelta.Game.Model.Entity
             {
                 for (int i = 0; i < projectiles.Count; i++)
                 {
-                    if (j < entities.Count &&  EntityCollisionHandler.hasProjectileCollidedWith(projectiles[i], entities[j]))
+                    if (j < entities.Count &&  EntityCollisionHandler.HasProjectileCollidedWith(projectiles[i], entities[j]))
                     {
                         entities.RemoveAt(j);
                         PlayerManager.GetPlayer().IncrementScore(10);

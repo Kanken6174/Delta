@@ -34,7 +34,6 @@ namespace MonoDelta.Game
         Stopwatch timer;
         private bool justExittedGame = false, firstGame = true, gameOver = false, hasWon = false;
         private List<Level> levelCreer = new List<Level>();
-        private List<Level> tmp= new List<Level>();
 
         public GameController()
         {

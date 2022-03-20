@@ -6,13 +6,16 @@ using System.IO;
 
 namespace monoDelta.Game.Model.Levels
 {
+    /// <summary>
+    /// This static class will manage level-related operations
+    /// </summary>
     public static class LevelManager
     {
         private static string levelFolderPath = @".\level\";
 
         public static Level CurrentLevel = new Level();
 
-        private static List<Level> _levels = new List<Level>();
+        private static List<Level> _levels = new List<Level>(); //list of the levels loaded by the game
 
         public static void serializeCurrentLevel()
         {
@@ -29,7 +32,7 @@ namespace monoDelta.Game.Model.Levels
             File.WriteAllText(fileName, jsonObj);
         }
         /// <summary>
-        /// Charge tout les niveaux 
+        /// will load every level in the level folder into _levels
         /// </summary>
         /// <param name="game"></param>
         public static void loadAllLevels(Microsoft.Xna.Framework.Game game)
@@ -49,9 +52,9 @@ namespace monoDelta.Game.Model.Levels
         }
 
         /// <summary>
-        /// Retourne tout les niveaux
+        /// 
         /// </summary>
-        /// <returns></returns>
+        /// <returns> all levels in a list of levels</returns>
         public static List<Level> getAllLevels()
         {
             return _levels;
