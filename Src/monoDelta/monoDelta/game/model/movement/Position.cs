@@ -1,5 +1,9 @@
 namespace Game.Model.movement
 {
+    /// <summary>
+    /// Each GameEntity has a position object which contains both its position and rotation, but also the acceleration to be applied to both of these values
+    /// whenever the entity is moved.
+    /// </summary>
     public class Position
     {
 
@@ -22,7 +26,7 @@ namespace Game.Model.movement
             {
                 zposValue = value;
             }
-        }    //TODO remettre en privé
+        }
 
         /// <summary>
         /// the current position of the entity on the Y axis
@@ -34,7 +38,7 @@ namespace Game.Model.movement
             {
                 yposValue = value;
             }
-        }    //TODO remettre en privé
+        }
 
         /// <summary>
         /// the current position of the entity on the X axis
@@ -46,7 +50,7 @@ namespace Game.Model.movement
             {
                 xposValue = value;
             }
-        }    //TODO remettre en privé
+        }
 
         /// <summary>
         /// The current acceleration of the Entity on the X axis (defines how much the Entity will be moved by the EntityMover next game tick)

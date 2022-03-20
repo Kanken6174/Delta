@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Game.Model.Entity
 {
+    /// <summary>
+    /// This BonusItem subclass is used to give a weapon to the player randomly when hit.
+    /// </summary>
     public class WeaponItem : BonusItem
     {
 

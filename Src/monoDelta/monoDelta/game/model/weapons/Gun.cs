@@ -16,9 +16,11 @@ namespace Game.Model.Weapons
         protected Random random = new Random();
 
         protected Projectile Bullet;
-       
-        public int Spread { get; set; } = 100;
-        public int FireRate { get; set; } = 200;
+        public int PowerLevel { get; protected set; } = 0;
+        public int Munitions { get; set; } = 0;
+
+        public int Spread { get; set; } = 100;  //weapon spread, it defines the maximum amount of deviation when firing a projectile on the X and Y axis
+        public int FireRate { get; set; } = 200;    //firing delay - a higher delay means slower rate of fire, in milliseconds
 
         public double lastFired = 0;
 
@@ -37,9 +39,9 @@ namespace Game.Model.Weapons
         }
 
         /// <summary>
-        /// Va tirer une balle en clonant Bullet à un certain intervalle
+        /// will shoot a projectile by cloning the currently chambered projectile if the firing delay is met
         /// </summary>
-        /// <param name="gameTime">Le temps actuel du jeu</param>
+        /// <param name="gameTime">the current game timer</param>
         public virtual void Shoot(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalMilliseconds - lastFired > FireRate)
@@ -60,12 +62,18 @@ namespace Game.Model.Weapons
             }
         }
 
-        //Va remplacer la balle actuelle de l'arme
+        /// <summary>
+        /// This method is used to replace the current projectile of the weapon
+        /// </summary>
+        /// <param name="bullet"></param>
         public void ReArm(Projectile bullet)
         {
             Bullet = bullet;
         }
-
+        /// <summary>
+        /// This repalces the currently chambered projectile by the default one for this weapon
+        /// </summary>
+        /// <param name="game"></param>
         public virtual void ReArmDefault(Microsoft.Xna.Framework.Game game) {
             Bullet = new SmallProjectile(game);
         }
