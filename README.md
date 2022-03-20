@@ -42,6 +42,8 @@ La kinect passera automatiquement des armes aux joueurs dont elle détecte la ma
 Les niveaux sont caractérisés par un fichier de configuration présent dans le dossier `./level/` qui contiendra un ou plusieurs fichiers json de la forme `<nom_du_niveau.json>`. L'interface graphique affichera les niveaux qu'elle trouve sur le menu principal pour que le joueuren choisisse un.
 
 # niveaux
+n'oubliez pas d'aller voir le wiki pour plus d'informations sur les niveaux et comment les configurer!
+
 Le jeu a différents niveaux sous la forme de fichiers .json qu'il est posible d'éditer pour créer ses properes niveaux, voici un test global de l'application avec tous les niveaux par défaut en facile:
 
 https://www.youtube.com/watch?v=iok65KI_y6Q
