@@ -1,0 +1,23 @@
+{
+    "$type": "monoDelta.Game.Model.Levels.Level, monoDelta",
+    "StartTargetAmount": 0.0,
+    "StartTargetZ": 10.0,
+    "TargetSpawnDelay": 300,
+    "TargetSpeed": -0.005,
+    "BonusChance": 0.0,
+    "PlayerLives": 10,
+    "WinScore": 1000.0,
+    "LevelName": "First Shots",
+    "Gravity": 0.0,
+    "Wind": 0.0,
+    "PossibleWeapons": [{
+        "$type": "Game.Model.Weapons.Handgun, monoDelta",
+        "lastFired": 0.0,
+        "Bullet": null,
+        "PowerLevel": 0,
+        "Munitions": 0,
+        "Spread": 100,
+        "FireRate": 200
+    }],
+    "StartingGunIndex": 0
+}

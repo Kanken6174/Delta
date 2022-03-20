@@ -1,0 +1,47 @@
+{
+    "$type": "monoDelta.Game.Model.Levels.Level, monoDelta",
+    "StartTargetAmount": 1.0,
+    "StartTargetZ": 10.0,
+    "TargetSpawnDelay": 100,
+    "TargetSpeed": -0.005,
+    "BonusChance": 0.01,
+    "PlayerLives": 3,
+    "WinScore": 5000.0,
+    "LevelName": "windmill",
+    "Gravity": 0.0,
+    "Wind": 0.05,
+    "PossibleWeapons": [{
+            "$type": "Game.Model.Weapons.Handgun, monoDelta",
+            "lastFired": 0.0,
+            "PowerLevel": 0,
+            "Munitions": 0,
+            "Spread": 100,
+            "FireRate": 200
+        },
+        {
+            "$type": "Game.Model.Weapons.Minigun, monoDelta",
+            "lastFired": 0.0,
+            "PowerLevel": 0,
+            "Munitions": 0,
+            "Spread": 100,
+            "FireRate": 50
+        },
+        {
+            "$type": "Game.Model.Weapons.Carabine, monoDelta",
+            "lastFired": 0.0,
+            "PowerLevel": 0,
+            "Munitions": 0,
+            "Spread": 100,
+            "FireRate": 100
+        },
+        {
+            "$type": "Game.Model.Weapons.Shotgun, monoDelta",
+            "lastFired": 0.0,
+            "PowerLevel": 0,
+            "Munitions": 0,
+            "Spread": 200,
+            "FireRate": 200
+        }
+    ],
+    "StartingGunIndex": 0
+}
