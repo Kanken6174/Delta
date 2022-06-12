@@ -34,7 +34,7 @@ namespace monoDelta.Game.Model.Levels
         /// <summary>
         /// will load every level in the level folder into _levels
         /// </summary>
-        /// <param name="game"></param>
+        /// <param name="game">shows the game type to load</param>
         public static void loadAllLevels(Microsoft.Xna.Framework.Game game)
         {
             foreach (string levelname in Directory.GetFiles(levelFolderPath))
